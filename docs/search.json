@@ -1,0 +1,156 @@
+[
+  {
+    "objectID": "presentation.html#introduce-the-topic-and-motivation",
+    "href": "presentation.html#introduce-the-topic-and-motivation",
+    "title": "Presentation title",
+    "section": "Introduce the topic and motivation",
+    "text": "Introduce the topic and motivation\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "presentation.html#introduce-the-data",
+    "href": "presentation.html#introduce-the-data",
+    "title": "Presentation title",
+    "section": "Introduce the data",
+    "text": "Introduce the data\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "presentation.html#highlights-from-eda",
+    "href": "presentation.html#highlights-from-eda",
+    "title": "Presentation title",
+    "section": "Highlights from EDA",
+    "text": "Highlights from EDA\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2"
+  },
+  {
+    "objectID": "presentation.html#inferencemodelingother-analysis",
+    "href": "presentation.html#inferencemodelingother-analysis",
+    "title": "Presentation title",
+    "section": "Inference/modeling/other analysis",
+    "text": "Inference/modeling/other analysis\nYour results here"
+  },
+  {
+    "objectID": "presentation.html#inferencemodelingother-analysis-1",
+    "href": "presentation.html#inferencemodelingother-analysis-1",
+    "title": "Presentation title",
+    "section": "Inference/modeling/other analysis",
+    "text": "Inference/modeling/other analysis\nYour results here"
+  },
+  {
+    "objectID": "presentation.html#conclusions-future-work",
+    "href": "presentation.html#conclusions-future-work",
+    "title": "Presentation title",
+    "section": "Conclusions + future work",
+    "text": "Conclusions + future work"
+  },
+  {
+    "objectID": "eda.html",
+    "href": "eda.html",
+    "title": "Project title",
+    "section": "",
+    "text": "Research question(s)\nResearch question(s). State your research question (s) clearly.\n\n\nData collection and cleaning\nHave an initial draft of your data cleaning appendix. Document every step that takes your raw data file(s) and turns it into the analysis-ready data set that you would submit with your final project. Include text narrative describing your data collection (downloading, scraping, surveys, etc) and any additional data curation/cleaning (merging data frames, filtering, transformations of variables, etc). Include code for data curation/cleaning, but not collection.\n\n\nData description\nHave an initial draft of your data description section. Your data description should be about your analysis-ready data.\n\n\nData limitations\nIdentify any potential problems with your dataset.\n\n\nExploratory data analysis\nPerform an (initial) exploratory data analysis.\n\n\nQuestions for reviewers\nList specific questions for your peer reviewers and project mentor to answer in giving you feedback on this phase."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TEAM NAME",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This project was developed by [team name] For INFO 2950: Introduction to Data Science at Cornell University. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.).\n…"
+  },
+  {
+    "objectID": "pre-registration.html",
+    "href": "pre-registration.html",
+    "title": "Project title",
+    "section": "",
+    "text": "Analysis #1\nDescribe your first analysis here.\n\n\nAnalysis #2\nDescribe your second analysis here."
+  },
+  {
+    "objectID": "report.html",
+    "href": "report.html",
+    "title": "Project title",
+    "section": "",
+    "text": "Introduction\n\n\nData description\n\n\nData analysis\n\n\nEvaluation of significance\n\n\nInterpretation and conclusions\n\n\nLimitations\n\n\nAcknowledgments"
+  },
+  {
+    "objectID": "appendicies.html",
+    "href": "appendicies.html",
+    "title": "Project title",
+    "section": "",
+    "text": "Data cleaning\n\n\nOther appendicies (as necessary)"
+  },
+  {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "Project title",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(skimr)"
+  },
+  {
+    "objectID": "proposal.html#introduction-and-data",
+    "href": "proposal.html#introduction-and-data",
+    "title": "Project title",
+    "section": "Introduction and data",
+    "text": "Introduction and data\n\nIdentify the source of the data.\nState when and how it was originally collected (by the original data curator, not necessarily how you found the data).\nWrite a brief description of the observations."
+  },
+  {
+    "objectID": "proposal.html#research-question",
+    "href": "proposal.html#research-question",
+    "title": "Project title",
+    "section": "Research question",
+    "text": "Research question\n\nA well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)\nA description of the research topic along with a concise statement of your hypotheses on this topic.\nIdentify the types of variables in your research question. Categorical? Quantitative?"
+  },
+  {
+    "objectID": "proposal.html#glimpse-of-data",
+    "href": "proposal.html#glimpse-of-data",
+    "title": "Project title",
+    "section": "Glimpse of data",
+    "text": "Glimpse of data\n\n# add code here"
+  },
+  {
+    "objectID": "proposal.html#introduction-and-data-1",
+    "href": "proposal.html#introduction-and-data-1",
+    "title": "Project title",
+    "section": "Introduction and data",
+    "text": "Introduction and data\n\nIdentify the source of the data.\nState when and how it was originally collected (by the original data curator, not necessarily how you found the data).\nWrite a brief description of the observations."
+  },
+  {
+    "objectID": "proposal.html#research-question-1",
+    "href": "proposal.html#research-question-1",
+    "title": "Project title",
+    "section": "Research question",
+    "text": "Research question\n\nA well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)\nA description of the research topic along with a concise statement of your hypotheses on this topic.\nIdentify the types of variables in your research question. Categorical? Quantitative?"
+  },
+  {
+    "objectID": "proposal.html#glimpse-of-data-1",
+    "href": "proposal.html#glimpse-of-data-1",
+    "title": "Project title",
+    "section": "Glimpse of data",
+    "text": "Glimpse of data\n\n# add code here"
+  },
+  {
+    "objectID": "proposal.html#introduction-and-data-2",
+    "href": "proposal.html#introduction-and-data-2",
+    "title": "Project title",
+    "section": "Introduction and data",
+    "text": "Introduction and data\n\nIdentify the source of the data.\nState when and how it was originally collected (by the original data curator, not necessarily how you found the data).\nWrite a brief description of the observations."
+  },
+  {
+    "objectID": "proposal.html#research-question-2",
+    "href": "proposal.html#research-question-2",
+    "title": "Project title",
+    "section": "Research question",
+    "text": "Research question\n\nA well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)\nA description of the research topic along with a concise statement of your hypotheses on this topic.\nIdentify the types of variables in your research question. Categorical? Quantitative?"
+  },
+  {
+    "objectID": "proposal.html#glimpse-of-data-2",
+    "href": "proposal.html#glimpse-of-data-2",
+    "title": "Project title",
+    "section": "Glimpse of data",
+    "text": "Glimpse of data\n\n# add code here"
+  }
+]

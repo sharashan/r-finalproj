@@ -1,0 +1,17 @@
+---
+title: "Project title"
+subtitle: "Preregistration of analyses"
+format: html
+editor: visual
+execute:
+  echo: true
+---
+
+# Analysis \#1
+
+Describe your first analysis here.
+
+# Analysis \#2
+
+Describe your second analysis here.
+

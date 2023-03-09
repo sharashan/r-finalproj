@@ -1,0 +1,30 @@
+---
+title: "Project title"
+subtitle: "Report"
+format: html
+editor: visual
+execute:
+  echo: true
+---
+
+# Introduction
+
+
+# Data description
+
+
+# Data analysis
+
+
+# Evaluation of significance
+
+
+# Interpretation and conclusions
+
+
+# Limitations
+
+
+# Acknowledgments
+
+

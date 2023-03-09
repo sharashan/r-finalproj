@@ -1,0 +1,12 @@
+---
+title: "Project title"
+subtitle: "Appendix to report"
+format: html
+editor: visual
+execute:
+  echo: true
+---
+
+# Data cleaning
+
+# Other appendicies (as necessary)

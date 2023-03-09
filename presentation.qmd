@@ -1,0 +1,39 @@
+---
+title: Presentation title
+subtitle: Presentation subtitle (if any)
+author: Team name <br> Names of team members
+date: Your date
+format: revealjs
+editor: visual
+execute:
+  echo: false
+---
+
+## Introduce the topic and motivation
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## Introduce the data
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Highlights from EDA
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+## Inference/modeling/other analysis
+
+Your results here
+
+## Inference/modeling/other analysis
+
+Your results here
+
+## Conclusions + future work
