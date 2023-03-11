@@ -7,5 +7,5 @@ editor: visual
 This project was developed by **skillful-pikachu** For [INFO 2950: Introduction to Data Science](https://info2950.infosci.cornell.edu) at Cornell University. The team is comprised of the following team members.
 
 -   Team member 1: Shara Shanmugasundaram -- Freshman, Computer Science
--   Team member 2: Henry Friedberg -- Sophomre, InfoSci
+-   Team member 2: Henry Friedberg -- Sophomore, InfoSci
 -   Team member 3: Pranathi Adhikari -- Junior, InfoSci, concentration in Interactive Technologies and Data Science
