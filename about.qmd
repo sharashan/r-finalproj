@@ -1,10 +1,10 @@
 ---
-title: "About"
+title: "Skilful-pikachu"
 format: html
 editor: visual
 ---
 
-This project was developed by **\[team name\]** For [INFO 2950: Introduction to Data Science](https://info2950.infosci.cornell.edu) at Cornell University. The team is comprised of the following team members.
+This project was developed by **skillful-pikachu** For [INFO 2950: Introduction to Data Science](https://info2950.infosci.cornell.edu) at Cornell University. The team is comprised of the following team members.
 
 -   Team member 1: One sentence description of Team member 1 (e.g., year, major, etc.).
 -   Team member 2: One sentence description of Team member 2 (e.g., year, major, etc.).
