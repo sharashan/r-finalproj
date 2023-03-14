@@ -38,7 +38,7 @@ library(skimr)
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
     -   Research statement: Understanding differences in education levels among different socioeconomic sectors and years in countries.
 
-    -   Hypothesis: Countries that are considered "first world" such as the US, Canada, and the UK will have the highest education levels across all socioeconomic statuses and have not changed that much throughout the years while countries such as India and other countries considered "third world" might have had an increase in education levels throughout the years but not to the level of the first world countries.
+    -   Hypothesis: Countries that are considered "first world" such as the US, Canada, and the UK will have the highest education levels across all socioeconomic statuses and have not drastically changed that much throughout the years while countries such as India and other countries considered "third world" might have had an increase in education levels throughout the years but not to the level of the first world countries.
 -   Identify the types of variables in your research question. Categorical? Quantitative?
     -   These are quantitative variables.
 
