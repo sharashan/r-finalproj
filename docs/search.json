@@ -58,9 +58,9 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Skilful-pikachu",
     "section": "",
-    "text": "This project was developed by [team name] For INFO 2950: Introduction to Data Science at Cornell University. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.).\n…"
+    "text": "This project was developed by skillful-pikachu For INFO 2950: Introduction to Data Science at Cornell University. The team is comprised of the following team members.\n\nTeam member 1: Shara Shanmugasundaram – Freshman, Computer Science\nTeam member 2: Henry Friedberg – Sophomore, InfoSci\nTeam member 3: Pranathi Adhikari – Junior, InfoSci, concentration in Interactive Technologies and Data Science\nTeam member 4: John Aclufi - Senior, Info Sci + AEM (Concentration in IT)"
   },
   {
     "objectID": "pre-registration.html",
@@ -152,5 +152,12 @@
     "title": "Project title",
     "section": "Glimpse of data",
     "text": "Glimpse of data\n\n# add code here"
+  },
+  {
+    "objectID": "presentation.html",
+    "href": "presentation.html",
+    "title": "Presentation title",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
   }
 ]

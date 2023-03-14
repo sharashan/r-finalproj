@@ -9,3 +9,4 @@ This project was developed by **skillful-pikachu** For [INFO 2950: Introduction 
 -   Team member 1: Shara Shanmugasundaram -- Freshman, Computer Science
 -   Team member 2: Henry Friedberg -- Sophomore, InfoSci
 -   Team member 3: Pranathi Adhikari -- Junior, InfoSci, concentration in Interactive Technologies and Data Science
+-   Team member 4: John Aclufi - Senior, Info Sci + AEM (Concentration in IT)
