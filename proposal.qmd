@@ -81,8 +81,17 @@ skim(education, "aAll_1", "aUrban_1", "aRural_1")
 
     -   By joining with another dataset, we may be able to answer whether increased spending has a relationship with less disease.
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
+    -   The research topic is based on various expenditures by country and year, and how they relate to a variety of diseases. Our hypothesis is, How does the distribution of a countries health expenditures and the resulting out of pocket expenses correlate with various diseases and conditions?
 -   Identify the types of variables in your research question. Categorical? Quantitative?
     -   Country, region, income, and disease category are categorical. Year can be either, depending on how it is used. All other variables are quantitative.
+    -   Other Quantitative used variables are listed below, and they represent various expenditures per capita in USD.
+        -   che_pc_usd (current health expenditure)
+
+        -   gghed_pc_usd (domestic general government health expenditure)
+
+        -   pvtd_pc_usd (domestic private health expenditure)
+
+        -   oop_pc_usd (out of pocket expenditure)
 
 ## Glimpse of data
 
@@ -92,7 +101,7 @@ skim(education, "aAll_1", "aUrban_1", "aRural_1")
 library("readxl")
 health <- read_excel("data/GHED_data.XLSX", sheet = "Data")
 
-skim(health, "country", "region", "income")
+skim(health, "country", "region", "income", "che_pc_usd", "gghed_pc_usd", "pvtd_pc_usd", "oop_pc_usd")
 ```
 
 # Data 3
