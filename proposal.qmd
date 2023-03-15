@@ -84,7 +84,7 @@ skim(education, "aAll_1", "aUrban_1", "aRural_1")
     -   The research topic is based on various expenditures by country and year, and how they relate to a variety of diseases. Our hypothesis is, How does the distribution of a countries health expenditures and the resulting out of pocket expenses correlate with various diseases and conditions?
 -   Identify the types of variables in your research question. Categorical? Quantitative?
     -   Country, region, income, and disease category are categorical. Year can be either, depending on how it is used. All other variables are quantitative.
-    -   Other Quantitative used variables are listed below, and they represent various expenditures per capita in USD.
+    -   Some other quantitative variables we could use are listed below, and they represent various expenditures per capita in USD.
         -   che_pc_usd (current health expenditure)
 
         -   gghed_pc_usd (domestic general government health expenditure)
