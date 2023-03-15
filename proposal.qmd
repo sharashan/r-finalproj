@@ -60,6 +60,8 @@ skim(education, "aAll_1", "aUrban_1", "aRural_1")
 
 -   Identify the source of the data.
 
+    -   The World Health Organization Global Health Expenditure Database
+
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
 
 -   Write a brief description of the observations.
