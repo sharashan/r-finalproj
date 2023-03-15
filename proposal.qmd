@@ -67,20 +67,92 @@ library(skimr)
 
 -   Identify the source of the data.
 
+Source: https://www.api-football.com/documentation-v3
+
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
 
+The data was created by using the API collected from https://www.api-football.com/documentation-v3. We collected the data by making a GET request to their top scorers endpoint, focusing on 27 of the top leagues in 2021. Thus, as you can see in the code snippet below for each of the leagues we make an API call to fetch the top scorers in the league. The API returns the top 20 goal scorers for the respective league as specified per the query string parameters.
+
 -   Write a brief description of the observations.
+
+Each observation represents a top 20 football scorer (with regards to their league) for the 2021 season. From this we can have see a lot of interesting background information of the player like their height, weight, nationality, etc. In addition to the background information, we also have a lot of statistics for the player in the given season (like passes, goals scored, assists, penalties, etc).
 
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
+
+Is their a correlation between height and/or weight and specific game statistics (Including: goals scored, assists, penalties, passes, etc)
+
+-   As a sub question: Do taller players complete a larger percentage of passes?
+
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
+
 -   Identify the types of variables in your research question. Categorical? Quantitative?
 
 ## Glimpse of data
 
 ```{r}
-#| label: load-data-3
+#| label: load-data-
 
-# add code here
+library(httr)
+library(jsonlite)
+
+top_scorers <- read_csv("./data/top_goalscorers.csv")
+
+glimpse(top_scorers)
+
+# url <- "https://api-football-v1.p.rapidapi.com/v3/players/topscorers"
+
+#  == LEAGUE IDs BELOW ==
+# England League 39, 40, 41
+# France League 1 61 2, 63
+# Saudi Arabia Pro League 307
+# Brazil Serie A 71, B 72, C 73, D 76
+# Italy Serie A 135, B 136, C 137, D [426,427,428,429]
+# Portugal 1 94, 2 95
+# Argentina A 128, B 131
+# Germany 78, 79, 80
+# Spain 140, 141, 142
+# USA 254
+# Belgium 144, 145
+# Netherlands 88, 89
+
+# == DATA FETCH & SANITIZATION BELOW == 
+# leagues <- c("39", "40", "41", "307", "61", "63", "71", "72", "73", "76", "135", "136", "137", "94", "95", "128", "131", "78", "79", "80", "140", "141", "253", "262", "144", "145", "88", "89")
+# 
+# queryString <- list(
+#   league = "39",
+#   season = "2021"
+# )
+# 
+# all_leagues <- NULL
+# 
+# for (x in leagues) {
+#   queryString <- list(
+#     league = x,
+#     season = "2021"
+#   )
+# 
+#   # Verb snippet below provided by API docs
+#   # NOTE: API key will incur rate-limits, so may not work at the time [FREE Limitations]
+#   response <- VERB("GET", url, add_headers("X-RapidAPI-Key" = "dfd9043453mshb6c979e3b50cc80p1efc9bjsn4805f4646934", "X-RapidAPI-Host" = "api-football-v1.p.rapidapi.com"), query = queryString, content_type("application/json"))
+# 
+#   text_res <- content(response, "text")
+# 
+#   player_info <- fromJSON(text_res, flatten = TRUE)
+# 
+#   player_tibble <- as_tibble(player_info$response)
+# 
+#   player_tibble <- player_tibble |>
+#     mutate(id = row_number()) |>
+#     unnest(statistics)
+# 
+#   print(x)
+#   all_leagues <- bind_rows(all_leagues, player_tibble)
+# }
+# 
+# write.table(all_leagues, file = "./data/top_goalscorers.csv")
+  
+  
+
 ```
