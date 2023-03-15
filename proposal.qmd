@@ -64,20 +64,39 @@ skim(education, "aAll_1", "aUrban_1", "aRural_1")
 
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
 
+    -   Member states who report the data to WHO. WHO can make estimations to fill any gaps. Data is updated yearly with a two-year lag.
+
 -   Write a brief description of the observations.
+
+    -   Every observation is a country/year combination and corresponding variables pertaining to expenditures on disease categories such as infectious/parasitic diseases, NCDs, reproductive health, nutritional definiciencies, or reproductive health.
 
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
+    -   What are the priorities of different countries/different regions of countries, based on their percentage of health expenditures of various categories of disease?
+
+    -   Do high and low income countries have the same health priorities or different ones?
+
+    -   How do health priorities compare by region?
+
+    -   By joining with another dataset, we may be able to answer whether increased spending has a relationship with less disease.
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
 -   Identify the types of variables in your research question. Categorical? Quantitative?
+    -   Country, region, income, and disease category are categorical. Year can be either, depending on how it is used. All other variables are quantitative.
 
 ## Glimpse of data
 
 ```{r}
 #| label: load-data-2
 
-# add code here
+library("readxl")
+health <- read_excel("data/GHED_data.XLSX", sheet = "Data")
+
+# skim(health, "country", "region", "income")
+
+health |>
+  glimpse() |> 
+  select(country, year, region, income, )
 ```
 
 # Data 3
