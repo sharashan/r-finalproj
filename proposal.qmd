@@ -92,11 +92,7 @@ skim(education, "aAll_1", "aUrban_1", "aRural_1")
 library("readxl")
 health <- read_excel("data/GHED_data.XLSX", sheet = "Data")
 
-# skim(health, "country", "region", "income")
-
-health |>
-  glimpse() |> 
-  select(country, year, region, income, )
+skim(health, "country", "region", "income")
 ```
 
 # Data 3
