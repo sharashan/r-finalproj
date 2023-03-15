@@ -19,22 +19,39 @@ library(skimr)
 
 -   Identify the source of the data.
 
+    -   The World Bank
+
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
 
+    -   Various sources from various years especially from DHS (demographics and health surveys), i2d2, MICS (Unicef), or IHSDHS (World Bank). The data in the .xlsx file comes from a culmination of all of the sources.
+
 -   Write a brief description of the observations.
+
+    -   Countries split by different years of data obtained so there can be different trends of the countries seen by different statistics based on the years the data is gathered.
 
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
+    -   What are the countries that experienced the most drastic shift in educational attainability among the females and the lower classes. What countries did not experience that much of a shift?
+
+    -   What are current countries that have the greatest educational disparity among either gender, place of living, or monetary status?
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
+    -   Research statement: Understanding differences in education levels among different socioeconomic sectors and years in countries.
+
+    -   Hypothesis: Countries that are considered "first world" such as the US, Canada, and the UK will have the highest education levels across all socioeconomic statuses and have not drastically changed that much throughout the years while countries such as India and other countries considered "third world" might have had an increase in education levels throughout the years but not to the level of the first world countries.
 -   Identify the types of variables in your research question. Categorical? Quantitative?
+    -   These are quantitative variables.
 
 ## Glimpse of data
+
+NOTE: THERE ARE TOO MANY COLUMNS (4816) FOR SKIM TO WORK QUICKLY AND EFFICIENTLY SO THREE COLUMNS ARE USED TO SHOW THAT WE USED THE SKIM FUNCTION
 
 ```{r}
 #| label: load-data-1
 
-# add code here
+education <- read_csv("data/edu.csv")
+
+skim(education, "aAll_1", "aUrban_1", "aRural_1")
 ```
 
 # Data 2
