@@ -412,7 +412,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 </ul></li>
 <li><p>Write a brief description of the observations.</p>
 <ul>
-<li>Every observation is a country/year combination and corresponding variables pertaining to expenditures on disease categories such as infectious/parasitic diseases, NCDs, reproductive health, nutritional definiciencies, or reproductive health.</li>
+<li>Every observation is a country/year combination and corresponding variables pertaining to expenditures on disease categories such as infectious/parasitic diseases, NCDs, reproductive health, nutritional deficiencies, or reproductive health.</li>
 </ul></li>
 </ul>
 </section>
@@ -435,10 +435,12 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <li>Country, region, income, and disease category are categorical. Year can be either, depending on how it is used. All other variables are quantitative.</li>
 <li>Some other quantitative variables we could use are listed below, and they represent various expenditures per capita in USD.
 <ul>
-<li><p>che_pc_usd (current health expenditure)</p></li>
-<li><p>gghed_pc_usd (domestic general government health expenditure)</p></li>
-<li><p>pvtd_pc_usd (domestic private health expenditure)</p></li>
-<li><p>oop_pc_usd (out of pocket expenditure)</p></li>
+<li><p>che (current health expenditure in millions)</p></li>
+<li><p>che_gdp (current health expenditure as a percent of nation’s gdp)</p></li>
+<li><p>che_pc_usd (current health expenditure per capita )</p></li>
+<li><p>gghed_pc_usd (domestic general government health expenditure per capita)</p></li>
+<li><p>pvtd_pc_usd (domestic private health expenditure per capita)</p></li>
+<li><p>oop_pc_usd (out of pocket expenditure per capita)</p></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -449,7 +451,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>health <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/GHED_data.XLSX"</span>, <span class="at">sheet =</span> <span class="st">"Data"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(health, <span class="st">"country"</span>, <span class="st">"region"</span>, <span class="st">"income"</span>, <span class="st">"che_pc_usd"</span>, <span class="st">"gghed_pc_usd"</span>, <span class="st">"pvtd_pc_usd"</span>, <span class="st">"oop_pc_usd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(health, <span class="st">"country"</span>, <span class="st">"region"</span>, <span class="st">"income"</span>, <span class="st">"che"</span>, <span class="st">"che_gdp"</span>, <span class="st">"che_pc_usd"</span>, <span class="st">"gghed_pc_usd"</span>, <span class="st">"pvtd_pc_usd"</span>, <span class="st">"oop_pc_usd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <caption>Data summary</caption>
@@ -480,7 +482,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 </tr>
 <tr class="odd">
 <td style="text-align: left;">numeric</td>
-<td style="text-align: left;">4</td>
+<td style="text-align: left;">6</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">________________________</td>
@@ -552,17 +554,17 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <p><strong>Variable type: numeric</strong></p>
 <table class="table table-sm table-striped">
 <colgroup>
-<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 9%">
 <col style="width: 10%">
-<col style="width: 15%">
+<col style="width: 4%">
 <col style="width: 7%">
 <col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 11%">
 <col style="width: 5%">
-<col style="width: 6%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 9%">
-<col style="width: 6%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -581,6 +583,32 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">che</td>
+<td style="text-align: right;">243</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">6597770.22</td>
+<td style="text-align: right;">66623331.23</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">1656.00</td>
+<td style="text-align: right;">26441.40</td>
+<td style="text-align: right;">236615.31</td>
+<td style="text-align: right;">2.102209e+09</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">che_gdp</td>
+<td style="text-align: right;">244</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">6.24</td>
+<td style="text-align: right;">2.98</td>
+<td style="text-align: right;">1.26</td>
+<td style="text-align: right;">4.15</td>
+<td style="text-align: right;">5.67</td>
+<td style="text-align: right;">7.93</td>
+<td style="text-align: right;">5.018000e+01</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">che_pc_usd</td>
 <td style="text-align: right;">243</td>
 <td style="text-align: right;">0.94</td>
@@ -590,7 +618,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <td style="text-align: right;">63.14</td>
 <td style="text-align: right;">259.03</td>
 <td style="text-align: right;">867.06</td>
-<td style="text-align: right;">11702.41</td>
+<td style="text-align: right;">1.170241e+04</td>
 <td style="text-align: left;">▇▁▁▁▁</td>
 </tr>
 <tr class="even">
@@ -603,7 +631,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <td style="text-align: right;">21.97</td>
 <td style="text-align: right;">130.38</td>
 <td style="text-align: right;">545.15</td>
-<td style="text-align: right;">7857.19</td>
+<td style="text-align: right;">7.857190e+03</td>
 <td style="text-align: left;">▇▁▁▁▁</td>
 </tr>
 <tr class="odd">
@@ -616,7 +644,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <td style="text-align: right;">23.95</td>
 <td style="text-align: right;">87.47</td>
 <td style="text-align: right;">294.01</td>
-<td style="text-align: right;">6788.90</td>
+<td style="text-align: right;">6.788900e+03</td>
 <td style="text-align: left;">▇▁▁▁▁</td>
 </tr>
 <tr class="even">
@@ -629,7 +657,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <td style="text-align: right;">19.56</td>
 <td style="text-align: right;">69.39</td>
 <td style="text-align: right;">225.47</td>
-<td style="text-align: right;">2761.98</td>
+<td style="text-align: right;">2.761980e+03</td>
 <td style="text-align: left;">▇▁▁▁▁</td>
 </tr>
 </tbody>
@@ -693,63 +721,134 @@ chr (1): team.id team.name team.logo league.id league.name league.country le...
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(top_scorers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 560
-Columns: 1
-$ `team.id team.name team.logo league.id league.name league.country league.logo league.flag league.season games.appearences games.lineups games.minutes games.number games.position games.rating games.captain substitutes.in substitutes.out substitutes.bench shots.total shots.on goals.total goals.conceded goals.assists goals.saves passes.total passes.key passes.accuracy tackles.total tackles.blocks tackles.interceptions duels.total duels.won dribbles.attempts dribbles.success dribbles.past fouls.drawn fouls.committed cards.yellow cards.yellowred cards.red penalty.won penalty.commited penalty.scored penalty.missed penalty.saved player.id player.name player.firstname player.lastname player.age player.nationality player.height player.weight player.injured player.photo player.birth.date player.birth.place player.birth.country id` &lt;chr&gt; …</code></pre>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(top_scorers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">top_scorers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">560</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 93%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 1%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">empty</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: right;">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">team.id team.name team.logo league.id league.name league.country league.logo league.flag league.season games.appearences games.lineups games.minutes games.number games.position games.rating games.captain substitutes.in substitutes.out substitutes.bench shots.total shots.on goals.total goals.conceded goals.assists goals.saves passes.total passes.key passes.accuracy tackles.total tackles.blocks tackles.interceptions duels.total duels.won dribbles.attempts dribbles.success dribbles.past fouls.drawn fouls.committed cards.yellow cards.yellowred cards.red penalty.won penalty.commited penalty.scored penalty.missed penalty.saved player.id player.name player.firstname player.lastname player.age player.nationality player.height player.weight player.injured player.photo player.birth.date player.birth.place player.birth.country id</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">433</td>
+<td style="text-align: right;">512</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># url &lt;- "https://api-football-v1.p.rapidapi.com/v3/players/topscorers"</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  == LEAGUE IDs BELOW ==</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># England League 39, 40, 41</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># France League 1 61 2, 63</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Saudi Arabia Pro League 307</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Brazil Serie A 71, B 72, C 73, D 76</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Italy Serie A 135, B 136, C 137, D [426,427,428,429]</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Portugal 1 94, 2 95</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Argentina A 128, B 131</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Germany 78, 79, 80</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Spain 140, 141, 142</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># USA 254</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Belgium 144, 145</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Netherlands 88, 89</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># == DATA FETCH &amp; SANITIZATION BELOW == </span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># leagues &lt;- c("39", "40", "41", "307", "61", "63", "71", "72", "73", "76", "135", "136", "137", "94", "95", "128", "131", "78", "79", "80", "140", "141", "253", "262", "144", "145", "88", "89")</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co"># queryString &lt;- list(</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#   league = "39",</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co">#   season = "2021"</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># all_leagues &lt;- NULL</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="co"># for (x in leagues) {</span></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co">#   queryString &lt;- list(</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     league = x,</span></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="co">#     season = "2021"</span></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="co">#   # Verb snippet below provided by API docs</span></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co">#   # </span><span class="al">NOTE</span><span class="co">: API key will incur rate-limits, so may not work at the time [FREE Limitations]</span></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="co">#   response &lt;- VERB("GET", url, add_headers("X-RapidAPI-Key" = "dfd9043453mshb6c979e3b50cc80p1efc9bjsn4805f4646934", "X-RapidAPI-Host" = "api-football-v1.p.rapidapi.com"), query = queryString, content_type("application/json"))</span></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="co">#   text_res &lt;- content(response, "text")</span></span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_info &lt;- fromJSON(text_res, flatten = TRUE)</span></span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_tibble &lt;- as_tibble(player_info$response)</span></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_tibble &lt;- player_tibble |&gt;</span></span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="co">#     mutate(id = row_number()) |&gt;</span></span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     unnest(statistics)</span></span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="co">#   print(x)</span></span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="co">#   all_leagues &lt;- bind_rows(all_leagues, player_tibble)</span></span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(all_leagues, file = "./data/top_goalscorers.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># url &lt;- "https://api-football-v1.p.rapidapi.com/v3/players/topscorers"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  == LEAGUE IDs BELOW ==</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># England League 39, 40, 41</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># France League 1 61 2, 63</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Saudi Arabia Pro League 307</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Brazil Serie A 71, B 72, C 73, D 76</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Italy Serie A 135, B 136, C 137, D [426,427,428,429]</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Portugal 1 94, 2 95</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Argentina A 128, B 131</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Germany 78, 79, 80</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Spain 140, 141, 142</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># USA 254</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Belgium 144, 145</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Netherlands 88, 89</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># == DATA FETCH &amp; SANITIZATION BELOW == </span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># leagues &lt;- c("39", "40", "41", "307", "61", "63", "71", "72", "73", "76", "135", "136", "137", "94", "95", "128", "131", "78", "79", "80", "140", "141", "253", "262", "144", "145", "88", "89")</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># queryString &lt;- list(</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#   league = "39",</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#   season = "2021"</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co"># all_leagues &lt;- NULL</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># for (x in leagues) {</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">#   queryString &lt;- list(</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     league = x,</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">#     season = "2021"</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">#   # Verb snippet below provided by API docs</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co">#   # </span><span class="al">NOTE</span><span class="co">: API key will incur rate-limits, so may not work at the time [FREE Limitations]</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="co">#   response &lt;- VERB("GET", url, add_headers("X-RapidAPI-Key" = "dfd9043453mshb6c979e3b50cc80p1efc9bjsn4805f4646934", "X-RapidAPI-Host" = "api-football-v1.p.rapidapi.com"), query = queryString, content_type("application/json"))</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co">#   text_res &lt;- content(response, "text")</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_info &lt;- fromJSON(text_res, flatten = TRUE)</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_tibble &lt;- as_tibble(player_info$response)</span></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_tibble &lt;- player_tibble |&gt;</span></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="co">#     mutate(id = row_number()) |&gt;</span></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     unnest(statistics)</span></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="co">#   print(x)</span></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co">#   all_leagues &lt;- bind_rows(all_leagues, player_tibble)</span></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(all_leagues, file = "./data/top_goalscorers.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
