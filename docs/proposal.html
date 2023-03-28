@@ -435,10 +435,12 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <li>Country, region, income, and disease category are categorical. Year can be either, depending on how it is used. All other variables are quantitative.</li>
 <li>Some other quantitative variables we could use are listed below, and they represent various expenditures per capita in USD.
 <ul>
-<li><p>che_pc_usd (current health expenditure)</p></li>
-<li><p>gghed_pc_usd (domestic general government health expenditure)</p></li>
-<li><p>pvtd_pc_usd (domestic private health expenditure)</p></li>
-<li><p>oop_pc_usd (out of pocket expenditure)</p></li>
+<li><p>che (current health expenditure in millions)</p></li>
+<li><p>che_gdp (current health expenditure as a percent of nation’s gdp)</p></li>
+<li><p>che_pc_usd (current health expenditure per capita )</p></li>
+<li><p>gghed_pc_usd (domestic general government health expenditure per capita)</p></li>
+<li><p>pvtd_pc_usd (domestic private health expenditure per capita)</p></li>
+<li><p>oop_pc_usd (out of pocket expenditure per capita)</p></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -449,7 +451,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>health <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/GHED_data.XLSX"</span>, <span class="at">sheet =</span> <span class="st">"Data"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(health, <span class="st">"country"</span>, <span class="st">"region"</span>, <span class="st">"income"</span>, <span class="st">"che_pc_usd"</span>, <span class="st">"gghed_pc_usd"</span>, <span class="st">"pvtd_pc_usd"</span>, <span class="st">"oop_pc_usd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(health, <span class="st">"country"</span>, <span class="st">"region"</span>, <span class="st">"income"</span>, <span class="st">"che"</span>, <span class="st">"che_gdp"</span>, <span class="st">"che_pc_usd"</span>, <span class="st">"gghed_pc_usd"</span>, <span class="st">"pvtd_pc_usd"</span>, <span class="st">"oop_pc_usd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <caption>Data summary</caption>
@@ -480,7 +482,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 </tr>
 <tr class="odd">
 <td style="text-align: left;">numeric</td>
-<td style="text-align: left;">4</td>
+<td style="text-align: left;">6</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">________________________</td>
@@ -552,17 +554,17 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <p><strong>Variable type: numeric</strong></p>
 <table class="table table-sm table-striped">
 <colgroup>
-<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 9%">
 <col style="width: 10%">
-<col style="width: 15%">
+<col style="width: 4%">
 <col style="width: 7%">
 <col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 11%">
 <col style="width: 5%">
-<col style="width: 6%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 9%">
-<col style="width: 6%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -581,6 +583,32 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">che</td>
+<td style="text-align: right;">243</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">6597770.22</td>
+<td style="text-align: right;">66623331.23</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">1656.00</td>
+<td style="text-align: right;">26441.40</td>
+<td style="text-align: right;">236615.31</td>
+<td style="text-align: right;">2.102209e+09</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">che_gdp</td>
+<td style="text-align: right;">244</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">6.24</td>
+<td style="text-align: right;">2.98</td>
+<td style="text-align: right;">1.26</td>
+<td style="text-align: right;">4.15</td>
+<td style="text-align: right;">5.67</td>
+<td style="text-align: right;">7.93</td>
+<td style="text-align: right;">5.018000e+01</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">che_pc_usd</td>
 <td style="text-align: right;">243</td>
 <td style="text-align: right;">0.94</td>
@@ -590,7 +618,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <td style="text-align: right;">63.14</td>
 <td style="text-align: right;">259.03</td>
 <td style="text-align: right;">867.06</td>
-<td style="text-align: right;">11702.41</td>
+<td style="text-align: right;">1.170241e+04</td>
 <td style="text-align: left;">▇▁▁▁▁</td>
 </tr>
 <tr class="even">
@@ -603,7 +631,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <td style="text-align: right;">21.97</td>
 <td style="text-align: right;">130.38</td>
 <td style="text-align: right;">545.15</td>
-<td style="text-align: right;">7857.19</td>
+<td style="text-align: right;">7.857190e+03</td>
 <td style="text-align: left;">▇▁▁▁▁</td>
 </tr>
 <tr class="odd">
@@ -616,7 +644,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <td style="text-align: right;">23.95</td>
 <td style="text-align: right;">87.47</td>
 <td style="text-align: right;">294.01</td>
-<td style="text-align: right;">6788.90</td>
+<td style="text-align: right;">6.788900e+03</td>
 <td style="text-align: left;">▇▁▁▁▁</td>
 </tr>
 <tr class="even">
@@ -629,7 +657,7 @@ dbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...
 <td style="text-align: right;">19.56</td>
 <td style="text-align: right;">69.39</td>
 <td style="text-align: right;">225.47</td>
-<td style="text-align: right;">2761.98</td>
+<td style="text-align: right;">2.761980e+03</td>
 <td style="text-align: left;">▇▁▁▁▁</td>
 </tr>
 </tbody>
