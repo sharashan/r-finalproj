@@ -68,7 +68,7 @@ skim(education, "aAll_1", "aUrban_1", "aRural_1")
 
 -   Write a brief description of the observations.
 
-    -   Every observation is a country/year combination and corresponding variables pertaining to expenditures on disease categories such as infectious/parasitic diseases, NCDs, reproductive health, nutritional definiciencies, or reproductive health.
+    -   Every observation is a country/year combination and corresponding variables pertaining to expenditures on disease categories such as infectious/parasitic diseases, NCDs, reproductive health, nutritional deficiencies, or reproductive health.
 
 ## Research question
 
@@ -146,7 +146,7 @@ library(jsonlite)
 
 top_scorers <- read_csv("./data/top_goalscorers.csv")
 
-glimpse(top_scorers)
+skim(top_scorers)
 
 # url <- "https://api-football-v1.p.rapidapi.com/v3/players/topscorers"
 
