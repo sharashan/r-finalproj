@@ -45,21 +45,48 @@ John: explain how you got the data
 
 Have an initial draft of your data description section. Your data description should be about your analysis-ready data.
 
+```{r}
+View(soccer1)
+glimpse(soccer1)
+```
+
 -   What are the observations (rows) and the attributes (columns)?
+
+    -   There are 560 observations and 56 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season.
 
 -   Why was this dataset created?
 
+    -   This dataset was created to rank and compare the top scoring football players across top leagues. This could be helpful for football fans, sports betters, or data scientists!
+
 -   Who funded the creation of the dataset?
+
+    -   N/a (Most stats are automatically recorded, but were probably scraped from some summary site)
 
 -   What processes might have influenced what data was observed and recorded and what was not?
 
+    -   It may have been influenced by referee rulings, as some scores may not have counted in the final game statistics.
+
 -   What preprocessing was done, and how did the data come to be in the form that you are using?
+
+    -   ***JOHN:***
 
 -   If people are involved, were they aware of the data collection and if so, what purpose did they expect the data to be used for?
 
+    -   The people involved are football players, who are aware of data collection, a this occurs during and after all of their games.
+
+    -   They probably expected the data to be used for:
+
+        -   general comparison (past/future versions of themselves, comparing their team to another, or between leagues)
+
+        -   sports reporting (to football fans)
+
+        -   MVP decisions
+
 # Data limitations
 
-Identify any potential problems with your dataset.
+-   Data is only from the 2021 season. Therefore, we cannot make comparisons within groups (player, team, or league) over time.
+
+-   There are no goalies in the dataset (best scorers i.e. offensive players) therefore, we are unable to assess a team's defense, which is important when considering how good a team is!
 
 # Exploratory data analysis
 
@@ -81,4 +108,6 @@ library(tidymodels)
 
 # Questions for reviewers
 
-List specific questions for your peer reviewers and project mentor to answer in giving you feedback on this phase.
+-   How many research questions should we have-- if only one or two, which ones do you suggest?
+
+-   The data we are using is already pretty tidy (tidied when converting from API --\> JSON --\> CSV), therefore there are minimal cleaning steps in R\-- confirming that this is acceptable, as it was indicated in the proposal directions that using an API was OK.
