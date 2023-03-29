@@ -27,7 +27,6 @@ Have an initial draft of your data cleaning appendix. Document every step that t
 
 ```{r}
 #|: ex1
-
 library(tidyverse)
 library(skimr)
 library(janitor)
@@ -35,11 +34,17 @@ library(janitor)
 soccer <- read_csv("data/top_goalscorers.csv")
 soccer <- clean_names(soccer)
 
-soccer1 <- soccer |>
-  select(-c(games_number, goals_saves, dribbles_past, penalty_won, penalty_commited))
+soccer_clean <- soccer |>
+  mutate(player_height_cm = as.numeric(gsub(" cm", "", soccer$player_height)),
+         player_weight_kg = as.numeric(gsub(" kg", "", soccer$player_weight))) |>
+  select(-c(games_number, goals_saves, dribbles_past, penalty_won, penalty_commited, player_height, player_weight, penalty_saved, player_id_1, player_id_48, player_firstname))
+
+soccer_clean
 ```
 
-John: explain how you got the data
+The data was first collected by making API calls from https://www.api-football.com/documentation-v3 for various soccer leagues. We did this my making a GET request to their top scorers endpoint, supplying parameters for each of 27 top leagues in 2021. From this we collected 20 goal scorers for each respective league as we specified per the query string parameters. From this point, we used the jsonlite library to flatten the JSON API responses into a tibble and then exported the tibble to a CSV file.
+
+Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process. The main reason why we stored the data to a CSV rather than dynamically making API calls is due to the rate limits and fees associated with using the API. For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.
 
 # Data description
 
