@@ -112,7 +112,7 @@ ggplot(mapping = aes(x = player_height_cm, y = total_bookings)) +
     title = "Player Height vs. Bookings"
   )
 
-# Can someone pls transform, and/or implement axis limits?
+# would need to transform, and/or implement axis limits
 soccer_clean |>
   mutate(
     goal_acc = goals_total/shots_total
