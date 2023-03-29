@@ -147,6 +147,7 @@ library(jsonlite)
 top_scorers <- read_csv("./data/top_goalscorers.csv")
 
 skim(top_scorers)
+top_scorers
 
 # url <- "https://api-football-v1.p.rapidapi.com/v3/players/topscorers"
 

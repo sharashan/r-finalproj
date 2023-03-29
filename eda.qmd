@@ -11,9 +11,27 @@ execute:
 
 Research question(s). State your research question (s) clearly.
 
+RQ: What are the countries that experienced the most drastic shift in educational attainability among the females and the lower classes. What countries did not experience that much of a shift?
+
 # Data collection and cleaning
 
 Have an initial draft of your data cleaning appendix. Document every step that takes your raw data file(s) and turns it into the analysis-ready data set that you would submit with your final project. Include text narrative describing your data collection (downloading, scraping, surveys, etc) and any additional data curation/cleaning (merging data frames, filtering, transformations of variables, etc). Include code for data curation/cleaning, but not collection.
+
+```{r}
+#|: ex1
+
+library(tidyverse)
+library(skimr)
+library(janitor)
+
+soccer <- read_csv("data/top_goalscorers.csv")
+soccer <- clean_names(soccer)
+
+soccer1 <- soccer |>
+  select(-c(games_number, goals_saves, dribbles_past, penalty_won, penalty_commited))
+```
+
+John: explain how you got the data
 
 # Data description
 
@@ -26,6 +44,20 @@ Identify any potential problems with your dataset.
 # Exploratory data analysis
 
 Perform an (initial) exploratory data analysis.
+
+```{r}
+#|: exploratory-data-analysis 
+
+library(tidyverse)
+library(tidymodels)
+
+#Example From ae14
+# Let's start by taking a look at our data. Create an density plot to investigate the relationship between `spam` and `exclaim_mess`. Additionally, calculate the mean number of exclamation points for both spam and non-spam emails.
+
+# ggplot(data = email, mapping = aes(x = exclaim_mess, fill = spam)) +
+#   geom_density(alpha = 0.5) + 
+#   scale_x_sqrt()
+```
 
 # Questions for reviewers
 
