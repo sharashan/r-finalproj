@@ -13,13 +13,14 @@ Research question(s). State your research question (s) clearly.
 
 Is there a correlation between the height and/or weight and specific game statistics (Including: goals scored, assists, penalties, passes, etc.)
 
--   Do teams with taller players tend to have more penalties?
+-   Do teams with taller players (player_height) tend to have get booked more frequently ( mutate --\> total_bookings = cards_yellow + cards_red + cards_redyellow)?
+-   How closely player ratings correlated with goal accuracy (mutate --\> goal_acc = goals_total / shots_total)?
 
 Are some leagues better than others?
 
--   Are some leagues outputting more goals than others?
+-   Are some leagues (leagues) outputting more goals than others?
 
--   Which team with the greatest goal output in every league has the most penalties (i.e. yellow/red cards)?
+-   Which team (team) with the greatest goal output (goals_total) in every league has the most penalties (i.e. mutate --\> total_bookings = cards_yellow + cards_red + cards_redyellow)?
 
 # Data collection and cleaning
 
@@ -27,6 +28,7 @@ Have an initial draft of your data cleaning appendix. Document every step that t
 
 ```{r}
 #|: ex1
+
 library(tidyverse)
 library(skimr)
 library(janitor)
@@ -37,9 +39,11 @@ soccer <- clean_names(soccer)
 soccer_clean <- soccer |>
   mutate(player_height_cm = as.numeric(gsub(" cm", "", soccer$player_height)),
          player_weight_kg = as.numeric(gsub(" kg", "", soccer$player_weight))) |>
-  select(-c(games_number, goals_saves, dribbles_past, penalty_won, penalty_commited, player_height, player_weight, penalty_saved, player_id_1, player_id_48, player_firstname))
+  select(-c(games_number, goals_saves, dribbles_past, penalty_won, penalty_commited, player_height, player_weight, penalty_saved, player_id_1, player_id_48, player_firstname, league_season))
 
 soccer_clean
+
+glimpse(soccer_clean)
 ```
 
 The data was first collected by making API calls from https://www.api-football.com/documentation-v3 for various soccer leagues. We did this my making a GET request to their top scorers endpoint, supplying parameters for each of 27 top leagues in 2021. From this we collected 20 goal scorers for each respective league as we specified per the query string parameters. From this point, we used the jsonlite library to flatten the JSON API responses into a tibble and then exported the tibble to a CSV file.
@@ -50,14 +54,9 @@ Once we had our data stored in a CSV file, we wrote code to load it in R and the
 
 Have an initial draft of your data description section. Your data description should be about your analysis-ready data.
 
-```{r}
-View(soccer1)
-glimpse(soccer1)
-```
-
 -   What are the observations (rows) and the attributes (columns)?
 
-    -   There are 560 observations and 56 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season.
+    -   There are 560 observations and 51 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season.
 
 -   Why was this dataset created?
 
@@ -73,7 +72,7 @@ glimpse(soccer1)
 
 -   What preprocessing was done, and how did the data come to be in the form that you are using?
 
-    -   ***JOHN:***
+    -   (see above in Data collection and cleaning)
 
 -   If people are involved, were they aware of the data collection and if so, what purpose did they expect the data to be used for?
 
@@ -100,9 +99,6 @@ Perform an (initial) exploratory data analysis.
 ```{r}
 #|: exploratory-data-analysis 
 
-library(tidyverse)
-library(tidymodels)
-
 #Example From ae14
 # Let's start by taking a look at our data. Create an density plot to investigate the relationship between `spam` and `exclaim_mess`. Additionally, calculate the mean number of exclamation points for both spam and non-spam emails.
 
@@ -116,3 +112,4 @@ library(tidymodels)
 -   How many research questions should we have-- if only one or two, which ones do you suggest?
 
 -   The data we are using is already pretty tidy (tidied when converting from API --\> JSON --\> CSV), therefore there are minimal cleaning steps in R\-- confirming that this is acceptable, as it was indicated in the proposal directions that using an API was OK.
+
