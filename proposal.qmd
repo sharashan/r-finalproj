@@ -60,22 +60,52 @@ skim(education, "aAll_1", "aUrban_1", "aRural_1")
 
 -   Identify the source of the data.
 
+    -   The World Health Organization Global Health Expenditure Database
+
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
 
+    -   Member states who report the data to WHO. WHO can make estimations to fill any gaps. Data is updated yearly with a two-year lag.
+
 -   Write a brief description of the observations.
+
+    -   Every observation is a country/year combination and corresponding variables pertaining to expenditures on disease categories such as infectious/parasitic diseases, NCDs, reproductive health, nutritional deficiencies, or reproductive health.
 
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
+    -   What are the priorities of different countries/different regions of countries, based on their percentage of health expenditures of various categories of disease?
+
+    -   Do high and low income countries have the same health priorities or different ones?
+
+    -   How do health priorities compare by region?
+
+    -   By joining with another dataset, we may be able to answer whether increased spending has a relationship with less disease.
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
+    -   The research topic is based on various expenditures by country and year, and how they relate to a variety of diseases. Our hypothesis is, How does the distribution of a countries health expenditures and the resulting out of pocket expenses correlate with various diseases and conditions?
 -   Identify the types of variables in your research question. Categorical? Quantitative?
+    -   Country, region, income, and disease category are categorical. Year can be either, depending on how it is used. All other variables are quantitative.
+    -   Some other quantitative variables we could use are listed below, and they represent various expenditures per capita in USD.
+        -   che (current health expenditure in millions)
+
+        -   che_gdp (current health expenditure as a percent of nation's gdp)
+
+        -   che_pc_usd (current health expenditure per capita )
+
+        -   gghed_pc_usd (domestic general government health expenditure per capita)
+
+        -   pvtd_pc_usd (domestic private health expenditure per capita)
+
+        -   oop_pc_usd (out of pocket expenditure per capita)
 
 ## Glimpse of data
 
 ```{r}
 #| label: load-data-2
 
-# add code here
+library("readxl")
+health <- read_excel("data/GHED_data.XLSX", sheet = "Data")
+
+skim(health, "country", "region", "income", "che", "che_gdp", "che_pc_usd", "gghed_pc_usd", "pvtd_pc_usd", "oop_pc_usd")
 ```
 
 # Data 3
@@ -116,7 +146,7 @@ library(jsonlite)
 
 top_scorers <- read_csv("./data/top_goalscorers.csv")
 
-glimpse(top_scorers)
+skim(top_scorers)
 
 # url <- "https://api-football-v1.p.rapidapi.com/v3/players/topscorers"
 
