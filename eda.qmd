@@ -98,13 +98,59 @@ Perform an (initial) exploratory data analysis.
 
 ```{r}
 #|: exploratory-data-analysis 
+  
+soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred
+  ) |>
+ggplot(mapping = aes(x = player_height_cm, y = total_bookings)) +
+  geom_jitter() +
+  geom_smooth() +
+  labs(
+    x = "Player Height (in cm)",
+    y = "Bookings",
+    title = "Player Height vs. Bookings"
+  )
 
-#Example From ae14
-# Let's start by taking a look at our data. Create an density plot to investigate the relationship between `spam` and `exclaim_mess`. Additionally, calculate the mean number of exclamation points for both spam and non-spam emails.
+# Can someone pls transform, and/or implement axis limits?
+soccer_clean |>
+  mutate(
+    goal_acc = goals_total/shots_total
+  ) |>
+ggplot(mapping = aes(x = games_rating, y = goal_acc)) +
+  geom_jitter() +
+  geom_smooth() +
+  labs(
+    x = "Rating",
+    y = "Goal Accuracy",
+    title = "Rating vs. Goal Accuracy"
+  )
 
-# ggplot(data = email, mapping = aes(x = exclaim_mess, fill = spam)) +
-#   geom_density(alpha = 0.5) + 
-#   scale_x_sqrt()
+soccer_clean |>
+  group_by(league_name) |>
+  ggplot(mapping = aes(x = goals_total, y = league_name)) +
+  geom_boxplot() +
+  labs(
+    x = "Number of Goals",
+    y = "League",
+    title = "Median Goals by League"
+  )
+
+soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred
+  ) |>
+ggplot(mapping = aes(x = goals_total, y = total_bookings)) +
+  geom_jitter() +
+  geom_smooth() +
+  labs(
+    x = "Number of Goals",
+    y = "Bookings",
+    title = "Goals vs. Bookings"
+  )
+
+
+
 ```
 
 # Questions for reviewers
@@ -112,4 +158,3 @@ Perform an (initial) exploratory data analysis.
 -   How many research questions should we have-- if only one or two, which ones do you suggest?
 
 -   The data we are using is already pretty tidy (tidied when converting from API --\> JSON --\> CSV), therefore there are minimal cleaning steps in R\-- confirming that this is acceptable, as it was indicated in the proposal directions that using an API was OK.
-
