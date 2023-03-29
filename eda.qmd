@@ -11,7 +11,15 @@ execute:
 
 Research question(s). State your research question (s) clearly.
 
-RQ: What are the countries that experienced the most drastic shift in educational attainability among the females and the lower classes. What countries did not experience that much of a shift?
+Is there a correlation between the height and/or weight and specific game statistics (Including: goals scored, assists, penalties, passes, etc.)
+
+-   Do teams with taller players tend to have more penalties?
+
+Are some leagues better than others?
+
+-   Are some leagues outputting more goals than others?
+
+-   Which team with the greatest goal output in every league has the most penalties (i.e. yellow/red cards)?
 
 # Data collection and cleaning
 
@@ -41,6 +49,18 @@ Once we had our data stored in a CSV file, we wrote code to load it in R and the
 # Data description
 
 Have an initial draft of your data description section. Your data description should be about your analysis-ready data.
+
+-   What are the observations (rows) and the attributes (columns)?
+
+-   Why was this dataset created?
+
+-   Who funded the creation of the dataset?
+
+-   What processes might have influenced what data was observed and recorded and what was not?
+
+-   What preprocessing was done, and how did the data come to be in the form that you are using?
+
+-   If people are involved, were they aware of the data collection and if so, what purpose did they expect the data to be used for?
 
 # Data limitations
 
