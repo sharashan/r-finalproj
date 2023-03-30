@@ -66,7 +66,7 @@ Have an initial draft of your data description section. Your data description sh
 
 -   Who funded the creation of the dataset?
 
-    -   N/a (Most stats are automatically recorded, but were probably scraped from some summary site)
+    -   N/a (Most stats are automatically recorded, but were probably scraped from different summary sites aggregated into one site)
 
 -   What processes might have influenced what data was observed and recorded and what was not?
 
