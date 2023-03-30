@@ -711,12 +711,18 @@ Attaching package: 'jsonlite'</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>top_scorers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/top_goalscorers.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Rows: 560 Columns: 1</code></pre>
+<pre><code>New names:
+• `player.id` -&gt; `player.id...1`
+• `player.id` -&gt; `player.id...48`</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Column specification ────────────────────────────────────────────────────────
+<pre><code>Rows: 560 Columns: 61
+── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
-chr (1): team.id team.name team.logo league.id league.name league.country le...
+chr  (16): team.name, team.logo, league.name, league.country, league.logo, l...
+dbl  (36): player.id...1, team.id, league.id, league.season, games.appearenc...
+lgl   (8): games.number, games.captain, goals.saves, dribbles.past, penalty....
+date  (1): player.birth.date
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -736,7 +742,7 @@ chr (1): team.id team.name team.logo league.id league.name league.country le...
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Number of columns</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: left;">61</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">_______________________</td>
@@ -748,13 +754,25 @@ chr (1): team.id team.name team.logo league.id league.name league.country le...
 </tr>
 <tr class="even">
 <td style="text-align: left;">character</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: left;">16</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">logical</td>
+<td style="text-align: left;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">36</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">________________________</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Group variables</td>
 <td style="text-align: left;">None</td>
 </tr>
@@ -763,14 +781,14 @@ chr (1): team.id team.name team.logo league.id league.name league.country le...
 <p><strong>Variable type: character</strong></p>
 <table class="table table-sm table-striped">
 <colgroup>
-<col style="width: 93%">
-<col style="width: 1%">
-<col style="width: 1%">
-<col style="width: 0%">
-<col style="width: 0%">
-<col style="width: 0%">
-<col style="width: 1%">
-<col style="width: 1%">
+<col style="width: 26%">
+<col style="width: 12%">
+<col style="width: 17%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 11%">
+<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -786,69 +804,847 @@ chr (1): team.id team.name team.logo league.id league.name league.country le...
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">team.id team.name team.logo league.id league.name league.country league.logo league.flag league.season games.appearences games.lineups games.minutes games.number games.position games.rating games.captain substitutes.in substitutes.out substitutes.bench shots.total shots.on goals.total goals.conceded goals.assists goals.saves passes.total passes.key passes.accuracy tackles.total tackles.blocks tackles.interceptions duels.total duels.won dribbles.attempts dribbles.success dribbles.past fouls.drawn fouls.committed cards.yellow cards.yellowred cards.red penalty.won penalty.commited penalty.scored penalty.missed penalty.saved player.id player.name player.firstname player.lastname player.age player.nationality player.height player.weight player.injured player.photo player.birth.date player.birth.place player.birth.country id</td>
+<td style="text-align: left;">team.name</td>
 <td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">355</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">team.logo</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">455</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">league.name</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">league.country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">league.logo</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">league.flag</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">games.position</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">player.name</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">544</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">player.firstname</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">504</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">player.lastname</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">535</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">player.nationality</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">player.height</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">player.weight</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">0.90</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">player.photo</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">555</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">player.birth.place</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">0.92</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">433</td>
-<td style="text-align: right;">512</td>
+<td style="text-align: right;">26</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">560</td>
+<td style="text-align: right;">405</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">player.birth.country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">63</td>
 <td style="text-align: right;">0</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Variable type: Date</strong></p>
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 11%">
+<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">min</th>
+<th style="text-align: left;">max</th>
+<th style="text-align: left;">median</th>
+<th style="text-align: right;">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">player.birth.date</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">1981-04-06</td>
+<td style="text-align: left;">2003-06-13</td>
+<td style="text-align: left;">1994-07-26</td>
+<td style="text-align: right;">522</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: logical</strong></p>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: left;">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">games.number</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NaN</td>
+<td style="text-align: left;">:</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">games.captain</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">FAL: 560</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">goals.saves</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NaN</td>
+<td style="text-align: left;">:</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dribbles.past</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NaN</td>
+<td style="text-align: left;">:</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">penalty.won</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NaN</td>
+<td style="text-align: left;">:</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">penalty.commited</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NaN</td>
+<td style="text-align: left;">:</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">penalty.saved</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NaN</td>
+<td style="text-align: left;">:</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">player.injured</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">FAL: 560</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">player.id…1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">280.50</td>
+<td style="text-align: right;">161.80</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">140.75</td>
+<td style="text-align: right;">280.50</td>
+<td style="text-align: right;">420.25</td>
+<td style="text-align: right;">560.0</td>
+<td style="text-align: left;">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">team.id</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1377.56</td>
+<td style="text-align: right;">2288.07</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: right;">178.75</td>
+<td style="text-align: right;">504.00</td>
+<td style="text-align: right;">1361.75</td>
+<td style="text-align: right;">15130.0</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">league.id</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">114.21</td>
+<td style="text-align: right;">64.97</td>
+<td style="text-align: right;">39.0</td>
+<td style="text-align: right;">72.75</td>
+<td style="text-align: right;">91.50</td>
+<td style="text-align: right;">137.75</td>
+<td style="text-align: right;">307.0</td>
+<td style="text-align: left;">▇▆▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">league.season</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2021.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2021.0</td>
+<td style="text-align: right;">2021.00</td>
+<td style="text-align: right;">2021.00</td>
+<td style="text-align: right;">2021.00</td>
+<td style="text-align: right;">2021.0</td>
+<td style="text-align: left;">▁▁▇▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">games.appearences</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">29.53</td>
+<td style="text-align: right;">9.60</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">27.00</td>
+<td style="text-align: right;">32.00</td>
+<td style="text-align: right;">36.00</td>
+<td style="text-align: right;">49.0</td>
+<td style="text-align: left;">▁▁▃▇▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">games.lineups</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">25.28</td>
+<td style="text-align: right;">9.75</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">19.00</td>
+<td style="text-align: right;">27.00</td>
+<td style="text-align: right;">32.00</td>
+<td style="text-align: right;">49.0</td>
+<td style="text-align: left;">▂▅▇▇▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">games.minutes</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2205.56</td>
+<td style="text-align: right;">834.30</td>
+<td style="text-align: right;">59.0</td>
+<td style="text-align: right;">1732.75</td>
+<td style="text-align: right;">2339.50</td>
+<td style="text-align: right;">2783.00</td>
+<td style="text-align: right;">4335.0</td>
+<td style="text-align: left;">▂▃▇▆▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">games.rating</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">7.11</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">6.2</td>
+<td style="text-align: right;">6.93</td>
+<td style="text-align: right;">7.07</td>
+<td style="text-align: right;">7.26</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: left;">▁▇▇▂▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">substitutes.in</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">4.24</td>
+<td style="text-align: right;">4.40</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">26.0</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">substitutes.out</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">11.59</td>
+<td style="text-align: right;">6.69</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">12.00</td>
+<td style="text-align: right;">16.00</td>
+<td style="text-align: right;">32.0</td>
+<td style="text-align: left;">▆▆▇▂▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">substitutes.bench</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">4.69</td>
+<td style="text-align: right;">5.25</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">7.00</td>
+<td style="text-align: right;">31.0</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">shots.total</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">52.82</td>
+<td style="text-align: right;">25.61</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">38.00</td>
+<td style="text-align: right;">52.00</td>
+<td style="text-align: right;">67.00</td>
+<td style="text-align: right;">162.0</td>
+<td style="text-align: left;">▂▇▃▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">shots.on</td>
+<td style="text-align: right;">126</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">28.92</td>
+<td style="text-align: right;">14.17</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">21.00</td>
+<td style="text-align: right;">28.00</td>
+<td style="text-align: right;">36.00</td>
+<td style="text-align: right;">92.0</td>
+<td style="text-align: left;">▃▇▃▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">goals.total</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">11.65</td>
+<td style="text-align: right;">5.57</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">8.00</td>
+<td style="text-align: right;">11.00</td>
+<td style="text-align: right;">14.00</td>
+<td style="text-align: right;">43.0</td>
+<td style="text-align: left;">▇▇▂▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">goals.conceded</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">▁▁▇▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">goals.assists</td>
+<td style="text-align: right;">177</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">4.64</td>
+<td style="text-align: right;">3.20</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">4.00</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">▇▅▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">passes.total</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">639.12</td>
+<td style="text-align: right;">356.61</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">409.75</td>
+<td style="text-align: right;">624.50</td>
+<td style="text-align: right;">856.75</td>
+<td style="text-align: right;">2301.0</td>
+<td style="text-align: left;">▅▇▃▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">passes.key</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">34.81</td>
+<td style="text-align: right;">21.90</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">19.00</td>
+<td style="text-align: right;">31.00</td>
+<td style="text-align: right;">46.00</td>
+<td style="text-align: right;">142.0</td>
+<td style="text-align: left;">▇▆▂▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">passes.accuracy</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">16.07</td>
+<td style="text-align: right;">8.51</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">14.00</td>
+<td style="text-align: right;">20.00</td>
+<td style="text-align: right;">68.0</td>
+<td style="text-align: left;">▇▅▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tackles.total</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">20.79</td>
+<td style="text-align: right;">15.47</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">17.00</td>
+<td style="text-align: right;">29.00</td>
+<td style="text-align: right;">101.0</td>
+<td style="text-align: left;">▇▃▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tackles.blocks</td>
+<td style="text-align: right;">219</td>
+<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">2.87</td>
+<td style="text-align: right;">1.97</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">4.00</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: left;">▇▃▂▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tackles.interceptions</td>
+<td style="text-align: right;">147</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">9.30</td>
+<td style="text-align: right;">7.41</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">4.00</td>
+<td style="text-align: right;">7.00</td>
+<td style="text-align: right;">13.00</td>
+<td style="text-align: right;">50.0</td>
+<td style="text-align: left;">▇▃▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">duels.total</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">280.39</td>
+<td style="text-align: right;">148.71</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">191.00</td>
+<td style="text-align: right;">275.50</td>
+<td style="text-align: right;">364.00</td>
+<td style="text-align: right;">897.0</td>
+<td style="text-align: left;">▃▇▃▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">duels.won</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">124.60</td>
+<td style="text-align: right;">69.39</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">81.00</td>
+<td style="text-align: right;">121.00</td>
+<td style="text-align: right;">163.00</td>
+<td style="text-align: right;">467.0</td>
+<td style="text-align: left;">▅▇▂▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dribbles.attempts</td>
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">51.97</td>
+<td style="text-align: right;">37.55</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">24.00</td>
+<td style="text-align: right;">43.00</td>
+<td style="text-align: right;">72.00</td>
+<td style="text-align: right;">209.0</td>
+<td style="text-align: left;">▇▆▂▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dribbles.success</td>
+<td style="text-align: right;">137</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">26.70</td>
+<td style="text-align: right;">19.84</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">12.00</td>
+<td style="text-align: right;">22.00</td>
+<td style="text-align: right;">37.00</td>
+<td style="text-align: right;">111.0</td>
+<td style="text-align: left;">▇▅▂▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fouls.drawn</td>
+<td style="text-align: right;">129</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">35.47</td>
+<td style="text-align: right;">21.17</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">21.00</td>
+<td style="text-align: right;">34.00</td>
+<td style="text-align: right;">47.00</td>
+<td style="text-align: right;">119.0</td>
+<td style="text-align: left;">▆▇▃▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fouls.committed</td>
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">30.28</td>
+<td style="text-align: right;">18.00</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">17.00</td>
+<td style="text-align: right;">29.00</td>
+<td style="text-align: right;">41.00</td>
+<td style="text-align: right;">104.0</td>
+<td style="text-align: left;">▇▇▃▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cards.yellow</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3.78</td>
+<td style="text-align: right;">2.71</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">5.00</td>
+<td style="text-align: right;">14.0</td>
+<td style="text-align: left;">▇▇▃▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cards.yellowred</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cards.red</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">penalty.scored</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">1.58</td>
+<td style="text-align: right;">1.88</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: left;">▇▃▂▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">penalty.missed</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">4.0</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">player.id…48</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">39532.19</td>
+<td style="text-align: right;">52257.87</td>
+<td style="text-align: right;">25.0</td>
+<td style="text-align: right;">8892.50</td>
+<td style="text-align: right;">25118.50</td>
+<td style="text-align: right;">45493.50</td>
+<td style="text-align: right;">323800.0</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">player.age</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">29.26</td>
+<td style="text-align: right;">4.32</td>
+<td style="text-align: right;">20.0</td>
+<td style="text-align: right;">26.00</td>
+<td style="text-align: right;">29.00</td>
+<td style="text-align: right;">33.00</td>
+<td style="text-align: right;">42.0</td>
+<td style="text-align: left;">▃▇▇▃▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">id</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">10.48</td>
+<td style="text-align: right;">5.76</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">5.75</td>
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">15.00</td>
+<td style="text-align: right;">20.0</td>
+<td style="text-align: left;">▇▇▇▇▇</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># url &lt;- "https://api-football-v1.p.rapidapi.com/v3/players/topscorers"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  == LEAGUE IDs BELOW ==</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># England League 39, 40, 41</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># France League 1 61 2, 63</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Saudi Arabia Pro League 307</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Brazil Serie A 71, B 72, C 73, D 76</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Italy Serie A 135, B 136, C 137, D [426,427,428,429]</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Portugal 1 94, 2 95</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Argentina A 128, B 131</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Germany 78, 79, 80</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Spain 140, 141, 142</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># USA 254</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Belgium 144, 145</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Netherlands 88, 89</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># == DATA FETCH &amp; SANITIZATION BELOW == </span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># leagues &lt;- c("39", "40", "41", "307", "61", "63", "71", "72", "73", "76", "135", "136", "137", "94", "95", "128", "131", "78", "79", "80", "140", "141", "253", "262", "144", "145", "88", "89")</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># queryString &lt;- list(</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#   league = "39",</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#   season = "2021"</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co"># all_leagues &lt;- NULL</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># for (x in leagues) {</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">#   queryString &lt;- list(</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     league = x,</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">#     season = "2021"</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">#   # Verb snippet below provided by API docs</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co">#   # </span><span class="al">NOTE</span><span class="co">: API key will incur rate-limits, so may not work at the time [FREE Limitations]</span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="co">#   response &lt;- VERB("GET", url, add_headers("X-RapidAPI-Key" = "dfd9043453mshb6c979e3b50cc80p1efc9bjsn4805f4646934", "X-RapidAPI-Host" = "api-football-v1.p.rapidapi.com"), query = queryString, content_type("application/json"))</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co">#   text_res &lt;- content(response, "text")</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_info &lt;- fromJSON(text_res, flatten = TRUE)</span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_tibble &lt;- as_tibble(player_info$response)</span></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_tibble &lt;- player_tibble |&gt;</span></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="co">#     mutate(id = row_number()) |&gt;</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     unnest(statistics)</span></span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="co">#   print(x)</span></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co">#   all_leagues &lt;- bind_rows(all_leagues, player_tibble)</span></span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(all_leagues, file = "./data/top_goalscorers.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>top_scorers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 560 × 61
+   player.id...1 team.id team.…¹ team.…² leagu…³ leagu…⁴ leagu…⁵ leagu…⁶ leagu…⁷
+           &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1             1      47 Totten… https:…      39 Premie… England https:… https:…
+ 2             2      40 Liverp… https:…      39 Premie… England https:… https:…
+ 3             3      33 Manche… https:…      39 Premie… England https:… https:…
+ 4             4      47 Totten… https:…      39 Premie… England https:… https:…
+ 5             5      40 Liverp… https:…      39 Premie… England https:… https:…
+ 6             6      50 Manche… https:…      39 Premie… England https:… https:…
+ 7             7      40 Liverp… https:…      39 Premie… England https:… https:…
+ 8             8      46 Leices… https:…      39 Premie… England https:… https:…
+ 9             9      52 Crysta… https:…      39 Premie… England https:… https:…
+10            10      50 Manche… https:…      39 Premie… England https:… https:…
+# … with 550 more rows, 52 more variables: league.season &lt;dbl&gt;,
+#   games.appearences &lt;dbl&gt;, games.lineups &lt;dbl&gt;, games.minutes &lt;dbl&gt;,
+#   games.number &lt;lgl&gt;, games.position &lt;chr&gt;, games.rating &lt;dbl&gt;,
+#   games.captain &lt;lgl&gt;, substitutes.in &lt;dbl&gt;, substitutes.out &lt;dbl&gt;,
+#   substitutes.bench &lt;dbl&gt;, shots.total &lt;dbl&gt;, shots.on &lt;dbl&gt;,
+#   goals.total &lt;dbl&gt;, goals.conceded &lt;dbl&gt;, goals.assists &lt;dbl&gt;,
+#   goals.saves &lt;lgl&gt;, passes.total &lt;dbl&gt;, passes.key &lt;dbl&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># url &lt;- "https://api-football-v1.p.rapidapi.com/v3/players/topscorers"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  == LEAGUE IDs BELOW ==</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># England League 39, 40, 41</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># France League 1 61 2, 63</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Saudi Arabia Pro League 307</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Brazil Serie A 71, B 72, C 73, D 76</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Italy Serie A 135, B 136, C 137, D [426,427,428,429]</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Portugal 1 94, 2 95</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Argentina A 128, B 131</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Germany 78, 79, 80</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Spain 140, 141, 142</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># USA 254</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Belgium 144, 145</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Netherlands 88, 89</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># == DATA FETCH &amp; SANITIZATION BELOW == </span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co"># leagues &lt;- c("39", "40", "41", "307", "61", "63", "71", "72", "73", "76", "135", "136", "137", "94", "95", "128", "131", "78", "79", "80", "140", "141", "253", "262", "144", "145", "88", "89")</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># queryString &lt;- list(</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co">#   league = "39",</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co">#   season = "2021"</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co"># all_leagues &lt;- NULL</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co"># for (x in leagues) {</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co">#   queryString &lt;- list(</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     league = x,</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co">#     season = "2021"</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="co">#   # Verb snippet below provided by API docs</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="co">#   # </span><span class="al">NOTE</span><span class="co">: API key will incur rate-limits, so may not work at the time [FREE Limitations]</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="co">#   response &lt;- VERB("GET", url, add_headers("X-RapidAPI-Key" = "dfd9043453mshb6c979e3b50cc80p1efc9bjsn4805f4646934", "X-RapidAPI-Host" = "api-football-v1.p.rapidapi.com"), query = queryString, content_type("application/json"))</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="co">#   text_res &lt;- content(response, "text")</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_info &lt;- fromJSON(text_res, flatten = TRUE)</span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_tibble &lt;- as_tibble(player_info$response)</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a><span class="co">#   player_tibble &lt;- player_tibble |&gt;</span></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a><span class="co">#     mutate(id = row_number()) |&gt;</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     unnest(statistics)</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a><span class="co">#   print(x)</span></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a><span class="co">#   all_leagues &lt;- bind_rows(all_leagues, player_tibble)</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(all_leagues, file = "./data/top_goalscorers.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

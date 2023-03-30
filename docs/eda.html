@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project title</title>
+<title>Assessing top soccer player statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -134,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project title</h1>
+<h1 class="title">Assessing top soccer player statistics</h1>
 <p class="subtitle lead">Exploratory data analysis</p>
 </div>
 
@@ -153,26 +216,313 @@ ul.task-list li input[type="checkbox"] {
 <section id="research-questions" class="level1">
 <h1>Research question(s)</h1>
 <p>Research question(s). State your research question (s) clearly.</p>
+<p>Is there a correlation between the height and/or weight and specific game statistics (Including: goals scored, assists, penalties, passes, etc.)</p>
+<ul>
+<li>Do teams with taller players (player_height) tend to have get booked more frequently ( mutate –&gt; total_bookings = cards_yellow + cards_red + cards_redyellow)?</li>
+<li>How closely player ratings correlated with goal accuracy (mutate –&gt; goal_acc = goals_total / shots_total)?</li>
+</ul>
+<p>Are some leagues better than others?</p>
+<ul>
+<li><p>Are some leagues (leagues) outputting more goals than others?</p></li>
+<li><p>Which team (team) with the greatest goal output (goals_total) in every league has the most penalties (i.e.&nbsp;mutate –&gt; total_bookings = cards_yellow + cards_red + cards_redyellow)?</p></li>
+</ul>
 </section>
 <section id="data-collection-and-cleaning" class="level1">
 <h1>Data collection and cleaning</h1>
 <p>Have an initial draft of your data cleaning appendix. Document every step that takes your raw data file(s) and turns it into the analysis-ready data set that you would submit with your final project. Include text narrative describing your data collection (downloading, scraping, surveys, etc) and any additional data curation/cleaning (merging data frames, filtering, transformations of variables, etc). Include code for data curation/cleaning, but not collection.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0      ✔ purrr   1.0.0 
+✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>soccer <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/top_goalscorers.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 560 Columns: 61
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(16): team.name, team.logo, league.name, league.country, league.logo, l... dbl
+(36): player.id...1, team.id, league.id, league.season, games.appearenc... lgl
+(8): games.number, games.captain, goals.saves, dribbles.past, penalty.... date
+(1): player.birth.date
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `player.id` -&gt; `player.id...1`
+• `player.id` -&gt; `player.id...48`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>soccer <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(soccer)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>soccer_clean <span class="ot">&lt;-</span> soccer <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">player_height_cm =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">" cm"</span>, <span class="st">""</span>, soccer<span class="sc">$</span>player_height)),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">player_weight_kg =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">" kg"</span>, <span class="st">""</span>, soccer<span class="sc">$</span>player_weight))) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(games_number, goals_saves, dribbles_past, penalty_won, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            penalty_commited, player_height, player_weight, penalty_saved, </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            player_id_1, player_id_48, player_firstname, league_season))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>soccer_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 560 × 51
+   team_id team_name     team_…¹ leagu…² leagu…³ leagu…⁴ leagu…⁵ leagu…⁶ games…⁷
+     &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+ 1      47 Tottenham     https:…      39 Premie… England https:… https:…      35
+ 2      40 Liverpool     https:…      39 Premie… England https:… https:…      35
+ 3      33 Manchester U… https:…      39 Premie… England https:… https:…      30
+ 4      47 Tottenham     https:…      39 Premie… England https:… https:…      37
+ 5      40 Liverpool     https:…      39 Premie… England https:… https:…      34
+ 6      50 Manchester C… https:…      39 Premie… England https:… https:…      30
+ 7      40 Liverpool     https:…      39 Premie… England https:… https:…      35
+ 8      46 Leicester     https:…      39 Premie… England https:… https:…      25
+ 9      52 Crystal Pala… https:…      39 Premie… England https:… https:…      33
+10      50 Manchester C… https:…      39 Premie… England https:… https:…      30
+# … with 550 more rows, 42 more variables: games_lineups &lt;dbl&gt;,
+#   games_minutes &lt;dbl&gt;, games_position &lt;chr&gt;, games_rating &lt;dbl&gt;,
+#   games_captain &lt;lgl&gt;, substitutes_in &lt;dbl&gt;, substitutes_out &lt;dbl&gt;,
+#   substitutes_bench &lt;dbl&gt;, shots_total &lt;dbl&gt;, shots_on &lt;dbl&gt;,
+#   goals_total &lt;dbl&gt;, goals_conceded &lt;dbl&gt;, goals_assists &lt;dbl&gt;,
+#   passes_total &lt;dbl&gt;, passes_key &lt;dbl&gt;, passes_accuracy &lt;dbl&gt;,
+#   tackles_total &lt;dbl&gt;, tackles_blocks &lt;dbl&gt;, tackles_interceptions &lt;dbl&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(soccer_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 560
+Columns: 51
+$ team_id               &lt;dbl&gt; 47, 40, 33, 47, 40, 50, 40, 46, 52, 50, 48, 46, …
+$ team_name             &lt;chr&gt; "Tottenham", "Liverpool", "Manchester United", "…
+$ team_logo             &lt;chr&gt; "https://media-2.api-sports.io/football/teams/47…
+$ league_id             &lt;dbl&gt; 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, …
+$ league_name           &lt;chr&gt; "Premier League", "Premier League", "Premier Lea…
+$ league_country        &lt;chr&gt; "England", "England", "England", "England", "Eng…
+$ league_logo           &lt;chr&gt; "https://media-2.api-sports.io/football/leagues/…
+$ league_flag           &lt;chr&gt; "https://media-2.api-sports.io/flags/gb.svg", "h…
+$ games_appearences     &lt;dbl&gt; 35, 35, 30, 37, 34, 30, 35, 25, 33, 30, 36, 35, …
+$ games_lineups         &lt;dbl&gt; 35, 30, 27, 36, 32, 25, 27, 20, 31, 23, 34, 28, …
+$ games_minutes         &lt;dbl&gt; 3021, 2762, 2459, 3232, 2825, 2205, 2373, 1806, …
+$ games_position        &lt;chr&gt; "Attacker", "Attacker", "Attacker", "Attacker", …
+$ games_rating          &lt;dbl&gt; 7.505714, 7.391428, 7.260000, 7.378378, 7.202941…
+$ games_captain         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,…
+$ substitutes_in        &lt;dbl&gt; 0, 5, 3, 1, 2, 5, 8, 5, 2, 7, 2, 7, 1, 5, 2, 2, …
+$ substitutes_out       &lt;dbl&gt; 15, 5, 6, 1, 7, 9, 17, 5, 2, 6, 12, 14, 0, 7, 5,…
+$ substitutes_bench     &lt;dbl&gt; 0, 5, 3, 1, 2, 8, 9, 7, 2, 14, 2, 7, 1, 8, 2, 2,…
+$ shots_total           &lt;dbl&gt; 69, 101, 80, 97, 66, 56, 71, 47, 51, 46, 56, 54,…
+$ shots_on              &lt;dbl&gt; 49, 60, 43, 55, 39, 31, 33, 26, 32, 28, 34, 34, …
+$ goals_total           &lt;dbl&gt; 23, 23, 18, 17, 16, 15, 15, 15, 14, 13, 12, 12, …
+$ goals_conceded        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ goals_assists         &lt;dbl&gt; 7, 13, 3, 9, 2, 8, 4, 2, 1, 5, 10, 8, 5, 10, 2, …
+$ passes_total          &lt;dbl&gt; 1015, 1079, 879, 874, 1036, 1358, 744, 251, 909,…
+$ passes_key            &lt;dbl&gt; 73, 64, 26, 53, 43, 87, 41, 18, 47, 42, 42, 49, …
+$ passes_accuracy       &lt;dbl&gt; 25, 24, 24, 16, 23, 37, 15, 7, 22, 23, 15, 22, 1…
+$ tackles_total         &lt;dbl&gt; 15, 17, 8, 15, 33, 32, 39, 6, 40, 23, 36, 40, 33…
+$ tackles_blocks        &lt;dbl&gt; 6, 1, NA, 8, 1, 2, 2, NA, NA, NA, 2, 3, 2, 1, 3,…
+$ tackles_interceptions &lt;dbl&gt; 13, 6, 2, 3, 8, 6, 6, 1, 5, 12, 21, 11, 14, 13, …
+$ duels_total           &lt;dbl&gt; 270, 309, 217, 437, 361, 209, 384, 141, 506, 278…
+$ duels_won             &lt;dbl&gt; 118, 100, 88, 198, 160, 101, 143, 51, 228, 117, …
+$ dribbles_attempts     &lt;dbl&gt; 92, 124, 32, 100, 77, 55, 69, 22, 152, 112, 88, …
+$ dribbles_success      &lt;dbl&gt; 51, 53, 20, 54, 47, 31, 27, 9, 75, 53, 50, 31, 2…
+$ fouls_drawn           &lt;dbl&gt; 36, 23, 18, 54, 50, 27, 40, 12, 101, 37, 43, 64,…
+$ fouls_committed       &lt;dbl&gt; 14, 12, 16, 42, 50, 21, 41, 13, 37, 19, 25, 22, …
+$ cards_yellow          &lt;dbl&gt; 2, 1, 8, 5, 5, 2, 3, 2, 5, 1, 6, 3, 8, 4, 7, 6, …
+$ cards_yellowred       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, …
+$ cards_red             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ penalty_scored        &lt;dbl&gt; 0, 5, 3, 4, 0, 0, 0, 0, 5, 2, 0, 0, 5, 1, 1, 2, …
+$ penalty_missed        &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, …
+$ player_name           &lt;chr&gt; "Son Heung-Min", "Mohamed Salah", "Cristiano Ron…
+$ player_lastname       &lt;chr&gt; "Son", "Salah Hamed Mahrous Ghaly", "dos Santos …
+$ player_age            &lt;dbl&gt; 31, 31, 38, 30, 31, 32, 27, 36, 31, 29, 27, 27, …
+$ player_nationality    &lt;chr&gt; "Korea Republic", "Egypt", "Portugal", "England"…
+$ player_injured        &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,…
+$ player_photo          &lt;chr&gt; "https://media-1.api-sports.io/football/players/…
+$ player_birth_date     &lt;date&gt; 1992-07-08, 1992-06-15, 1985-02-05, 1993-07-28,…
+$ player_birth_place    &lt;chr&gt; "Chuncheon", "Muḥāfaẓat al Gharbiyya", "Funchal"…
+$ player_birth_country  &lt;chr&gt; "Korea Republic", "Egypt", "Portugal", "England"…
+$ id                    &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…
+$ player_height_cm      &lt;dbl&gt; 184, 175, 187, 188, 175, 181, 178, 179, 180, 172…
+$ player_weight_kg      &lt;dbl&gt; 77, 71, 83, 86, 69, 68, 68, 74, 66, 69, 70, 73, …</code></pre>
+</div>
+</div>
+<p>The data was first collected by making API calls from https://www.api-football.com/documentation-v3 for various soccer leagues. We did this my making a GET request to their top scorers endpoint, supplying parameters for each of 27 top leagues in 2021. From this we collected 20 goal scorers for each respective league as we specified per the query string parameters. From this point, we used the jsonlite library to flatten the JSON API responses into a tibble and then exported the tibble to a CSV file.</p>
+<p>Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process. The main reason why we stored the data to a CSV rather than dynamically making API calls is due to the rate limits and fees associated with using the API. For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.</p>
 </section>
 <section id="data-description" class="level1">
 <h1>Data description</h1>
 <p>Have an initial draft of your data description section. Your data description should be about your analysis-ready data.</p>
+<ul>
+<li><p>What are the observations (rows) and the attributes (columns)?</p>
+<ul>
+<li>There are 560 observations and 51 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season.</li>
+</ul></li>
+<li><p>Why was this dataset created?</p>
+<ul>
+<li>This dataset was created to rank and compare the top scoring football players across top leagues. This could be helpful for football fans, sports betters, or data scientists!</li>
+</ul></li>
+<li><p>Who funded the creation of the dataset?</p>
+<ul>
+<li>N/a (Most stats are automatically recorded, but were probably scraped from some summary site)</li>
+</ul></li>
+<li><p>What processes might have influenced what data was observed and recorded and what was not?</p>
+<ul>
+<li>It may have been influenced by referee rulings, as some scores may not have counted in the final game statistics.</li>
+</ul></li>
+<li><p>What preprocessing was done, and how did the data come to be in the form that you are using?</p>
+<ul>
+<li>(see above in Data collection and cleaning)</li>
+</ul></li>
+<li><p>If people are involved, were they aware of the data collection and if so, what purpose did they expect the data to be used for?</p>
+<ul>
+<li><p>The people involved are football players, who are aware of data collection, a this occurs during and after all of their games.</p></li>
+<li><p>They probably expected the data to be used for:</p>
+<ul>
+<li><p>general comparison (past/future versions of themselves, comparing their team to another, or between leagues)</p></li>
+<li><p>sports reporting (to football fans)</p></li>
+<li><p>MVP decisions</p></li>
+</ul></li>
+</ul></li>
+</ul>
 </section>
 <section id="data-limitations" class="level1">
 <h1>Data limitations</h1>
-<p>Identify any potential problems with your dataset.</p>
+<ul>
+<li><p>Data is only from the 2021 season. Therefore, we cannot make comparisons within groups (player, team, or league) over time.</p></li>
+<li><p>There are no goalies in the dataset (best scorers i.e.&nbsp;offensive players) therefore, we are unable to assess a team’s defense, which is important when considering how good a team is!</p></li>
+</ul>
 </section>
 <section id="exploratory-data-analysis" class="level1">
 <h1>Exploratory data analysis</h1>
 <p>Perform an (initial) exploratory data analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># height vs bookings  </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>soccer_clean <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_bookings =</span> cards_yellow <span class="sc">+</span> cards_red <span class="sc">+</span> cards_yellowred</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> player_height_cm, <span class="at">y =</span> total_bookings)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Player Height (in cm)"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Bookings"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Player Height vs. Bookings"</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 34 rows containing non-finite values (`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 34 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="eda_files/figure-html/exploratory-data-analysis-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># player rating vs goal accuracy</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># would need to transform, and/or implement axis limits</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>soccer_clean <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">goal_acc =</span> goals_total<span class="sc">/</span>shots_total</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> games_rating, <span class="at">y =</span> goal_acc)) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Rating"</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Goal Accuracy"</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Rating vs. Goal Accuracy"</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 124 rows containing non-finite values (`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 124 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="eda_files/figure-html/exploratory-data-analysis-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># median number of goals by different football leagues</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>soccer_clean <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(league_name) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> goals_total, <span class="at">y =</span> league_name)) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of Goals"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"League"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Median Goals by League"</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="eda_files/figure-html/exploratory-data-analysis-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># goals vs bookings</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>soccer_clean <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_bookings =</span> cards_yellow <span class="sc">+</span> cards_red <span class="sc">+</span> cards_yellowred</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> goals_total, <span class="at">y =</span> total_bookings)) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of Goals"</span>,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Bookings"</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Goals vs. Bookings"</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="eda_files/figure-html/exploratory-data-analysis-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># player height vs goal accuracy</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#may need axis limits or just use goals_total if that gives better model instead of goal_acc</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>soccer_clean <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">goal_acc =</span> goals_total<span class="sc">/</span>shots_total</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> player_height_cm, <span class="at">y =</span> goal_acc)) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Player Height (in cm)"</span>,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Goal Accuracy"</span>,</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Player Height vs. Goal accuracy"</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 131 rows containing non-finite values (`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 131 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="eda_files/figure-html/exploratory-data-analysis-5.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="questions-for-reviewers" class="level1">
 <h1>Questions for reviewers</h1>
-<p>List specific questions for your peer reviewers and project mentor to answer in giving you feedback on this phase.</p>
+<ul>
+<li><p>How many research questions should we have– if only one or two, which ones do you suggest?</p></li>
+<li><p>The data we are using is already pretty tidy (tidied when converting from API –&gt; JSON –&gt; CSV), therefore there are minimal cleaning steps in R-- confirming that this is acceptable, as it was indicated in the proposal directions that using an API was OK.</p></li>
+</ul>
 
 
 </section>

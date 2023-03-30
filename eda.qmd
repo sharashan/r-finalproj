@@ -1,5 +1,5 @@
 ---
-title: "Project title"
+title: "Assessing top soccer player statistics"
 subtitle: "Exploratory data analysis"
 format: html
 editor: visual
@@ -27,7 +27,7 @@ Are some leagues better than others?
 Have an initial draft of your data cleaning appendix. Document every step that takes your raw data file(s) and turns it into the analysis-ready data set that you would submit with your final project. Include text narrative describing your data collection (downloading, scraping, surveys, etc) and any additional data curation/cleaning (merging data frames, filtering, transformations of variables, etc). Include code for data curation/cleaning, but not collection.
 
 ```{r}
-#|: ex1
+#| label: data-collection-cleaning
 
 library(tidyverse)
 library(skimr)
@@ -39,7 +39,9 @@ soccer <- clean_names(soccer)
 soccer_clean <- soccer |>
   mutate(player_height_cm = as.numeric(gsub(" cm", "", soccer$player_height)),
          player_weight_kg = as.numeric(gsub(" kg", "", soccer$player_weight))) |>
-  select(-c(games_number, goals_saves, dribbles_past, penalty_won, penalty_commited, player_height, player_weight, penalty_saved, player_id_1, player_id_48, player_firstname, league_season))
+  select(-c(games_number, goals_saves, dribbles_past, penalty_won, 
+            penalty_commited, player_height, player_weight, penalty_saved, 
+            player_id_1, player_id_48, player_firstname, league_season))
 
 soccer_clean
 
@@ -97,8 +99,9 @@ Have an initial draft of your data description section. Your data description sh
 Perform an (initial) exploratory data analysis.
 
 ```{r}
-#|: exploratory-data-analysis 
-  
+#| label: exploratory-data-analysis 
+
+# height vs bookings  
 soccer_clean |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred
@@ -112,6 +115,7 @@ ggplot(mapping = aes(x = player_height_cm, y = total_bookings)) +
     title = "Player Height vs. Bookings"
   )
 
+# player rating vs goal accuracy
 # would need to transform, and/or implement axis limits
 soccer_clean |>
   mutate(
@@ -126,6 +130,7 @@ ggplot(mapping = aes(x = games_rating, y = goal_acc)) +
     title = "Rating vs. Goal Accuracy"
   )
 
+# median number of goals by different football leagues
 soccer_clean |>
   group_by(league_name) |>
   ggplot(mapping = aes(x = goals_total, y = league_name)) +
@@ -136,6 +141,7 @@ soccer_clean |>
     title = "Median Goals by League"
   )
 
+# goals vs bookings
 soccer_clean |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred
@@ -149,8 +155,20 @@ ggplot(mapping = aes(x = goals_total, y = total_bookings)) +
     title = "Goals vs. Bookings"
   )
 
-
-
+# player height vs goal accuracy
+#may need axis limits or just use goals_total if that gives better model instead of goal_acc
+soccer_clean |>
+  mutate(
+        goal_acc = goals_total/shots_total
+  ) |>
+ggplot(mapping = aes(x = player_height_cm, y = goal_acc)) +
+  geom_jitter() +
+  geom_smooth() +
+  labs(
+    x = "Player Height (in cm)",
+    y = "Goal Accuracy",
+    title = "Player Height vs. Goal accuracy"
+  )
 ```
 
 # Questions for reviewers
