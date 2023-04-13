@@ -7,6 +7,20 @@ execute:
   echo: true
 ---
 
+Updated Research Question (tentative)--
+
+RQ 1 (Players): Is there a correlation between the height, weight, age, and/or player rating on specific game statistics (Including, but not limited to: goals scored, assists, penalties, passes, etc.)?
+
+**QUESTION: should new phrase as "different from" or ask as specifically "heavier/taller, better"**
+
+-   Do taller players (player_height) tend to get booked more frequently (mutate --\> total_bookings = cards_yellow + cards_red + cards_redyellow)?
+
+-   Do heavier players (player_weight) tend to get booked more frequently (mutate --\> total_bookings = cards_yellow + cards_red + cards_redyellow)?
+
+-   Do older players (player_birth_date) tend to get booked more frequently (mutate --\> total_bookings = cards_yellow + cards_red + cards_redyellow)?
+
+-   Do higher rated players (player_birth_date) tend to get booked more frequently (mutate --\> total_bookings = cards_yellow + cards_red + cards_redyellow)?
+
 # Analysis #1
 
 Ex/ Distribution of median number of goals by league (European and Non-European).

@@ -67,7 +67,7 @@
     "href": "pre-registration.html",
     "title": "Assessing top soccer player statistics",
     "section": "",
-    "text": "Analysis #1\nEx/ Distribution of median number of goals by league (European and Non-European).\n\n\nAnalysis #2\nEx/ Rating vs. goal accuracy (i.e. goals_total / shots_total)"
+    "text": "Updated Research Question (tentative)–\nRQ 1 (Players): Is there a correlation between the height, weight, age, and/or player rating on specific game statistics (Including, but not limited to: goals scored, assists, penalties, passes, etc.)?\nQUESTION: should new phrase as “different from” or ask as specifically “heavier/taller, better”\n\nDo taller players (player_height) tend to get booked more frequently (mutate –> total_bookings = cards_yellow + cards_red + cards_redyellow)?\nDo heavier players (player_weight) tend to get booked more frequently (mutate –> total_bookings = cards_yellow + cards_red + cards_redyellow)?\nDo older players (player_birth_date) tend to get booked more frequently (mutate –> total_bookings = cards_yellow + cards_red + cards_redyellow)?\nDo higher rated players (player_birth_date) tend to get booked more frequently (mutate –> total_bookings = cards_yellow + cards_red + cards_redyellow)?\n\n\nAnalysis #1\nEx/ Distribution of median number of goals by league (European and Non-European).\n\n\nAnalysis #2\nEx/ Rating vs. goal accuracy (i.e. goals_total / shots_total)"
   },
   {
     "objectID": "report.html",
