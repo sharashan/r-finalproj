@@ -1,5 +1,5 @@
 ---
-title: "Project title"
+title: "Assessing top soccer player statistics"
 subtitle: "Preregistration of analyses"
 format: html
 editor: visual
@@ -7,11 +7,10 @@ execute:
   echo: true
 ---
 
-# Analysis \#1
+# Analysis #1
 
-Describe your first analysis here.
+Ex/ Distribution of median number of goals by league (European and Non-European).
 
-# Analysis \#2
+# Analysis #2
 
-Describe your second analysis here.
-
+Ex/ Rating vs. goal accuracy (i.e. goals_total / shots_total)
