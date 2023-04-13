@@ -21,6 +21,18 @@ RQ 1 (Players): Is there a correlation between the height, weight, age, and/or p
 
 -   Do higher rated players (player_birth_date) tend to get booked more frequently (mutate --\> total_bookings = cards_yellow + cards_red + cards_redyellow)?
 
+-   Do taller players (player_height) tend to score more (goals_total)?
+
+-   Do heavier players (player_weight) tend to score more (goals_total)?
+
+-   Do older players (player_birth_date) tend to score more (goals_total)?
+
+-   Do higher rated players (player_birth_date) tend to score more (goals_total)?
+
+-   Do taller players (player_height) tend to have higher goal accuracy (mutate --\> goal_acc = goals_total / shots_total)?
+
+-   Do heavier players (player_weight) tend to have higher goal accuracy (mutate --\> goal_acc = goals_total / shots_total)?
+
 # Analysis #1
 
 Ex/ Distribution of median number of goals by league (European and Non-European).
