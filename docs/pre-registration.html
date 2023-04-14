@@ -154,6 +154,22 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Do heavier players (player_weight) tend to get booked more frequently (mutate –&gt; total_bookings = cards_yellow + cards_red + cards_redyellow)?</p></li>
 <li><p>Do older players (player_birth_date) tend to get booked more frequently (mutate –&gt; total_bookings = cards_yellow + cards_red + cards_redyellow)?</p></li>
 <li><p>Do higher rated players (player_birth_date) tend to get booked more frequently (mutate –&gt; total_bookings = cards_yellow + cards_red + cards_redyellow)?</p></li>
+<li><p>Do taller players (player_height) tend to score more (goals_total)?</p></li>
+<li><p>Do heavier players (player_weight) tend to score more (goals_total)?</p></li>
+<li><p>Do older players (player_birth_date) tend to score more (goals_total)?</p></li>
+<li><p>Do higher rated players (player_birth_date) tend to score more (goals_total)?</p></li>
+<li><p>Do taller players (player_height) tend to have higher goal accuracy (mutate –&gt; goal_acc = goals_total / shots_total)?</p></li>
+<li><p>Do heavier players (player_weight) tend to have higher goal accuracy (mutate –&gt; goal_acc = goals_total / shots_total)?</p></li>
+<li><p>Do older players (player_birth_date) tend to have higher goal accuracy (mutate –&gt; goal_acc = goals_total / shots_total)?</p></li>
+<li><p>Do higher rated players (player_birth_date) tend to have higher goal accuracy (mutate –&gt; goal_acc = goals_total / shots_total)?</p></li>
+</ul>
+<p>RQ 2 (Leagues): Do game statistics differ across leagues (goals_total)?</p>
+<ul>
+<li><p>Are some leagues (leagues) outputting more goals than others?</p></li>
+<li><p>Does penalty accuracy rate vary across leagues? (i.e.&nbsp;mutate -&gt; penalty_acc = penalty_scored / (penalty_missed + penalty_scored))</p></li>
+<li><p>How does the frequency of fouls (cards_yellow, cards_red, cards_redyellow) between different leagues, impact the number of goals scored?</p></li>
+<li><p>How do goals per minutes (on average) (i.e.&nbsp;goals_total / games_minutes and group_by(league)) differ within leagues?</p></li>
+<li><p>Does number of duels (duels_total) differ across leagues?</p></li>
 </ul>
 <section id="analysis-1" class="level1">
 <h1>Analysis #1</h1>

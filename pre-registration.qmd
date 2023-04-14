@@ -33,6 +33,22 @@ RQ 1 (Players): Is there a correlation between the height, weight, age, and/or p
 
 -   Do heavier players (player_weight) tend to have higher goal accuracy (mutate --\> goal_acc = goals_total / shots_total)?
 
+-   Do older players (player_birth_date) tend to have higher goal accuracy (mutate --\> goal_acc = goals_total / shots_total)?
+
+-   Do higher rated players (player_birth_date) tend to have higher goal accuracy (mutate --\> goal_acc = goals_total / shots_total)?
+
+RQ 2 (Leagues): Do game statistics differ across leagues (goals_total)?
+
+-   Are some leagues (leagues) outputting more goals than others?
+
+-   Does penalty accuracy rate vary across leagues? (i.e. mutate -\> penalty_acc = penalty_scored / (penalty_missed + penalty_scored))
+
+-   How does the frequency of fouls (cards_yellow, cards_red, cards_redyellow) between different leagues, impact the number of goals scored?
+
+-   How do goals per minutes (on average) (i.e. goals_total / games_minutes and group_by(league)) differ within leagues?
+
+-   Does number of duels (duels_total) differ across leagues?
+
 # Analysis #1
 
 Ex/ Distribution of median number of goals by league (European and Non-European).
