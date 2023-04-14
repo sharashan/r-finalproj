@@ -7,11 +7,11 @@ execute:
   echo: true
 ---
 
-Updated Research Question (tentative)--
+# Analysis #1
 
-RQ 1 (Players): Is there a correlation between the height, weight, age, and/or player rating on specific game statistics (Including, but not limited to: goals scored, assists, penalties, passes, etc.)?
+Question: What factors influence booking frequency of the players?
 
-**QUESTION: should new phrase as "different from" or ask as specifically "heavier/taller, better"**
+Hypothesis: Taller, heavier, older, and more highly rated players get booked more frequently than shorter, less heavy, younger, less highly rated players.
 
 -   Do taller players (player_height) tend to get booked more frequently (mutate --\> total_bookings = cards_yellow + cards_red + cards_redyellow)?
 
@@ -21,38 +21,14 @@ RQ 1 (Players): Is there a correlation between the height, weight, age, and/or p
 
 -   Do higher rated players (player_birth_date) tend to get booked more frequently (mutate --\> total_bookings = cards_yellow + cards_red + cards_redyellow)?
 
--   Do taller players (player_height) tend to score more (goals_total)?
+# Analysis #2
 
--   Do heavier players (player_weight) tend to score more (goals_total)?
+Question: Are some leagues more aggressive, on average, than others?
 
--   Do older players (player_birth_date) tend to score more (goals_total)?
-
--   Do higher rated players (player_birth_date) tend to score more (goals_total)?
-
--   Do taller players (player_height) tend to have higher goal accuracy (mutate --\> goal_acc = goals_total / shots_total)?
-
--   Do heavier players (player_weight) tend to have higher goal accuracy (mutate --\> goal_acc = goals_total / shots_total)?
-
--   Do older players (player_birth_date) tend to have higher goal accuracy (mutate --\> goal_acc = goals_total / shots_total)?
-
--   Do higher rated players (player_birth_date) tend to have higher goal accuracy (mutate --\> goal_acc = goals_total / shots_total)?
-
-RQ 2 (Leagues): Do game statistics differ across leagues (goals_total)?
-
--   Are some leagues (leagues) outputting more goals than others?
-
--   Does penalty accuracy rate vary across leagues? (i.e. mutate -\> penalty_acc = penalty_scored / (penalty_missed + penalty_scored))
+***SOMEONE NEEDS TO DO THIS\--*** Hypothesis: European leagues are, on average, more aggressive than non-European leagues (i.e. more fouls, more goals per minute, and more duels.)
 
 -   How does the frequency of fouls (cards_yellow, cards_red, cards_redyellow) between different leagues, impact the number of goals scored?
 
 -   How do goals per minutes (on average) (i.e. goals_total / games_minutes and group_by(league)) differ within leagues?
 
 -   Does number of duels (duels_total) differ across leagues?
-
-# Analysis #1
-
-Ex/ Distribution of median number of goals by league (European and Non-European).
-
-# Analysis #2
-
-Ex/ Rating vs. goal accuracy (i.e. goals_total / shots_total)
