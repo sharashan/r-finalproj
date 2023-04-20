@@ -25,10 +25,16 @@ Hypothesis: Taller, heavier, older, and more highly rated players get booked mor
 
 Question: Are some leagues more aggressive, on average, than others?
 
-***SOMEONE NEEDS TO DO THIS\--*** Hypothesis: European leagues are, on average, more aggressive than non-European leagues (i.e. more fouls, more goals per minute, and more duels.)
+Hypothesis: European leagues are, on average, more aggressive than non-European leagues (i.e. more fouls, more goals per minute, and more duels.)
 
--   How does the frequency of fouls (cards_yellow, cards_red, cards_redyellow) between different leagues, impact the number of goals scored?
+-   How does the frequency of bookings (cards_yellow, cards_red, cards_redyellow) between different leagues, impact the average goals per match? Does this differ across European and non European leagues?
+
+-   How does the frequency of penalties differ between different leagues?
+
+-   Does the number of straight red cards versus second yellow cards per game differ across leagues?
 
 -   How do goals per minutes (on average) (i.e. goals_total / games_minutes and group_by(league)) differ within leagues?
+
+-   Do the average amount of shots per game differ across leagues?
 
 -   Does number of duels (duels_total) differ across leagues?
