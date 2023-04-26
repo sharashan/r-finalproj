@@ -59,7 +59,7 @@ RQ 2 (Leagues): Do game statistics differ across leagues (goals_total)?
 
 -   Does number of duels (duels_total) differ across leagues?
 
-# Data description
+# Data description \[John\]
 
 -   What are the observations (rows) and the attributes (columns)?
 
@@ -93,21 +93,21 @@ RQ 2 (Leagues): Do game statistics differ across leagues (goals_total)?
 
         -   MVP decisions
 
-# Data analysis
+# Data analysis \[John\]
 
-# Evaluation of significance
+# Evaluation of significance 
 
 # Interpretation and conclusions
 
-# Limitations
+# Limitations 
 
 -   Data is only from the 2021 season. Therefore, we cannot make comparisons within groups (player, team, or league) over time.
 
 -   There are no goalies in the dataset (best scorers i.e. offensive players) therefore, we are unable to assess a team's defense, which is important when considering how good a team is!
 
-# Acknowledgments
+# Acknowledgments \[John\]
 
-# Appendix
+# Appendix 
 
 ### Data Collection and Cleaning
 
