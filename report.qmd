@@ -9,6 +9,18 @@ execute:
 
 # Introduction
 
+-   Identify the source of the data.
+
+Source: https://www.api-football.com/documentation-v3
+
+-   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
+
+The data was created by using the API collected from https://www.api-football.com/documentation-v3. We collected the data by making a GET request to their top scorers endpoint, focusing on 27 of the top leagues in 2021. Thus, as you can see in the code snippet below for each of the leagues we make an API call to fetch the top scorers in the league. The API returns the top 20 goal scorers for the respective league as specified per the query string parameters.
+
+-   Write a brief description of the observations.
+
+Each observation represents a top 20 football scorer (with regards to their league) for the 2021 season. From this we can have see a lot of interesting background information of the player like their height, weight, nationality, etc. In addition to the background information, we also have a lot of statistics for the player in the given season (like passes, goals scored, assists, penalties, etc).
+
 RQ 1 (Players): Is there a correlation between the height, weight, age, and/or player rating on specific game statistics (Including, but not limited to: goals scored, assists, penalties, passes, etc.)?
 
 -   Do taller players (player_height) tend to get booked more frequently (mutate --\> total_bookings = cards_yellow + cards_red + cards_redyellow)?
@@ -49,6 +61,38 @@ RQ 2 (Leagues): Do game statistics differ across leagues (goals_total)?
 
 # Data description
 
+-   What are the observations (rows) and the attributes (columns)?
+
+    -   There are 560 observations and 51 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season.
+
+-   Why was this dataset created?
+
+    -   This dataset was created to rank and compare the top scoring football players across top leagues. This could be helpful for football fans, sports betters, or data scientists!
+
+-   Who funded the creation of the dataset?
+
+    -   N/a (Most stats are automatically recorded, but were probably scraped from different summary sites aggregated into one site)
+
+-   What processes might have influenced what data was observed and recorded and what was not?
+
+    -   It may have been influenced by referee rulings, as some scores may not have counted in the final game statistics.
+
+-   What preprocessing was done, and how did the data come to be in the form that you are using?
+
+    -   (see above in Data collection and cleaning)
+
+-   If people are involved, were they aware of the data collection and if so, what purpose did they expect the data to be used for?
+
+    -   The people involved are football players, who are aware of data collection, a this occurs during and after all of their games.
+
+    -   They probably expected the data to be used for:
+
+        -   general comparison (past/future versions of themselves, comparing their team to another, or between leagues)
+
+        -   sports reporting (to football fans)
+
+        -   MVP decisions
+
 # Data analysis
 
 # Evaluation of significance
@@ -57,4 +101,40 @@ RQ 2 (Leagues): Do game statistics differ across leagues (goals_total)?
 
 # Limitations
 
+-   Data is only from the 2021 season. Therefore, we cannot make comparisons within groups (player, team, or league) over time.
+
+-   There are no goalies in the dataset (best scorers i.e. offensive players) therefore, we are unable to assess a team's defense, which is important when considering how good a team is!
+
 # Acknowledgments
+
+# Appendix
+
+### Data Collection and Cleaning
+
+Have an initial draft of your data cleaning appendix. Document every step that takes your raw data file(s) and turns it into the analysis-ready data set that you would submit with your final project. Include text narrative describing your data collection (downloading, scraping, surveys, etc) and any additional data curation/cleaning (merging data frames, filtering, transformations of variables, etc). Include code for data curation/cleaning, but not collection.
+
+```{r}
+#| label: data-collection-cleaning
+
+library(tidyverse)
+library(skimr)
+library(janitor)
+
+soccer <- read_csv("data/top_goalscorers.csv")
+soccer <- clean_names(soccer)
+
+soccer_clean <- soccer |>
+  mutate(player_height_cm = as.numeric(gsub(" cm", "", soccer$player_height)),
+         player_weight_kg = as.numeric(gsub(" kg", "", soccer$player_weight))) |>
+  select(-c(games_number, goals_saves, dribbles_past, penalty_won, 
+            penalty_commited, player_height, player_weight, penalty_saved, 
+            player_id_1, player_id_48, player_firstname, league_season))
+
+soccer_clean
+
+glimpse(soccer_clean)
+```
+
+The data was first collected by making API calls from https://www.api-football.com/documentation-v3 for various soccer leagues. We did this my making a GET request to their top scorers endpoint, supplying parameters for each of 27 top leagues in 2021. From this we collected 20 goal scorers for each respective league as we specified per the query string parameters. From this point, we used the jsonlite library to flatten the JSON API responses into a tibble and then exported the tibble to a CSV file.
+
+Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process. The main reason why we stored the data to a CSV rather than dynamically making API calls is due to the rate limits and fees associated with using the API. For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.

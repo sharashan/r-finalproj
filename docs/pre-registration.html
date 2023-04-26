@@ -146,38 +146,29 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Updated Research Question (tentative)–</p>
-<p>RQ 1 (Players): Is there a correlation between the height, weight, age, and/or player rating on specific game statistics (Including, but not limited to: goals scored, assists, penalties, passes, etc.)?</p>
-<p><strong>QUESTION: should new phrase as “different from” or ask as specifically “heavier/taller, better”</strong></p>
+<section id="analysis-1" class="level1">
+<h1>Analysis #1</h1>
+<p>Question: What factors influence booking frequency of the players?</p>
+<p>Hypothesis: Taller, heavier, older, and more highly rated players get booked more frequently than shorter, less heavy, younger, less highly rated players.</p>
 <ul>
 <li><p>Do taller players (player_height) tend to get booked more frequently (mutate –&gt; total_bookings = cards_yellow + cards_red + cards_redyellow)?</p></li>
 <li><p>Do heavier players (player_weight) tend to get booked more frequently (mutate –&gt; total_bookings = cards_yellow + cards_red + cards_redyellow)?</p></li>
 <li><p>Do older players (player_birth_date) tend to get booked more frequently (mutate –&gt; total_bookings = cards_yellow + cards_red + cards_redyellow)?</p></li>
 <li><p>Do higher rated players (player_birth_date) tend to get booked more frequently (mutate –&gt; total_bookings = cards_yellow + cards_red + cards_redyellow)?</p></li>
-<li><p>Do taller players (player_height) tend to score more (goals_total)?</p></li>
-<li><p>Do heavier players (player_weight) tend to score more (goals_total)?</p></li>
-<li><p>Do older players (player_birth_date) tend to score more (goals_total)?</p></li>
-<li><p>Do higher rated players (player_birth_date) tend to score more (goals_total)?</p></li>
-<li><p>Do taller players (player_height) tend to have higher goal accuracy (mutate –&gt; goal_acc = goals_total / shots_total)?</p></li>
-<li><p>Do heavier players (player_weight) tend to have higher goal accuracy (mutate –&gt; goal_acc = goals_total / shots_total)?</p></li>
-<li><p>Do older players (player_birth_date) tend to have higher goal accuracy (mutate –&gt; goal_acc = goals_total / shots_total)?</p></li>
-<li><p>Do higher rated players (player_birth_date) tend to have higher goal accuracy (mutate –&gt; goal_acc = goals_total / shots_total)?</p></li>
 </ul>
-<p>RQ 2 (Leagues): Do game statistics differ across leagues (goals_total)?</p>
-<ul>
-<li><p>Are some leagues (leagues) outputting more goals than others?</p></li>
-<li><p>Does penalty accuracy rate vary across leagues? (i.e.&nbsp;mutate -&gt; penalty_acc = penalty_scored / (penalty_missed + penalty_scored))</p></li>
-<li><p>How does the frequency of fouls (cards_yellow, cards_red, cards_redyellow) between different leagues, impact the number of goals scored?</p></li>
-<li><p>How do goals per minutes (on average) (i.e.&nbsp;goals_total / games_minutes and group_by(league)) differ within leagues?</p></li>
-<li><p>Does number of duels (duels_total) differ across leagues?</p></li>
-</ul>
-<section id="analysis-1" class="level1">
-<h1>Analysis #1</h1>
-<p>Ex/ Distribution of median number of goals by league (European and Non-European).</p>
 </section>
 <section id="analysis-2" class="level1">
 <h1>Analysis #2</h1>
-<p>Ex/ Rating vs.&nbsp;goal accuracy (i.e.&nbsp;goals_total / shots_total)</p>
+<p>Question: Are some leagues more aggressive, on average, than others?</p>
+<p>Hypothesis: European leagues are, on average, more aggressive than non-European leagues (i.e.&nbsp;more fouls, more goals per minute, and more duels.)</p>
+<ul>
+<li><p>How does the frequency of bookings (cards_yellow, cards_red, cards_redyellow) between different leagues, impact the average goals per match? Does this differ across European and non European leagues?</p></li>
+<li><p>How does the frequency of penalties differ between different leagues?</p></li>
+<li><p>Does the number of straight red cards versus second yellow cards per game differ across leagues?</p></li>
+<li><p>How do goals per minutes (on average) (i.e.&nbsp;goals_total / games_minutes and group_by(league)) differ within leagues?</p></li>
+<li><p>Do the average amount of shots per game differ across leagues?</p></li>
+<li><p>Does number of duels (duels_total) differ across leagues?</p></li>
+</ul>
 
 
 </section>
