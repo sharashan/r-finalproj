@@ -201,7 +201,6 @@ soccer_clean |>
     title = "Do European Leagues tend to have more average \npenalties per game than non-European leagues?"
   )
 
-
 # Goals per min euro. vs. non euro
 soccer_clean |>
   mutate(
@@ -279,6 +278,73 @@ soccer_clean |>
 ```
 
 # Evaluation of significance
+
+Analysis 1: Do higher-rated players tend to get booked more frequently?
+
+-   Null hypothesis: The true population mean of bookings for highly rater players and non-highly rated players are not different, on average. $$ \mu_{high books} - \mu_{non-high books} = 0 $$
+
+-   Alt hypothesis: The true population mean of bookings for highly rater players and non-highly rated players are different, on average.
+
+$$
+\mu_{high books} - \mu_{non-high books} \not = 0
+$$
+
+```{r}
+#| label: hyp-test-1
+
+
+# set.seed(123)
+# 
+# soccer_clean_hyp1 <- soccer_clean |>
+#   mutate(
+#     total_bookings = cards_yellow + cards_red + cards_yellowred,
+#     high_cat = as.factor(if_else(games_rating >= 0.5, "high rank", "non high rank"))
+#   ) 
+# 
+# bookings_diff <- soccer_clean_hyp1 |>
+#   specify(total_bookings ~ high_cat) |>
+#   calculate(stat = "diff in means", order = c("high rank", "non high rank"))
+# 
+# null_dist <- bookings_diff |>
+#   specify(total_bookings ~ high_cat) |>
+#   hypothesize(null = "independence") |>
+#   generate(1000, type = "permute") |>
+#   calculate(stat = "diff in means", order = c("high rank", "non high rank"))
+# 
+# null_dist |>
+#   get_p_value(obs_stat = bookings_diff, direction = "two sided")
+```
+
+Analysis 2: Does the number of duels, on average, differ between European and non-European leagues?
+
+-   Null hypothesis: The true population mean of duels for European and non-European players are not different, on average. $$ \mu_{EU duel} - \mu_{non-EU duel} = 0 $$
+
+-   Alt hypothesis: The true population mean of duels for European and non-European players are different, on average.
+
+$$ \mu_{EU duel} - \mu_{non-EU duel} = 0
+$$
+
+```{r}
+#| label: hyp-test-2
+
+library(tidymodels)
+library(openintro)
+
+set.seed(234)
+
+duels_diff <- soccer_clean |>
+  specify(duels_total ~ is_european) |>
+  calculate(stat = "diff in means", order = c("Yes", "No"))
+
+null_dist <- duels_total |>
+  specify(duels_won ~ is_european)|>
+  hypothesize(null = "independence") |>
+  generate(1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("Yes", "No"))
+
+null_dist |>
+  get_p_value(obs_stat = duels_diff, direction = "two sided")
+```
 
 # Interpretation and conclusions
 
