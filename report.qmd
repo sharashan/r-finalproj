@@ -57,6 +57,109 @@ We found that: main findings + summary of results TBD.
 
 # Data analysis \[John\]
 
+```{r}
+#| label: data-collection-cleaning
+
+library(tidyverse)
+library(skimr)
+library(janitor)
+
+soccer <- read_csv("data/top_goalscorers.csv")
+soccer <- clean_names(soccer)
+
+soccer_clean <- soccer |>
+  mutate(player_height_cm = as.numeric(gsub(" cm", "", soccer$player_height)),
+         player_weight_kg = as.numeric(gsub(" kg", "", soccer$player_weight))) |>
+  select(-c(games_number, goals_saves, dribbles_past, penalty_won, 
+            penalty_commited, player_height, player_weight, penalty_saved, 
+            player_id_1, player_id_48, player_firstname, league_season))
+
+soccer_clean
+
+glimpse(soccer_clean)
+```
+
+```{r}
+#| label: exploratory-data-analysis 
+
+library(lubridate)
+
+# Do taller players tend to get booked more frequently? 
+soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred
+  ) |>
+ggplot(mapping = aes(x = player_height_cm, y = total_bookings)) +
+  geom_jitter() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Player Height (in cm)",
+    y = "Total Bookings",
+    title = "Do taller players tend to get booked \nmore frequently?"
+  )
+
+# Do taller players tend to get booked more frequently (Premier League)? 
+soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred
+  ) |>
+  filter(
+    league_id = 39
+  ) |>
+ggplot(mapping = aes(x = player_height_cm, y = total_bookings)) +
+  geom_jitter() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Player Height (in cm)",
+    y = "Total Bookings",
+    title = "Do taller players tend to get booked \nmore frequently?"
+  )
+
+# Do heavier players tend to get booked more frequently? 
+soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    player_weight_lb = (player_weight_kg * 2.2)
+  ) |>
+ggplot(mapping = aes(x = player_weight_lb, y = total_bookings)) +
+  geom_jitter() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Player Weight (in lb)",
+    y = "Total Bookings",
+    title = "Do heavier players tend to get booked \nmore frequently?"
+  )
+
+# Do older players tend to get booked more frequently? 
+soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    player_age_yrs = (2021 - year((date(player_birth_date))))
+  ) |>
+ggplot(mapping = aes(x = player_age_yrs, y = total_bookings)) +
+  geom_jitter() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Player Age (in years)",
+    y = "Total Bookings",
+    title = "Do older players tend to get booked \nmore frequently?"
+  )
+
+# Do higher-rated players tend to get booked more frequently? 
+soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+  ) |>
+ggplot(mapping = aes(x = games_rating, y = total_bookings)) +
+  geom_jitter() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Player Rating (Across Season Games)",
+    y = "Total Bookings",
+    title = "Do older players tend to get booked \nmore frequently?"
+  )
+```
+
 # Evaluation of significance
 
 # Interpretation and conclusions
