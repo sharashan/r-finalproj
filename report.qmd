@@ -55,7 +55,7 @@ We found that: main findings + summary of results TBD.
 
         -   MVP decisions
 
-# Data analysis \[John\]
+# Data analysis
 
 ```{r}
 #| label: data-collection-cleaning
@@ -79,14 +79,12 @@ soccer_clean
 glimpse(soccer_clean)
 ```
 
-#### Analyses #1: 
-
-What factors influence booking frequency of players?
+#### Analysis #1: What factors influence booking frequency of players?
 
 Hypothesis: Taller, heavier, older, and more highly rated players get booked more frequently than shorter, less heavy, younger, less highly rated players.
 
 ```{r}
-#| label: analyses-1-plots
+#| label: analyses-2-plots
 
 library(lubridate)
 
@@ -110,7 +108,7 @@ soccer_clean |>
     total_bookings = cards_yellow + cards_red + cards_yellowred
   ) |>
   filter(
-    league_id = 39
+    league_id == 39
   ) |>
 ggplot(mapping = aes(x = player_height_cm, y = total_bookings)) +
   geom_jitter() +
@@ -178,21 +176,105 @@ Hypothesis: European leagues are, on average, more aggressive than non-European 
 library(lubridate)
 
 soccer_clean |>
-  group_by(country)
+  group_by(league_country) |>
+  summarize(n = n())
+
+european_countries <- c("Belgium", "England", "France", "Germany", "Italy", "Netherlands", "Portugal", "Spain")
+
+soccer_clean <- soccer_clean |>
+  mutate(
+    is_european = ifelse(league_country %in% european_countries, "Yes", "No")
+  )
 
 # Do taller players tend to get booked more frequently? 
 soccer_clean |>
   mutate(
-    total_bookings = cards_yellow + cards_red + cards_yellowred
+    # total_bookings = cards_yellow + cards_red + cards_yellowred,
+    avg_penalty_by_game = (penalty_scored + penalty_missed) / games_appearences
   ) |>
-ggplot(mapping = aes(x = player_height_cm, y = total_bookings)) +
-  geom_jitter() +
+  ggplot(mapping = aes(x = is_european, y = avg_penalty_by_game)) +
+  geom_boxplot() +
   geom_smooth(method = "lm", se = FALSE) +
   labs(
-    x = "Player Height (in cm)",
-    y = "Total Bookings",
-    title = "Do taller players tend to get booked \nmore frequently?"
+    x = "European",
+    y = "Average Penalty By Game",
+    title = "Do European Leagues tend to have more average \npenalties per game than non-European leagues?"
   )
+
+
+# Goals per min euro. vs. non euro
+soccer_clean |>
+  mutate(
+    # total_bookings = cards_yellow + cards_red + cards_yellowred,
+    avg_goals_per_min = goals_total / games_minutes
+  ) |>
+  # filter(avg_goals_per_min <= 0.015) |>
+  ggplot(mapping = aes(x = is_european, y = avg_goals_per_min)) +
+  geom_boxplot() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "European",
+    y = "Average Goals per Minute",
+    title = "Do European Leagues tend to have score more more goals,\n on average, than non-European leagues?"
+  )
+
+# avg shots per game
+soccer_clean |>
+  mutate(
+    # total_bookings = cards_yellow + cards_red + cards_yellowred,
+    avg_shots_per_game = shots_total / games_appearences
+  ) |>
+  ggplot(mapping = aes(x = is_european, y = avg_shots_per_game)) +
+  geom_boxplot() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "European",
+    y = "Average Shots Per Game",
+    title = "Do European Leagues tend to  take more shots per game,\n on average, than non-European leagues?"
+  )
+
+# number duels (hyp test to determine if significant)
+soccer_clean |>
+  # filter(duels_total <= 750) |>
+  ggplot(mapping = aes(x = is_european, y = duels_total)) +
+  geom_boxplot() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "European",
+    y = "Total Duels",
+    title = "Do European Leagues tend to duel more,\n on average, than non-European leagues?"
+  )
+
+
+#### IGNORE
+library(scales)
+# Does the pct of reds are straight red 
+soccer_clean |>
+  # mutate(
+  #   total_red = (cards_red + cards_yellowred),
+  # ) |> 
+  group_by(is_european) |>
+  summarize(
+    red = sum(cards_yellowred + cards_red),
+    yr = sum(cards_yellowred),
+    s_red = sum(cards_red)
+  ) |>
+  filter((red + yr) > 0) |>
+  # mutate(
+  #   pct_straightred = s_red / (red + yr)
+  # ) |>
+  # mutate(
+  #    pct_non_straightred = 1 - pct_straightred
+  # ) |>
+  ggplot(aes(red, fill = yr)) +
+  # facet_grid(facets = vars(is_european)) +
+  geom_bar(position = "fill") + 
+  labs(
+    x = "European",
+    y = "Percent of Red Cards that are Straight Red",
+    title = "Do European Leagues tend to have higher perecentages \nof red cards that are straight red (on average) than non-European leagues?"
+  ) +
+  scale_y_continuous(labels = label_percent())
 
 ```
 
@@ -215,7 +297,7 @@ One limitation of this dataset is that it only contains information from the 202
 Have an initial draft of your data cleaning appendix. Document every step that takes your raw data file(s) and turns it into the analysis-ready data set that you would submit with your final project. Include text narrative describing your data collection (downloading, scraping, surveys, etc) and any additional data curation/cleaning (merging data frames, filtering, transformations of variables, etc). Include code for data curation/cleaning, but not collection.
 
 ```{r}
-#| label: data-collection-cleaning
+#| label: data-collection-cleaning2
 
 library(tidyverse)
 library(skimr)
@@ -239,4 +321,3 @@ glimpse(soccer_clean)
 The data was first collected by making API calls from https://www.api-football.com/documentation-v3 for various soccer leagues. We did this my making a GET request to their top scorers endpoint, supplying parameters for each of 27 top leagues in 2021. From this we collected 20 goal scorers for each respective league as we specified per the query string parameters. From this point, we used the jsonlite library to flatten the JSON API responses into a tibble and then exported the tibble to a CSV file.
 
 Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process. The main reason why we stored the data to a CSV rather than dynamically making API calls is due to the rate limits and fees associated with using the API. For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.
-
