@@ -282,6 +282,20 @@ soccer_clean |>
 
 # Interpretation and conclusions
 
+-   No correlation evident in height v booking frequency
+
+-   No correlation evident in weight v booking frequency
+
+-   No correlation evident in player_rating v booking frequency
+
+-   No correlation evident in league v. goals per min
+
+-   No correlation evident in league v. shots per game
+
+-   No correlation evident in league v. penalties per game
+
+-   Correlation evident in league v. duels per game
+
 # Limitations
 
 One limitation of this dataset is that it only contains information from the 2021 season. Therefore, we cannot make comparisons within groups (player, team, or league) over time. We also assume that there are no goalies in the dataset (best scorers i.e. offensive players), as this only contains goal scorers. Therefore, we are unable to assess a team's defense, which can be important when considering how good a team is!
