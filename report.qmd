@@ -19,41 +19,15 @@ We found that there were not significant relationships in the EDA, and further c
 
 # Data description
 
--   What are the observations (rows) and the attributes (columns)?
+This dataset was created to rank and compare the top scoring football players across top leagues. This could be helpful for football fans, sports betters, or data scientists. There are 560 observations and 51 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season. The people involved are football players, who are aware of data collection, as this occurs during and after all of their games, because sports data is typically used to make general comparison (past/future versions of themselves, comparing their team to another, or between leagues, sports reporting (to football fans), or MVP decisions. As this is game data, it was likely influenced by referee rulings, as some scores may not have counted in the final game statistics.
 
-    -   There are 560 observations and 51 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season.
-
--   Why was this dataset created?
-
-    -   This dataset was created to rank and compare the top scoring football players across top leagues. This could be helpful for football fans, sports betters, or data scientists!
-
--   Who funded the creation of the dataset?
-
-    -   N/a (Most stats are automatically recorded, but were probably scraped from different summary sites aggregated into one site)
-
--   What processes might have influenced what data was observed and recorded and what was not?
-
-    -   It may have been influenced by referee rulings, as some scores may not have counted in the final game statistics.
-
--   What preprocessing was done, and how did the data come to be in the form that you are using?
+-   What preprocessing was done
 
     -   (see above in Data collection and cleaning)
 
     -   ***Summarize more briefly??:*** The data was first collected by making API calls from https://www.api-football.com/documentation-v3 for various soccer leagues. We did this my making a GET request to their top scorers endpoint, supplying parameters for each of 27 top leagues in 2021. From this we collected 20 goal scorers for each respective league as we specified per the query string parameters. From this point, we used the jsonlite library to flatten the JSON API responses into a tibble and then exported the tibble to a CSV file.
 
         Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process. The main reason why we stored the data to a CSV rather than dynamically making API calls is due to the rate limits and fees associated with using the API. For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.
-
--   If people are involved, were they aware of the data collection and if so, what purpose did they expect the data to be used for?
-
-    -   The people involved are football players, who are aware of data collection, a this occurs during and after all of their games.
-
-    -   They probably expected the data to be used for:
-
-        -   general comparison (past/future versions of themselves, comparing their team to another, or between leagues)
-
-        -   sports reporting (to football fans)
-
-        -   MVP decisions
 
 # Data analysis
 
@@ -92,6 +66,8 @@ glimpse(soccer_clean)
 ```
 
 #### Analysis #1: What factors influence booking frequency of players?
+
+We wanted to explore X because Y.
 
 Hypothesis: Taller, heavier, older, and more highly rated players get booked more frequently than shorter, less heavy, younger, less highly rated players.
 
@@ -294,9 +270,9 @@ that are straight red (on average) than non-European leagues?"
 
 Analysis 1: Do higher-rated players tend to get booked more frequently?
 
--   Null hypothesis: The true population mean of bookings for highly rater players and non-highly rated players are not different, on average. $$ \mu_{high books} - \mu_{non-high books} = 0 $$
+-   Null hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are not different, on average. $$ \mu_{high books} - \mu_{non-high books} = 0 $$
 
--   Alt hypothesis: The true population mean of bookings for highly rater players and non-highly rated players are different, on average.
+-   Alt hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are different, on average.
 
 $$
 \mu_{high books} - \mu_{non-high books} \not = 0
