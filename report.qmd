@@ -4,7 +4,7 @@ subtitle: "Report"
 format: html
 editor: visual
 execute:
-  echo: true
+  echo: false
 ---
 
 # Introduction
@@ -33,6 +33,9 @@ This dataset was created to rank and compare the top scoring football players ac
 
 ```{r}
 #| label: load-data
+#| echo: false
+#| message: false
+#| warning: false
 
 library(tidyverse)
 library(skimr)
@@ -45,6 +48,8 @@ library(scales)
 
 ```{r}
 #| label: collection-cleaning
+#| message: false
+#| warning: false
 
 soccer <- read_csv("data/top_goalscorers.csv")
 soccer <- clean_names(soccer)
@@ -73,6 +78,8 @@ Hypothesis: Taller, heavier, older, and more highly rated players get booked mor
 
 ```{r}
 #| label: eda-plots-1
+#| message: false
+#| warning: false
 
 # Do taller players tend to get booked more frequently?
 soccer_clean |>
@@ -158,6 +165,8 @@ Hypothesis: European leagues are, on average, more aggressive than non-European 
 
 ```{r}
 #| label: analysis-plots-2
+#| message: false
+#| warning: false
 
 soccer_clean |>
   group_by(league_country) |>
@@ -280,8 +289,9 @@ $$
 
 ```{r}
 #| label: hyp-test-rank-book
+#| echo: false
 
-set.seed(123)
+set.seed(234)
 
 book_rank <- soccer_clean |>
   drop_na(games_rating) |>
@@ -320,6 +330,9 @@ $$
 
 ```{r}
 #| label: hyp-test-euro-duels
+#| echo: false
+#| message: false
+#| warning: false
 
 set.seed(234)
 
@@ -379,6 +392,9 @@ Have an initial draft of your data cleaning appendix. Document every step that t
 
 ```{r}
 #| label: data-collection-cleaning-appendix
+#| echo: false
+#| message: false
+#| warning: false
 
 library(tidyverse)
 library(skimr)
