@@ -393,6 +393,42 @@ null_dist |>
 
 The p-value is \< alpha i.e significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean of bookings for highly rater players and non-highly rated players are different, on average.
 
+Analysis 2: Does the amount of goals per minute, on average, differ between European and non-European leagues?
+
+-   Null hypothesis: The true population mean of goals per minute for European and non-European players are not different, on average. $$ \mu_{EU gpm} - \mu_{non-EU gpm} = 0 $$
+
+-   Alt hypothesis: The true population mean of goals per minute for European and non-European players are different, on average.
+
+$$ \mu_{EU gpm} - \mu_{non-EU gpm} \not= 0
+$$
+
+```{r}
+#| label: hyp-test-euro-duels
+#| echo: false
+#| message: false
+#| warning: false
+
+set.seed(234)
+
+soccer_clean <- soccer_clean |>
+    mutate(avg_goals_per_min = goals_total / games_minutes)
+
+gpm_diff <- soccer_clean |>
+  specify(avg_goals_per_min ~ is_european) |>
+  calculate(stat = "diff in means", order = c("Yes", "No"))
+
+null_dist <- soccer_clean |>
+  specify(avg_goals_per_min ~ is_european) |>
+  hypothesize(null = "independence") |>
+  generate(1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("Yes", "No"))
+
+null_dist |>
+  get_p_value(obs_stat = gpm_diff, direction = "two sided")
+```
+
+In running the hypothesis test, we get a p-value of 0.196 which is greater than the significance level of 0.05. Thus, we fail to reject the null hypothesis and conclude that there is not a proven statistically significant difference in the population means of average goals per minute of European vs Non-European leagues.
+
 # Interpretation and conclusions
 
 Based on the above EDA and a constant slope on the lines of best fit between variables X and Y, there did not appear to be a correlation between:
