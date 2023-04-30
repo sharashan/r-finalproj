@@ -65,9 +65,9 @@ soccer_clean <- soccer |>
     player_id_1, player_id_48, player_firstname, league_season
   ))
 
-soccer_clean
-
-glimpse(soccer_clean)
+# soccer_clean
+# 
+# glimpse(soccer_clean)
 ```
 
 #### Analysis #1: What factors influence booking frequency of players?
@@ -228,9 +228,9 @@ Pre-registered hypothesis: European leagues are, on average, more aggressive tha
 #| message: false
 #| warning: false
 
-soccer_clean |>
-  group_by(league_country) |>
-  summarize(n = n())
+# soccer_clean |>
+#   group_by(league_country) |>
+#   summarize(n = n())
 
 european_countries <- c("Belgium", "England", "France", "Germany", "Italy", 
                         "Netherlands", "Portugal", "Spain")
@@ -307,24 +307,26 @@ than non-European leagues?"
 #### IGNORE
 # Does the pct of reds are straight red
 soccer_clean |>
-  # mutate(
-  #   total_red = (cards_red + cards_yellowred),
-  # ) |>
-  group_by(is_european) |>
-  summarize(
-    red = sum(cards_yellowred + cards_red),
-    yr = sum(cards_yellowred),
-    s_red = sum(cards_red)
+  mutate(
+    is_european = if_else(is_european == "Yes", TRUE, FALSE),
+    red = sum(cards_red + cards_yellowred),
+    s_red = sum(cards_red),
+    yr = sum(cards_yellowred)
   ) |>
-  filter((red + yr) > 0) |>
-  # mutate(
-  #   pct_straightred = s_red / (red + yr)
+  # group_by(is_european) |>
+  # summarize(
+  #   red = sum(cards_yellowred + cards_red),
+  #   yr = sum(cards_yellowred),
+  #   s_red = sum(cards_red)
   # ) |>
+  # filter((red + yr) > 0) |>
+  mutate(
+    pct_straightred = s_red / (red + yr)
+  ) |>
   # mutate(
   #    pct_non_straightred = 1 - pct_straightred
   # ) |>
-  ggplot(aes(red, fill = yr)) +
-  # facet_grid(facets = vars(is_european)) +
+  ggplot(aes(x = pct_straightred, fill = is_european)) +
   geom_bar(position = "fill") +
   labs(
     x = "European",
@@ -333,6 +335,27 @@ soccer_clean |>
 that are straight red (on average) than non-European leagues?"
   ) +
   scale_y_continuous(labels = label_percent())
+```
+
+```{r}
+#| label: aggressiveness-eu
+#| message: false
+#| warning: false
+
+agg_data <- soccer_clean |>
+  mutate(
+  avg_penalty_by_game = (penalty_scored + penalty_missed) / games_appearences,
+  avg_goals_per_min = goals_total / games_minutes,
+  avg_shots_per_game = shots_total / games_appearences,
+  is_european = as.factor(is_european)
+  )
+
+agg_reg <- logistic_reg() |>
+  fit(is_european ~ avg_penalty_by_game + avg_goals_per_min + avg_shots_per_game + duels_total,
+      data = agg_data)
+
+tidy(agg_reg)
+# we can "interpret" this in the interpretation section later, but feel free to put the equation in here and like interpret it. I can move it around later.
 ```
 
 # Evaluation of significance
