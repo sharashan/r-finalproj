@@ -72,9 +72,9 @@ glimpse(soccer_clean)
 
 #### Analysis #1: What factors influence booking frequency of players?
 
-We wanted to explore X because Y.
+Specifically, does player height, weight, age, or games rating have
 
-Hypothesis: Taller, heavier, older, and more highly rated players get booked more frequently than shorter, less heavy, younger, less highly rated players.
+Pre-registered hypothesis: Taller, heavier, older, and more highly rated players get booked more frequently than shorter, less heavy, younger, less highly rated players.
 
 ```{r}
 #| label: eda-plots-1
@@ -157,11 +157,71 @@ soccer_clean |>
   )
 ```
 
-### Analyses #2:
+```{r}
+#| label: bookings-height-weight-age-rating
+
+bookings_factors_data <- soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    # player_age_yrs = (2021 - year((date(player_birth_date)))),
+    player_weight_lb = (player_weight_kg * 2.2)
+  )
+
+bookings_reg <- linear_reg() |>
+  fit(total_bookings ~ player_height_cm + player_weight_lb + 
+        player_age + games_rating,
+      data = bookings_factors_data)
+
+tidy(bookings_reg)
+```
+
+Based on the above results, player rating is the only predictor with a p-value \< the significance level, 0.05. The following hypothesis test is to determine whether or not the true difference in population means of higher rated players (players with ratings \>= mean) and lower rated players (players with ratings \< mean) is significant:
+
+-   Null Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are not different, on average. $$ \mu_{high books} - \mu_{non-high books} = 0 $$
+
+-   Alternative Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are different, on average.
+
+$$
+\mu_{high books} - \mu_{non-high books} \not = 0
+$$
+
+```{r}
+#| label: hyp-test-rank-book
+#| echo: false
+
+set.seed(234)
+
+book_rank <- soccer_clean |>
+  drop_na(games_rating) |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    high_cat = if_else(
+      games_rating >= mean(games_rating), 
+      "high rank", "non high rank"),
+    high_cat = as.factor(high_cat)
+  )
+
+bookings_diff <- book_rank |>
+  specify(total_bookings ~ high_cat) |>
+  calculate(stat = "diff in means", order = c("high rank", "non high rank"))
+
+null_dist <- book_rank |>
+  specify(total_bookings ~ high_cat) |>
+  hypothesize(null = "independence") |>
+  generate(1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("high rank", "non high rank"))
+
+null_dist |>
+  get_p_value(obs_stat = bookings_diff, direction = "two sided")
+```
+
+The p-value (0.02) is \< alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that on average, the difference in true population mean of bookings for highly rater players and non-highly rated players are different.
+
+### Analysis #2:
 
 Question: Are some leagues more aggressive, on average, than others?
 
-Hypothesis: European leagues are, on average, more aggressive than non-European leagues (i.e. more fouls, more goals per minute, and more duels.)
+Pre-registered hypothesis: European leagues are, on average, more aggressive than non-European leagues (i.e. more fouls, more goals per minute, and more duels.)
 
 ```{r}
 #| label: analysis-plots-2
@@ -276,48 +336,6 @@ that are straight red (on average) than non-European leagues?"
 ```
 
 # Evaluation of significance
-
-Analysis 1: Do higher-rated players tend to get booked more frequently?
-
--   Null hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are not different, on average. $$ \mu_{high books} - \mu_{non-high books} = 0 $$
-
--   Alt hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are different, on average.
-
-$$
-\mu_{high books} - \mu_{non-high books} \not = 0
-$$
-
-```{r}
-#| label: hyp-test-rank-book
-#| echo: false
-
-set.seed(234)
-
-book_rank <- soccer_clean |>
-  drop_na(games_rating) |>
-  mutate(
-    total_bookings = cards_yellow + cards_red + cards_yellowred,
-    high_cat = if_else(
-      games_rating >= median(games_rating), 
-      "high rank", "non high rank"),
-    high_cat = as.factor(high_cat)
-  )
-
-bookings_diff <- book_rank |>
-  specify(total_bookings ~ high_cat) |>
-  calculate(stat = "diff in means", order = c("high rank", "non high rank"))
-
-null_dist <- book_rank |>
-  specify(total_bookings ~ high_cat) |>
-  hypothesize(null = "independence") |>
-  generate(1000, type = "permute") |>
-  calculate(stat = "diff in means", order = c("high rank", "non high rank"))
-
-null_dist |>
-  get_p_value(obs_stat = bookings_diff, direction = "two sided")
-```
-
-The p-value is \> alpha i.e. significance level of 0.05, therefore we fail to reject the null hypothesis. The data does not provide convincing evidence that the true population mean of bookings for highly rater players and non-highly rated players are different, on average.
 
 Analysis 2: Does the number of duels, on average, differ between European and non-European leagues?
 

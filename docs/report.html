@@ -125,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data description</a></li>
   <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data analysis</a>
   <ul class="collapse">
-  <li><a href="#analyses-2" id="toc-analyses-2" class="nav-link" data-scroll-target="#analyses-2">Analyses #2:</a></li>
+  <li><a href="#analysis-2" id="toc-analysis-2" class="nav-link" data-scroll-target="#analysis-2">Analysis #2:</a></li>
   </ul></li>
   <li><a href="#evaluation-of-significance" id="toc-evaluation-of-significance" class="nav-link" data-scroll-target="#evaluation-of-significance">Evaluation of significance</a></li>
   <li><a href="#interpretation-and-conclusions" id="toc-interpretation-and-conclusions" class="nav-link" data-scroll-target="#interpretation-and-conclusions">Interpretation and conclusions</a></li>
@@ -266,8 +266,8 @@ $ player_weight_kg      &lt;dbl&gt; 77, 71, 83, 86, 69, 68, 68, 74, 66, 69, 70, 
 </div>
 <section id="analysis-1-what-factors-influence-booking-frequency-of-players" class="level4">
 <h4 class="anchored" data-anchor-id="analysis-1-what-factors-influence-booking-frequency-of-players">Analysis #1: What factors influence booking frequency of players?</h4>
-<p>We wanted to explore X because Y.</p>
-<p>Hypothesis: Taller, heavier, older, and more highly rated players get booked more frequently than shorter, less heavy, younger, less highly rated players.</p>
+<p>Specifically, does player height, weight, age, or games rating have</p>
+<p>Pre-registered hypothesis: Taller, heavier, older, and more highly rated players get booked more frequently than shorter, less heavy, younger, less highly rated players.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/eda-plots-1-1.png" class="img-fluid" width="672"></p>
@@ -285,11 +285,40 @@ $ player_weight_kg      &lt;dbl&gt; 77, 71, 83, 86, 69, 68, 68, 74, 66, 69, 70, 
 <p><img src="report_files/figure-html/eda-plots-1-5.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  term             estimate std.error statistic p.value
+  &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)        9.18      5.62       1.63   0.103 
+2 player_height_cm   0.0344    0.0299     1.15   0.251 
+3 player_weight_lb  -0.0168    0.0128    -1.31   0.190 
+4 player_age        -0.0235    0.0336    -0.698  0.485 
+5 games_rating      -1.13      0.524     -2.15   0.0321</code></pre>
+</div>
+</div>
+<p>Based on the above results, player rating is the only predictor with a p-value &lt; the significance level, 0.05. The following hypothesis test is to determine whether or not the true difference in population means of higher rated players (players with ratings &gt;= mean) and lower rated players (players with ratings &lt; mean) is significant:</p>
+<ul>
+<li><p>Null Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are not different, on average. <span class="math display">\[ \mu_{high books} - \mu_{non-high books} = 0 \]</span></p></li>
+<li><p>Alternative Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are different, on average.</p></li>
+</ul>
+<p><span class="math display">\[
+\mu_{high books} - \mu_{non-high books} \not = 0
+\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1    0.02</code></pre>
+</div>
+</div>
+<p>The p-value (0.02) is &lt; alpha i.e.&nbsp;significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that on average, the difference in true population mean of bookings for highly rater players and non-highly rated players are different.</p>
 </section>
-<section id="analyses-2" class="level3">
-<h3 class="anchored" data-anchor-id="analyses-2">Analyses #2:</h3>
+<section id="analysis-2" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-2">Analysis #2:</h3>
 <p>Question: Are some leagues more aggressive, on average, than others?</p>
-<p>Hypothesis: European leagues are, on average, more aggressive than non-European leagues (i.e.&nbsp;more fouls, more goals per minute, and more duels.)</p>
+<p>Pre-registered hypothesis: European leagues are, on average, more aggressive than non-European leagues (i.e.&nbsp;more fouls, more goals per minute, and more duels.)</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 13 × 2
@@ -329,23 +358,6 @@ $ player_weight_kg      &lt;dbl&gt; 77, 71, 83, 86, 69, 68, 68, 74, 66, 69, 70, 
 </section>
 <section id="evaluation-of-significance" class="level1">
 <h1>Evaluation of significance</h1>
-<p>Analysis 1: Do higher-rated players tend to get booked more frequently?</p>
-<ul>
-<li><p>Null hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are not different, on average. <span class="math display">\[ \mu_{high books} - \mu_{non-high books} = 0 \]</span></p></li>
-<li><p>Alt hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are different, on average.</p></li>
-</ul>
-<p><span class="math display">\[
-\mu_{high books} - \mu_{non-high books} \not = 0
-\]</span></p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  p_value
-    &lt;dbl&gt;
-1   0.246</code></pre>
-</div>
-</div>
-<p>The p-value is &gt; alpha i.e.&nbsp;significance level of 0.05, therefore we fail to reject the null hypothesis. The data does not provide convincing evidence that the true population mean of bookings for highly rater players and non-highly rated players are different, on average.</p>
 <p>Analysis 2: Does the number of duels, on average, differ between European and non-European leagues?</p>
 <ul>
 <li><p>Null hypothesis: The true population mean of duels for European and non-European players are not different, on average. <span class="math display">\[ \mu_{EU duel} - \mu_{non-EU duel} = 0 \]</span></p></li>
