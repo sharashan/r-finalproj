@@ -9,15 +9,17 @@ execute:
 
 # Introduction
 
-This motivation behind this project was to determine whether or not there were relationships between soccer players or leagues, and statistics. The data for the top 20 football goal scorers in 2021 for the leagues specified in our GET request were sourced from: https://www.api-football.com/documentation-v3. Each observation also includes descriptors such as height, weight, nationality, passes, goals scored, assists, penalties, etc. Through our project we aimed to answer the following research questions:
+The motivation behind this project was to determine whether or not there were relationships between soccer players, leagues, and their respective statistics. Each observation represents a player, and columns represent descriptors such as height, weight, nationality, passes, goals scored, assists, penalties, etc. Since soccer is such a popular global sport, we aimed to answer the following research questions in our project:
 
--   RQ 1 (Players): Is there a correlation between the height, weight, age, and/or player rating on specific game statistics (Including, but not limited to: goals scored, assists, penalties, passes, etc.)?
+-   RQ 1 (Players): What factors influence booking frequency of players? Some factors we considered were player height, weight, age, and player rating.
 
--   RQ 2 (Leagues): Do game statistics differ across leagues (goals_total)?
+-   RQ 2 (Leagues): Does aggressiveness differ between European and non-European leagues? Aggressiveness was indirectly measured through average penalties per game, average goals per minute, average shots per game, and average number of duels per game.
 
-We found that there were not significant relationships in the EDA, and further confirmed so in our "Evaluation of Significance" section. However, it was found that one game statistic did significantly differ between European and non-European leagues\_ number of total duels.
+Summary of findings/results: XXXXX (to be filled in after)
 
 # Data description
+
+The data for the top 20 football goal scorers in 2021 for the leagues specified in our GET request were sourced from: https://www.api-football.com/documentation-v3.
 
 This dataset was created to rank and compare the top scoring football players across top leagues. This could be helpful for football fans, sports betters, or data scientists. There are 560 observations and 51 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season. The people involved are football players, who are aware of data collection, as this occurs during and after all of their games, because sports data is typically used to make general comparison (past/future versions of themselves, comparing their team to another, or between leagues, sports reporting (to football fans), or MVP decisions. As this is game data, it was likely influenced by referee rulings, as some scores may not have counted in the final game statistics.
 
@@ -66,7 +68,6 @@ soccer_clean <- soccer |>
   ))
 
 # soccer_clean
-# 
 # glimpse(soccer_clean)
 ```
 
@@ -81,7 +82,7 @@ Pre-registered hypothesis: Taller, heavier, older, and more highly rated players
 #| message: false
 #| warning: false
 
-# Do taller players tend to get booked more frequently?
+# Height vs Bookings
 soccer_clean |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred
@@ -92,27 +93,10 @@ soccer_clean |>
   labs(
     x = "Player Height (in cm)",
     y = "Total Bookings",
-    title = "Do taller players tend to get booked \nmore frequently?"
+    title = "Do taller players tend to get booked more frequently?"
   )
 
-# Do taller players tend to get booked more frequently (Premier League)?
-soccer_clean |>
-  mutate(
-    total_bookings = cards_yellow + cards_red + cards_yellowred
-  ) |>
-  filter(
-    league_id == 39
-  ) |>
-  ggplot(mapping = aes(x = player_height_cm, y = total_bookings)) +
-  geom_jitter() +
-  geom_smooth(method = "lm", se = FALSE) +
-  labs(
-    x = "Player Height (in cm)",
-    y = "Total Bookings",
-    title = "Do taller players tend to get booked \nmore frequently?"
-  )
-
-# Do heavier players tend to get booked more frequently?
+# Weight vs Bookings
 soccer_clean |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred,
@@ -124,10 +108,10 @@ soccer_clean |>
   labs(
     x = "Player Weight (in lb)",
     y = "Total Bookings",
-    title = "Do heavier players tend to get booked \nmore frequently?"
+    title = "Do heavier players tend to get booked more frequently?"
   )
 
-# Do older players tend to get booked more frequently?
+# Age vs Bookings
 soccer_clean |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred,
@@ -139,13 +123,13 @@ soccer_clean |>
   labs(
     x = "Player Age (in years)",
     y = "Total Bookings",
-    title = "Do older players tend to get booked \nmore frequently?"
+    title = "Do older players tend to get booked more frequently?"
   )
 
-# Do higher-rated players tend to get booked more frequently?
+# Rating (cont) vs Bookings
 soccer_clean |>
   mutate(
-    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    total_bookings = cards_yellow + cards_red + cards_yellowred
   ) |>
   ggplot(mapping = aes(x = games_rating, y = total_bookings)) +
   geom_jitter() +
@@ -153,7 +137,24 @@ soccer_clean |>
   labs(
     x = "Player Rating (Across Season Games)",
     y = "Total Bookings",
-    title = "Do higher-rated players tend to get booked \nmore frequently?"
+    title = "Do higher-rated players tend to get booked more frequently?"
+  )
+
+# Rating (cat) vs Bookings
+soccer_clean |>
+  drop_na(games_rating) |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    high_cat = if_else(games_rating >= mean(games_rating), 
+                       "high rank", "non high rank"),
+    high_cat = as.factor(high_cat)
+  ) |>
+  ggplot(mapping = aes(x = high_cat, y = total_bookings)) +
+  geom_boxplot() +
+  labs(
+    x = "Player Rating (Across Season Games)",
+    y = "Total Bookings",
+    title = "Do higher-rated players tend to get booked more frequently?"
   )
 ```
 
@@ -163,7 +164,6 @@ soccer_clean |>
 bookings_factors_data <- soccer_clean |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred,
-    # player_age_yrs = (2021 - year((date(player_birth_date)))),
     player_weight_lb = (player_weight_kg * 2.2)
   )
 
@@ -175,14 +175,14 @@ bookings_reg <- linear_reg() |>
 tidy(bookings_reg)
 ```
 
-Based on the above results, player rating is the only predictor with a p-value \< the significance level, 0.05. The following hypothesis test is to determine whether or not the true difference in population means of higher rated players (players with ratings \>= mean) and lower rated players (players with ratings \< mean) is significant:
+Based on the above results, player rating is the only predictor with a p-value \< the significance level, 0.05. Based on the side-by-side box plot representing the distribution of total bookings for highly rated players vs non-highly rated players, it appears as though non-highly ranked players get booked more frequently. However, the visualization itself does not tell us if that difference is significant. The following hypothesis test is to determine whether or not the true difference in population means of higher rated players (players with ratings \>= mean rating) and lower rated players (players with ratings \< mean rating) is significant:
 
--   Null Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are not different, on average. $$ \mu_{high books} - \mu_{non-high books} = 0 $$
+-   Null Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are not different, on average. $$ \mu_{high} - \mu_{non-high} = 0 $$
 
 -   Alternative Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are different, on average.
 
 $$
-\mu_{high books} - \mu_{non-high books} \not = 0
+\mu_{high} - \mu_{non-high} \not = 0
 $$
 
 ```{r}
@@ -304,8 +304,7 @@ soccer_clean |>
 than non-European leagues?"
   )
 
-#### IGNORE
-# Does the pct of reds are straight red
+# Stacked Bar Chart: 
 soccer_clean |>
   mutate(
     is_european = if_else(is_european == "Yes", TRUE, FALSE),
@@ -313,25 +312,15 @@ soccer_clean |>
     s_red = sum(cards_red),
     yr = sum(cards_yellowred)
   ) |>
-  # group_by(is_european) |>
-  # summarize(
-  #   red = sum(cards_yellowred + cards_red),
-  #   yr = sum(cards_yellowred),
-  #   s_red = sum(cards_red)
-  # ) |>
-  # filter((red + yr) > 0) |>
   mutate(
     pct_straightred = s_red / (red + yr)
   ) |>
-  # mutate(
-  #    pct_non_straightred = 1 - pct_straightred
-  # ) |>
   ggplot(aes(x = pct_straightred, fill = is_european)) +
   geom_bar(position = "fill") +
   labs(
     x = "European",
     y = "Percent of Red Cards that are Straight Red",
-    title = "Do European Leagues tend to have higher perecentages \nof red cards 
+    title = "Do European Leagues tend to have higher perecentages of red cards 
 that are straight red (on average) than non-European leagues?"
   ) +
   scale_y_continuous(labels = label_percent())
@@ -403,7 +392,7 @@ $$ \mu_{EU gpm} - \mu_{non-EU gpm} \not= 0
 $$
 
 ```{r}
-#| label: hyp-test-euro-duels
+#| label: hyp-test-goalspermin
 #| echo: false
 #| message: false
 #| warning: false
@@ -470,6 +459,8 @@ Beyond our specific technical and organizational acknowledgements, we would like
 # Appendix
 
 ### Data Collection and Cleaning
+
+The data for the top 20 football goal scorers in 2021 for the leagues specified in our GET request were sourced from: https://www.api-football.com/documentation-v3.
 
 Have an initial draft of your data cleaning appendix. Document every step that takes your raw data file(s) and turns it into the analysis-ready data set that you would submit with your final project. Include text narrative describing your data collection (downloading, scraping, surveys, etc) and any additional data curation/cleaning (merging data frames, filtering, transformations of variables, etc). Include code for data curation/cleaning, but not collection.
 
