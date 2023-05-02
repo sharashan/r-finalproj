@@ -181,12 +181,12 @@ tidy(bookings_reg)
 
 Based on the above results, player rating is the only predictor with a p-value \< the significance level, 0.05. Based on the side-by-side box plot representing the distribution of total bookings for highly rated players vs non-highly rated players, it appears as though non-highly ranked players get booked more frequently. However, the visualization itself does not tell us if that difference is significant. The following hypothesis test is to determine whether or not the true difference in population means of higher rated players (players with ratings \>= mean rating) and lower rated players (players with ratings \< mean rating) is significant:
 
--   Null Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are not different, on average. $$ \mu_{high} - \mu_{non-high} = 0 $$
+-   Null Hypothesis: The true population mean of bookings for non-highly rated players is greater than the true population mean of bookings for highly rated players, on average. $$ \mu_{non-high} - \mu_{high} > 0 $$
 
--   Alternative Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are different, on average.
+-   Alternative Hypothesis: The true population mean of bookings for non-highly rated players is not greater than the true population mean of bookings for highly rated players, on average.
 
 $$
-\mu_{high} - \mu_{non-high} \not = 0
+\mu_{non-high} - \mu_{high} \leq 0
 $$
 
 ```{r}
@@ -205,15 +205,25 @@ book_rank <- soccer_clean |>
     high_cat = as.factor(high_cat)
   )
 
+# bookings_diff <- book_rank |>
+#   specify(total_bookings ~ high_cat) |>
+#   calculate(stat = "diff in means", order = c("high rank", "non high rank"))
+# 
+# null_dist <- book_rank |>
+#   specify(total_bookings ~ high_cat) |>
+#   hypothesize(null = "independence") |>
+#   generate(1000, type = "permute") |>
+#   calculate(stat = "diff in means", order = c("high rank", "non high rank"))
+
 bookings_diff <- book_rank |>
   specify(total_bookings ~ high_cat) |>
-  calculate(stat = "diff in means", order = c("high rank", "non high rank"))
+  calculate(stat = "diff in means", order = c("non high rank", "high rank"))
 
 null_dist <- book_rank |>
   specify(total_bookings ~ high_cat) |>
   hypothesize(null = "independence") |>
   generate(1000, type = "permute") |>
-  calculate(stat = "diff in means", order = c("high rank", "non high rank"))
+  calculate(stat = "diff in means", order = c("non high rank", "high rank"))
 
 null_dist |>
   get_p_value(obs_stat = bookings_diff, direction = "greater")
@@ -222,13 +232,7 @@ visualize(null_dist) +
   shade_p_value(obs_stat = bookings_diff, direction = "greater")
 ```
 
-NEW P VALUE IS 0.992 WHICH MEANS WE FAIL TO REJECT THE NULL HYPOTHESIS. The data does not provide convincing evidence that on average, the difference in true population mean of bookings for highly rated players and non-highly rated players are different
-
-FROM TWO-SIDED TEST
-
-\*\*delete after double checking data because that was a massive flip\*\*
-
-The p-value (0.02) is \< alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that on average, the difference in true population mean of bookings for highly rater players and non-highly rated players are different.
+The p-value (0.01) is \< alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that on average, true population mean of bookings for non-highly rated players is not greater than the true population mean of bookings for highly rated players.
 
 ### Analysis #2:
 
@@ -370,7 +374,7 @@ tidy(agg_reg)
 
 Analysis 2: Does the number of duels, on average, differ between European and non-European leagues?
 
--   Null hypothesis: The true population mean of duels for European and non-European players are not different, on average. $$ \mu_{EU duel} - \mu_{non-EU duel} = 0 $$
+-   Null hypothesis: The true population mean of duels for European and non-European players are not different, on average. **The true population mean of duels for European is greater than the true population mean for non-European players, on average. dif EU - nonEU \> 0** $$ \mu_{EU duel} - \mu_{non-EU duel} = 0 $$
 
 -   Alt hypothesis: The true population mean of duels for European and non-European players are different, on average.
 
@@ -397,13 +401,17 @@ null_dist <- soccer_clean |>
 
 null_dist |>
   get_p_value(obs_stat = duels_diff, direction = "two sided")
+
+# One-sided
+null_dist |>
+  get_p_value(obs_stat = duels_diff, direction = "greater")
 ```
 
 The p-value is \< alpha i.e significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean of bookings for highly rater players and non-highly rated players are different, on average.
 
 Analysis 2: Does the amount of goals per minute, on average, differ between European and non-European leagues?
 
--   Null hypothesis: The true population mean of goals per minute for European and non-European players are not different, on average. $$ \mu_{EU gpm} - \mu_{non-EU gpm} = 0 $$
+-   Null hypothesis: The true population mean of goals per minute for European and non-European players are not different, on average. *One sided: The true population mean of goals per minute for European \> non-European players (from EDA), on average.* $$ \mu_{EU gpm} - \mu_{non-EU gpm} = 0 $$
 
 -   Alt hypothesis: The true population mean of goals per minute for European and non-European players are different, on average.
 
@@ -433,6 +441,9 @@ null_dist <- soccer_clean |>
 
 null_dist |>
   get_p_value(obs_stat = gpm_diff, direction = "two sided")
+
+null_dist |>
+  get_p_value(obs_stat = gpm_diff, direction = "greater")
 ```
 
 In running the hypothesis test, we get a p-value of 0.196 which is greater than the significance level of 0.05. Thus, we fail to reject the null hypothesis and conclude that there is not a proven statistically significant difference in the population means of average goals per minute of European vs Non-European leagues.
