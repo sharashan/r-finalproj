@@ -224,27 +224,24 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Based on the above results, player rating is the only predictor with a p-value &lt; the significance level, 0.05. Based on the side-by-side box plot representing the distribution of total bookings for highly rated players vs non-highly rated players, it appears as though non-highly ranked players get booked more frequently. However, the visualization itself does not tell us if that difference is significant. The following hypothesis test is to determine whether or not the true difference in population means of higher rated players (players with ratings &gt;= mean rating) and lower rated players (players with ratings &lt; mean rating) is significant:</p>
 <ul>
-<li><p>Null Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are not different, on average. <span class="math display">\[ \mu_{high} - \mu_{non-high} = 0 \]</span></p></li>
-<li><p>Alternative Hypothesis: The true population mean of bookings for highly rated players and non-highly rated players are different, on average.</p></li>
+<li><p>Null Hypothesis: The true population mean of bookings for non-highly rated players is greater than the true population mean of bookings for highly rated players, on average. <span class="math display">\[ \mu_{non-high} - \mu_{high} &gt; 0 \]</span></p></li>
+<li><p>Alternative Hypothesis: The true population mean of bookings for non-highly rated players is not greater than the true population mean of bookings for highly rated players, on average.</p></li>
 </ul>
 <p><span class="math display">\[
-\mu_{high} - \mu_{non-high} \not = 0
+\mu_{non-high} - \mu_{high} \leq 0
 \]</span></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
-1   0.992</code></pre>
+1    0.01</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/hyp-test-rank-book-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>NEW P VALUE IS 0.992 WHICH MEANS WE FAIL TO REJECT THE NULL HYPOTHESIS. The data does not provide convincing evidence that on average, the difference in true population mean of bookings for highly rated players and non-highly rated players are different</p>
-<p>FROM TWO-SIDED TEST</p>
-<p>**delete after double checking data because that was a massive flip**</p>
-<p>The p-value (0.02) is &lt; alpha i.e.&nbsp;significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that on average, the difference in true population mean of bookings for highly rater players and non-highly rated players are different.</p>
+<p>The p-value (0.01) is &lt; alpha i.e.&nbsp;significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that on average, true population mean of bookings for non-highly rated players is not greater than the true population mean of bookings for highly rated players.</p>
 </section>
 <section id="analysis-2" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-2">Analysis #2:</h3>
@@ -285,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>Evaluation of significance</h1>
 <p>Analysis 2: Does the number of duels, on average, differ between European and non-European leagues?</p>
 <ul>
-<li><p>Null hypothesis: The true population mean of duels for European and non-European players are not different, on average. <span class="math display">\[ \mu_{EU duel} - \mu_{non-EU duel} = 0 \]</span></p></li>
+<li><p>Null hypothesis: The true population mean of duels for European and non-European players are not different, on average. <strong>The true population mean of duels for European is greater than the true population mean for non-European players, on average. dif EU - nonEU &gt; 0</strong> <span class="math display">\[ \mu_{EU duel} - \mu_{non-EU duel} = 0 \]</span></p></li>
 <li><p>Alt hypothesis: The true population mean of duels for European and non-European players are different, on average.</p></li>
 </ul>
 <p><span class="math display">\[ \mu_{EU duel} - \mu_{non-EU duel} \not= 0
@@ -297,11 +294,17 @@ ul.task-list li input[type="checkbox"] {
     &lt;dbl&gt;
 1       0</code></pre>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1       0</code></pre>
+</div>
 </div>
 <p>The p-value is &lt; alpha i.e significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean of bookings for highly rater players and non-highly rated players are different, on average.</p>
 <p>Analysis 2: Does the amount of goals per minute, on average, differ between European and non-European leagues?</p>
 <ul>
-<li><p>Null hypothesis: The true population mean of goals per minute for European and non-European players are not different, on average. <span class="math display">\[ \mu_{EU gpm} - \mu_{non-EU gpm} = 0 \]</span></p></li>
+<li><p>Null hypothesis: The true population mean of goals per minute for European and non-European players are not different, on average. <em>One sided: The true population mean of goals per minute for European &gt; non-European players (from EDA), on average.</em> <span class="math display">\[ \mu_{EU gpm} - \mu_{non-EU gpm} = 0 \]</span></p></li>
 <li><p>Alt hypothesis: The true population mean of goals per minute for European and non-European players are different, on average.</p></li>
 </ul>
 <p><span class="math display">\[ \mu_{EU gpm} - \mu_{non-EU gpm} \not= 0
@@ -312,6 +315,12 @@ ul.task-list li input[type="checkbox"] {
   p_value
     &lt;dbl&gt;
 1   0.196</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1   0.098</code></pre>
 </div>
 </div>
 <p>In running the hypothesis test, we get a p-value of 0.196 which is greater than the significance level of 0.05. Thus, we fail to reject the null hypothesis and conclude that there is not a proven statistically significant difference in the population means of average goals per minute of European vs Non-European leagues.</p>
