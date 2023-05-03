@@ -7,7 +7,7 @@ execute:
   echo: false
 ---
 
-# Introduction
+# Introduction \[Shara\]
 
 The motivation behind this project was to determine whether or not there were relationships between soccer players, leagues, and their respective statistics. Each observation represents a player, and columns represent descriptors such as height, weight, nationality, passes, goals scored, assists, penalties, etc. Since soccer is such a popular global sport, we aimed to answer the following research questions in our project:
 
@@ -17,7 +17,7 @@ The motivation behind this project was to determine whether or not there were re
 
 Summary of findings/results: XXXXX (to be filled in after)
 
-# Data description
+# Data description \[Henry\]
 
 The data for the top 20 football goal scorers in 2021 for the leagues specified in our GET request were sourced from: https://www.api-football.com/documentation-v3.
 
@@ -31,7 +31,7 @@ This dataset was created to rank and compare the top scoring football players ac
 
         Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process. The main reason why we stored the data to a CSV rather than dynamically making API calls is due to the rate limits and fees associated with using the API. For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.
 
-# Data analysis
+# Data analysis \[Pranathi\]
 
 ```{r}
 #| label: load-data
@@ -370,7 +370,7 @@ tidy(agg_reg)
 # we can "interpret" this in the interpretation section later, but feel free to put the equation in here and like interpret it. I can move it around later.
 ```
 
-# Evaluation of significance
+# Evaluation of significance \[Pranathi\]
 
 Analysis 2: Does the number of duels, on average, differ between European and non-European leagues?
 
@@ -448,37 +448,15 @@ null_dist |>
 
 In running the hypothesis test, we get a p-value of 0.196 which is greater than the significance level of 0.05. Thus, we fail to reject the null hypothesis and conclude that there is not a proven statistically significant difference in the population means of average goals per minute of European vs Non-European leagues.
 
-# Interpretation and conclusions
+# Interpretation and conclusions \[Henry\]
 
-Based on the above EDA and a constant slope on the lines of best fit between variables X and Y, there did not appear to be a correlation between:
-
--   height v booking frequency
-
--   weight v booking frequency
-
--   player_rating v booking frequency (not statistically significant, see above A1)
-
-    -   this was further supported by hypothesis testing conducted in the "Evaluation of Significance" section (Analysis 1), whose conclusion supported that because p-value \> 0.05, we fail to reject the null hypothesis. I.e. *the data does not provide convincing evidence that the true population mean of bookings for highly rater players and non-highly rated players are different, on average.*
-
--   league v. goals per min
-
--   league v. shots per game
-
--   league v. penalties per game
-
-However, the following relationships were found to be significant:
-
--   league v. duels per game
-
-    -   This was further supported by hypothesis testing conducted in the "Evaluation of Significance" section (Analysis 2), whose conclusion supported that since the p-value is \< 0.05, we reject the null hypothesis. I.e. *the data provides convincing evidence that the true population mean of bookings for highly rater players and non-highly rated players are different, on average.*
-
-# Limitations
+# Limitations \[Henry\]
 
 One limitation of this dataset is that it only contains information from the 2021 season. Therefore, we cannot make comparisons within groups (player, team, or league) over time. We also assume that there are no goalies in the dataset (best scorers i.e. offensive players), as this only contains goal scorers. Therefore, we are unable to assess a team's defense, which can be important when considering how good a team is!
 
 ***Add: is there a bias in our data?***
 
-# Acknowledgments
+# Acknowledgments \[John\]
 
 In working on our project, we found several resources to be useful. For one, we would like to give credit to the API that we used to collect the data as well as to Stack Overflow for assisting with the API interaction as well as JSON handling in R. More specifically, the API was provided by https://www.api-football.com and specific documentation on how to interact with the endpoints in different languages was given by RapidAPI.
 
@@ -486,7 +464,7 @@ Apart from this, we took inspiration from some of the organization we saw during
 
 Beyond our specific technical and organizational acknowledgements, we would like to acknowledge our appreciation for the course staff and teaching assistants who helped us in answering any questions we have had along the way.
 
-# Appendix
+# Appendix \[John\]
 
 ### Data Collection and Cleaning
 
