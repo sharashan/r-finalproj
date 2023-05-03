@@ -234,10 +234,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.4.0      ✔ purrr   1.0.0 
-✔ tibble  3.1.8      ✔ dplyr   1.0.10
-✔ tidyr   1.2.1      ✔ stringr 1.5.0 
-✔ readr   2.1.3      ✔ forcats 0.5.2 
+✔ ggplot2 3.4.0     ✔ purrr   1.0.0
+✔ tibble  3.2.1     ✔ dplyr   1.1.2
+✔ tidyr   1.2.1     ✔ stringr 1.5.0
+✔ readr   2.1.3     ✔ forcats 0.5.2
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
@@ -279,25 +279,25 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>soccer_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 560 × 51
-   team_id team_name     team_…¹ leagu…² leagu…³ leagu…⁴ leagu…⁵ leagu…⁶ games…⁷
-     &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
- 1      47 Tottenham     https:…      39 Premie… England https:… https:…      35
- 2      40 Liverpool     https:…      39 Premie… England https:… https:…      35
- 3      33 Manchester U… https:…      39 Premie… England https:… https:…      30
- 4      47 Tottenham     https:…      39 Premie… England https:… https:…      37
- 5      40 Liverpool     https:…      39 Premie… England https:… https:…      34
- 6      50 Manchester C… https:…      39 Premie… England https:… https:…      30
- 7      40 Liverpool     https:…      39 Premie… England https:… https:…      35
- 8      46 Leicester     https:…      39 Premie… England https:… https:…      25
- 9      52 Crystal Pala… https:…      39 Premie… England https:… https:…      33
-10      50 Manchester C… https:…      39 Premie… England https:… https:…      30
-# … with 550 more rows, 42 more variables: games_lineups &lt;dbl&gt;,
-#   games_minutes &lt;dbl&gt;, games_position &lt;chr&gt;, games_rating &lt;dbl&gt;,
-#   games_captain &lt;lgl&gt;, substitutes_in &lt;dbl&gt;, substitutes_out &lt;dbl&gt;,
-#   substitutes_bench &lt;dbl&gt;, shots_total &lt;dbl&gt;, shots_on &lt;dbl&gt;,
-#   goals_total &lt;dbl&gt;, goals_conceded &lt;dbl&gt;, goals_assists &lt;dbl&gt;,
-#   passes_total &lt;dbl&gt;, passes_key &lt;dbl&gt;, passes_accuracy &lt;dbl&gt;,
-#   tackles_total &lt;dbl&gt;, tackles_blocks &lt;dbl&gt;, tackles_interceptions &lt;dbl&gt;, …</code></pre>
+   team_id team_name  team_logo league_id league_name league_country league_logo
+     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      
+ 1      47 Tottenham  https://…        39 Premier Le… England        https://me…
+ 2      40 Liverpool  https://…        39 Premier Le… England        https://me…
+ 3      33 Mancheste… https://…        39 Premier Le… England        https://me…
+ 4      47 Tottenham  https://…        39 Premier Le… England        https://me…
+ 5      40 Liverpool  https://…        39 Premier Le… England        https://me…
+ 6      50 Mancheste… https://…        39 Premier Le… England        https://me…
+ 7      40 Liverpool  https://…        39 Premier Le… England        https://me…
+ 8      46 Leicester  https://…        39 Premier Le… England        https://me…
+ 9      52 Crystal P… https://…        39 Premier Le… England        https://me…
+10      50 Mancheste… https://…        39 Premier Le… England        https://me…
+# ℹ 550 more rows
+# ℹ 44 more variables: league_flag &lt;chr&gt;, games_appearences &lt;dbl&gt;,
+#   games_lineups &lt;dbl&gt;, games_minutes &lt;dbl&gt;, games_position &lt;chr&gt;,
+#   games_rating &lt;dbl&gt;, games_captain &lt;lgl&gt;, substitutes_in &lt;dbl&gt;,
+#   substitutes_out &lt;dbl&gt;, substitutes_bench &lt;dbl&gt;, shots_total &lt;dbl&gt;,
+#   shots_on &lt;dbl&gt;, goals_total &lt;dbl&gt;, goals_conceded &lt;dbl&gt;,
+#   goals_assists &lt;dbl&gt;, passes_total &lt;dbl&gt;, passes_key &lt;dbl&gt;, …</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(soccer_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

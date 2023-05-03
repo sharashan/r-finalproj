@@ -1,19 +1,19 @@
 ---
-title: Presentation title
-subtitle: Presentation subtitle (if any)
-author: Team name <br> Names of team members
-date: Your date
+title: Relationship between Soccer players and Leagues
+subtitle: Based on their respective statistics
+author: Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Shanmugasundaram
+date: May 5, 2023
 format: revealjs
 editor: visual
 execute:
   echo: false
 ---
 
-## Introduce the topic and motivation
+## Topic and Motivation
 
 Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
 
-## Introduce the data
+## Data Introduction
 
 When you click the **Render** button a document will be generated that includes:
 

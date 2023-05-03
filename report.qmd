@@ -19,17 +19,74 @@ Summary of findings/results: XXXXX (to be filled in after)
 
 # Data description \[Henry\]
 
-The data for the top 20 football goal scorers in 2021 for the leagues specified in our GET request were sourced from: https://www.api-football.com/documentation-v3.
+### 
 
-This dataset was created to rank and compare the top scoring football players across top leagues. This could be helpful for football fans, sports betters, or data scientists. There are 560 observations and 51 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season. The people involved are football players, who are aware of data collection, as this occurs during and after all of their games, because sports data is typically used to make general comparison (past/future versions of themselves, comparing their team to another, or between leagues, sports reporting (to football fans), or MVP decisions. As this is game data, it was likely influenced by referee rulings, as some scores may not have counted in the final game statistics.
+## **Motivation**
 
--   What preprocessing was done
+**For what purpose was the dataset created? Was there a specific task in mind? Was there a specific gap that needed to be filled? Please provide a description.**
 
-    -   (see above in Data collection and cleaning)
+-   This dataset was created to rank and compare the top scoring football players across top leagues. This could be helpful for football fans, sports betters, or data scientists.
 
-    -   ***Summarize more briefly??:*** The data was first collected by making API calls from https://www.api-football.com/documentation-v3 for various soccer leagues. We did this my making a GET request to their top scorers endpoint, supplying parameters for each of 27 top leagues in 2021. From this we collected 20 goal scorers for each respective league as we specified per the query string parameters. From this point, we used the jsonlite library to flatten the JSON API responses into a tibble and then exported the tibble to a CSV file.
+**Who created the dataset (e.g., which team, research group) and on behalf of which entity (e.g., company, institution, organization)?**
 
-        Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process. The main reason why we stored the data to a CSV rather than dynamically making API calls is due to the rate limits and fees associated with using the API. For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.
+-   The dataset was created by a team of individuals who are intrested in football and application of the recorded statistics.
+
+• **Who funded the creation of the dataset? If there is an associated grant, please provide the name of the grantor and the grant name and number.**
+
+-   This dataset is funded through a membership program that allows users of the data to access additional features within the dataset. While people are able to use the data without a membership, certain advanced tasks may require these additional features.
+
+## **Composition**
+
+**How many instances are there in total (of each type, if appropriate)?**
+
+There are 560 observations and 51 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season.
+
+**Is there a label or target associated with each instance? If so, please provide a description.**
+
+-   The people involved are football players, who are aware of data collection, as this occurs during and after all of their games, because sports data is typically used to make general comparison (past/future versions of themselves, comparing their team to another, or between leagues, sports reporting (to football fans), or MVP decisions.
+
+**Is any information missing from individual instances?**
+
+-   In the dataset of soccer player statistics, some instances may have missing information for certain attributes. However, these occurrences of missing data are infrequent. The reason behind the missing information is that the data is compiled from thousands of games across multiple leagues worldwide. Each league or team may prioritize and record specific statistics that they find important, resulting in variations in the recorded statistics across different leagues.
+
+**Are relationships between individual instances made explicit (e.g., users\' movie ratings, social network links)? If so, please describe how these relationships are made explicit.**
+
+-   The relationships between the individual instances (players) are made explicit through the tabular structure, where each row corresponds to a specific player and their associated statistics.
+
+**Are there any errors, sources of noise, or redundancies in the dataset? If so, please provide a description.**
+
+-   As this is game data, it was likely influenced by referee rulings, as some scores may not have counted in the final game statistics.
+
+## **Collection Process**
+
+**What mechanisms or procedures were used to collect the data (e.g., hardware apparatuses or sensors, manual human curation, software programs, software APIs)? How were these mechanisms or procedures validated?**
+
+-   The data was first collected by making API calls from https://www.api-football.com/documentation-v3 for various soccer leagues. We did this my making a GET request to their top scorers endpoint, supplying parameters for each of 27 top leagues in 2021. From this we collected 20 goal scorers for each respective league as we specified per the query string parameters. From this point, we used the jsonlite library to flatten the JSON API responses into a tibble and then exported the tibble to a CSV file.
+
+**Over what timeframe was the data collected? Does this timeframe match the creation timeframe of the data associated with the instances (e.g., recent crawl of old news articles)? If not, please describe the timeframe in which the data associated with the instances was created.**
+
+-   The data used in our analysis was collected throughout the respective football seasons of each league in the year 2021. Although the start date and duration of each league's season may have varied slightly, all instances were associated with data from the defined 2021 football season of their respective leagues.
+
+**Did you collect the data from the individuals in question directly, or obtain it via third parties or other sources (e.g., websites)?**
+
+-   The data we utilized was not directly collected from individual soccer players. Instead, it was initially recorded by scorekeepers during each game and subsequently compiled into a comprehensive dataset by the API Football team.
+
+**Were the individuals in question notified about the data collection? If so, please describe (or show with screenshots or other information) how notice was provided, and provide a link or other access point to, or otherwise reproduce, the exact language of the notification itself.**
+
+-   The people involved are football players, who are aware of data collection, as this occurs during and after all of their games, because sports data is typically used to make general comparison (past/future versions of themselves, comparing their team to another, or between leagues, sports reporting (to football fans), or MVP decisions.
+
+## **Preprocessing/cleaning/labeling**
+
+**Was any preprocessing/cleaning/labeling of the data done**
+
+-   Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process. The main reason why we stored the data to a CSV rather than dynamically making API calls is due to the rate limits and fees associated with using the API. For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.
+
+## **Uses**
+
+**Has the dataset been used for any tasks already? If so, please provide a description.
+Is there a repository that links to any or all papers or systems that use the dataset? If so, please provide a link or other access point.**
+
+-   The data is currently being utilized in diverse ways. Football fans can access this data to enhance their knowledge about the players or teams they support. Sports bettors rely on the data to identify historical trends and patterns within the game of football, aiding in making informed betting decisions. Additionally, numerous groups and individuals leverage the data to address research questions, similar to the purpose of our own group's analysis.
 
 # Data analysis
 
@@ -184,7 +241,7 @@ glance(bookings_reg)
 
 Based on the above results, player rating (represented by games_rating) was the only predictor with a p-value \< the significance level, 0.05. Furthermore, based on our side-by-side box plot representing the distribution of total bookings for highly rated players vs non-highly rated players in our explanatory data analysis, it appeared as though non-highly ranked players get booked more frequently. However, the visualization itself did not tell us if that difference was significant. In the following section, we will conduct a hypothesis test to evaluate this.
 
-#### Analysis #2: Are some leagues more aggressive, on average, than others? 
+#### Analysis #2: Are some leagues more aggressive, on average, than others?
 
 *Explanatory Data Analysis:* Aggressiveness is not a variable in our data set, therefore we indirectly measured this through booking frequency, average penalties per game, average goals per minute, average shots per game, and total duels. We also compared European leagues against non-European leagues.
 
@@ -320,11 +377,11 @@ Based on our results, average goals per minute and total duels were the only pre
 
 # Evaluation of significance
 
-#### Analysis #1: 
+#### Analysis #1:
 
 **The following hypothesis test is to determine whether or not the difference in true population means of highly rated players (players with ratings greater than or equal to the mean player rating) and non-highly rated players (players with ratings less than mean player rating) is significant:**
 
--   Null Hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. $H_0 = \mu_{high} -  \mu_{non-high} = 0$
+-   Null Hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. $H_0 = \mu_{high} - \mu_{non-high} = 0$
 
 -   Alternative Hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. $H_A = \mu_{high} - \mu_{non-high} \not= 0$
 
@@ -363,11 +420,11 @@ visualize(null_dist) +
 
 *Conclusion:* The p-value (0.02) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean for bookings of highly rated players and non-highly rated players are different.
 
-#### **Analysis #2:** 
+#### **Analysis #2:**
 
 **The following hypothesis test is to determine whether or not the difference in true population means of duels for European leagues and non-European leagues is significant:**
 
--   Null hypothesis: The true population mean of duels for European and non-European leagues are not different. $H_0 = \mu_{EU} -  \mu_{non-EU} = 0$
+-   Null hypothesis: The true population mean of duels for European and non-European leagues are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
 -   Alternative hypothesis: The true population mean of duels for European and non-European leagues are different. $H_A = \mu_{EU} - \mu_{non-EU} \not= 0$
 
@@ -400,9 +457,9 @@ visualize(null_dist) +
 
 **The following hypothesis test is to determine whether or not the difference in true population means of averge goals per minute for European leagues and non-European leagues is significant:**
 
--   Null hypothesis: The true population mean of goals per minute for European and non-European players are not different. $H_0 = \mu_{EU} -  \mu_{non-EU} = 0$
+-   Null hypothesis: The true population mean of goals per minute for European and non-European players are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
--   Alt hypothesis: The true population mean of goals per minute for European and non-European players are different. $H_A = \mu_{EU} -  \mu_{non-EU} = 0$
+-   Alt hypothesis: The true population mean of goals per minute for European and non-European players are different. $H_A = \mu_{EU} - \mu_{non-EU} = 0$
 
 ```{r}
 #| label: hyp-test-goalspermin
