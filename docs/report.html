@@ -123,12 +123,9 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#introduction-shara" id="toc-introduction-shara" class="nav-link active" data-scroll-target="#introduction-shara">Introduction [Shara]</a></li>
   <li><a href="#data-description-henry" id="toc-data-description-henry" class="nav-link" data-scroll-target="#data-description-henry">Data description [Henry]</a></li>
-  <li><a href="#data-analysis-pranathi" id="toc-data-analysis-pranathi" class="nav-link" data-scroll-target="#data-analysis-pranathi">Data analysis [Pranathi]</a>
-  <ul class="collapse">
-  <li><a href="#analysis-2" id="toc-analysis-2" class="nav-link" data-scroll-target="#analysis-2">Analysis #2:</a></li>
-  </ul></li>
-  <li><a href="#evaluation-of-significance-pranathi" id="toc-evaluation-of-significance-pranathi" class="nav-link" data-scroll-target="#evaluation-of-significance-pranathi">Evaluation of significance [Pranathi]</a></li>
-  <li><a href="#interpretation-and-conclusions-henry" id="toc-interpretation-and-conclusions-henry" class="nav-link" data-scroll-target="#interpretation-and-conclusions-henry">Interpretation and conclusions [Henry]</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data analysis</a></li>
+  <li><a href="#evaluation-of-significance" id="toc-evaluation-of-significance" class="nav-link" data-scroll-target="#evaluation-of-significance">Evaluation of significance</a></li>
+  <li><a href="#interpretation-and-conclusions" id="toc-interpretation-and-conclusions" class="nav-link" data-scroll-target="#interpretation-and-conclusions">Interpretation and conclusions</a></li>
   <li><a href="#limitations-henry" id="toc-limitations-henry" class="nav-link" data-scroll-target="#limitations-henry">Limitations [Henry]</a></li>
   <li><a href="#acknowledgments-john" id="toc-acknowledgments-john" class="nav-link" data-scroll-target="#acknowledgments-john">Acknowledgments [John]</a></li>
   <li><a href="#appendix-john" id="toc-appendix-john" class="nav-link" data-scroll-target="#appendix-john">Appendix [John]</a>
@@ -181,18 +178,17 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="data-analysis-pranathi" class="level1">
-<h1>Data analysis [Pranathi]</h1>
+<section id="data-analysis" class="level1">
+<h1>Data analysis</h1>
 <div class="cell">
 
 </div>
 <div class="cell">
 
 </div>
-<section id="analysis-1-what-factors-influence-booking-frequency-of-players" class="level4">
-<h4 class="anchored" data-anchor-id="analysis-1-what-factors-influence-booking-frequency-of-players">Analysis #1: What factors influence booking frequency of players?</h4>
-<p>Specifically, does player height, weight, age, or games rating have</p>
-<p>Pre-registered hypothesis: Taller, heavier, older, and more highly rated players get booked more frequently than shorter, less heavy, younger, less highly rated players.</p>
+<section id="analysis-1-what-factors-influence-booking-frequency-of-players-specifically-do-player-height-weight-age-or-games-rating-have-a-statistically-significant-influence" class="level4">
+<h4 class="anchored" data-anchor-id="analysis-1-what-factors-influence-booking-frequency-of-players-specifically-do-player-height-weight-age-or-games-rating-have-a-statistically-significant-influence">Analysis #1: What factors influence booking frequency of players? Specifically, do player height, weight, age, or games rating have a statistically significant influence?</h4>
+<p><em>Explanatory Data Analysis:</em> In order to investigate this question, we conducted a preliminary exploratory data analysis to visualize the relationships between those variables are total booking:</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/eda-plots-1-1.png" class="img-fluid" width="672"></p>
@@ -210,6 +206,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="report_files/figure-html/eda-plots-1-5.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Based on our EDA, there appeared as though non-highly ranked players were booked more than highly ranked players, where highly ranked players were rated greater than or equal to the mean player rating, and non-highly ranked players were rated less than the mean player rating.</p>
+<p><em>Identifying Important Predictors:</em> Then, we fit a multiple linear regression line that predicted total bookings based on those variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our “Evaluation of Singificance” section:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
@@ -221,32 +219,19 @@ ul.task-list li input[type="checkbox"] {
 4 player_age        -0.0235    0.0336    -0.698  0.485 
 5 games_rating      -1.13      0.524     -2.15   0.0321</code></pre>
 </div>
-</div>
-<p>Based on the above results, player rating is the only predictor with a p-value &lt; the significance level, 0.05. Based on the side-by-side box plot representing the distribution of total bookings for highly rated players vs non-highly rated players, it appears as though non-highly ranked players get booked more frequently. However, the visualization itself does not tell us if that difference is significant. The following hypothesis test is to determine whether or not the true difference in population means of higher rated players (players with ratings &gt;= mean rating) and lower rated players (players with ratings &lt; mean rating) is significant:</p>
-<ul>
-<li><p>Null Hypothesis: The true population mean of bookings for non-highly rated players is greater than the true population mean of bookings for highly rated players, on average. <span class="math display">\[ \mu_{non-high} - \mu_{high} &gt; 0 \]</span></p></li>
-<li><p>Alternative Hypothesis: The true population mean of bookings for non-highly rated players is not greater than the true population mean of bookings for highly rated players, on average.</p></li>
-</ul>
-<p><span class="math display">\[
-\mu_{non-high} - \mu_{high} \leq 0
-\]</span></p>
-<div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  p_value
-    &lt;dbl&gt;
-1    0.01</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="report_files/figure-html/hyp-test-rank-book-1.png" class="img-fluid" width="672"></p>
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1    0.0179       0.00834  2.90      1.88   0.114     4 -1035. 2083. 2107.
+# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
 </div>
-<p>The p-value (0.01) is &lt; alpha i.e.&nbsp;significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that on average, true population mean of bookings for non-highly rated players is not greater than the true population mean of bookings for highly rated players.</p>
+<p>Based on the above results, player rating (represented by games_rating) was the only predictor with a p-value &lt; the significance level, 0.05. Furthermore, based on our side-by-side box plot representing the distribution of total bookings for highly rated players vs non-highly rated players in our explanatory data analysis, it appeared as though non-highly ranked players get booked more frequently. However, the visualization itself did not tell us if that difference was significant. In the following section, we will conduct a hypothesis test to evaluate this.</p>
 </section>
-<section id="analysis-2" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-2">Analysis #2:</h3>
-<p>Question: Are some leagues more aggressive, on average, than others?</p>
-<p>Pre-registered hypothesis: European leagues are, on average, more aggressive than non-European leagues (i.e.&nbsp;more fouls, more goals per minute, and more duels.)</p>
+<section id="analysis-2-are-some-leagues-more-aggressive-on-average-than-others" class="level4">
+<h4 class="anchored" data-anchor-id="analysis-2-are-some-leagues-more-aggressive-on-average-than-others">Analysis #2: Are some leagues more aggressive, on average, than others?</h4>
+<p><em>Explanatory Data Analysis:</em> Aggressiveness is not a variable in our data set, therefore we indirectly measured this through booking frequency, average penalties per game, average goals per minute, average shots per game, and total duels. We also compared European leagues against non-European leagues.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/analysis-plots-2-1.png" class="img-fluid" width="672"></p>
@@ -260,10 +245,9 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/analysis-plots-2-4.png" class="img-fluid" width="672"></p>
 </div>
-<div class="cell-output-display">
-<p><img src="report_files/figure-html/analysis-plots-2-5.png" class="img-fluid" width="672"></p>
 </div>
-</div>
+<p>Based on the EDA, it is difficult to discern whether there which leagues are more than aggressive than others.</p>
+<p><em>Identifying Important Predictors:</em> Next, we fit a logistic regression line that predicted whether the league group was European or not, based on above variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our “Evaluation of Singificance” section:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
@@ -276,17 +260,38 @@ ul.task-list li input[type="checkbox"] {
 5 duels_total           0.00564   0.00106     5.29  0.000000120</code></pre>
 </div>
 </div>
+<p>Based on our results, average goals per minute and total duels were the only predictors with p-values &lt; the significance level, 0.05 (at 3.869903e-06 and 1.195738e-07, respectively). In the following section, we will conduct a hypothesis test to evaluate the difference in “aggressiveness” of European and non-European leagues.</p>
 </section>
 </section>
-<section id="evaluation-of-significance-pranathi" class="level1">
-<h1>Evaluation of significance [Pranathi]</h1>
-<p>Analysis 2: Does the number of duels, on average, differ between European and non-European leagues?</p>
+<section id="evaluation-of-significance" class="level1">
+<h1>Evaluation of significance</h1>
+<section id="analysis-1" class="level4">
+<h4 class="anchored" data-anchor-id="analysis-1">Analysis #1:</h4>
+<p><strong>The following hypothesis test is to determine whether or not the difference in true population means of highly rated players (players with ratings greater than or equal to the mean player rating) and non-highly rated players (players with ratings less than mean player rating) is significant:</strong></p>
 <ul>
-<li><p>Null hypothesis: The true population mean of duels for European and non-European players are not different, on average. <strong>The true population mean of duels for European is greater than the true population mean for non-European players, on average. dif EU - nonEU &gt; 0</strong> <span class="math display">\[ \mu_{EU duel} - \mu_{non-EU duel} = 0 \]</span></p></li>
-<li><p>Alt hypothesis: The true population mean of duels for European and non-European players are different, on average.</p></li>
+<li><p>Null Hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. <span class="math inline">\(H_0 = \mu_{high} - \mu_{non-high} = 0\)</span></p></li>
+<li><p>Alternative Hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. <span class="math inline">\(H_A = \mu_{high} - \mu_{non-high} \not= 0\)</span></p></li>
 </ul>
-<p><span class="math display">\[ \mu_{EU duel} - \mu_{non-EU duel} \not= 0
-\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1    0.02</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="report_files/figure-html/hyp-test-rank-book-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Conclusion:</em> The p-value (0.02) is less than alpha i.e.&nbsp;significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean for bookings of highly rated players and non-highly rated players are different.</p>
+</section>
+<section id="analysis-2" class="level4">
+<h4 class="anchored" data-anchor-id="analysis-2"><strong>Analysis #2:</strong></h4>
+<p><strong>The following hypothesis test is to determine whether or not the difference in true population means of duels for European leagues and non-European leagues is significant:</strong></p>
+<ul>
+<li><p>Null hypothesis: The true population mean of duels for European and non-European leagues are not different. <span class="math inline">\(H_0 = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
+<li><p>Alternative hypothesis: The true population mean of duels for European and non-European leagues are different. <span class="math inline">\(H_A = \mu_{EU} - \mu_{non-EU} \not= 0\)</span></p></li>
+</ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
@@ -294,21 +299,16 @@ ul.task-list li input[type="checkbox"] {
     &lt;dbl&gt;
 1       0</code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  p_value
-    &lt;dbl&gt;
-1       0</code></pre>
+<div class="cell-output-display">
+<p><img src="report_files/figure-html/hyp-test-euro-duels-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The p-value is &lt; alpha i.e significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean of bookings for highly rater players and non-highly rated players are different, on average.</p>
-<p>Analysis 2: Does the amount of goals per minute, on average, differ between European and non-European leagues?</p>
+<p><em>Conclusion:</em> The p-value (0) is less than alpha i.e.&nbsp;significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the the true population mean of duels for European and non-European leagues are different.</p>
+<p><strong>The following hypothesis test is to determine whether or not the difference in true population means of averge goals per minute for European leagues and non-European leagues is significant:</strong></p>
 <ul>
-<li><p>Null hypothesis: The true population mean of goals per minute for European and non-European players are not different, on average. <em>One sided: The true population mean of goals per minute for European &gt; non-European players (from EDA), on average.</em> <span class="math display">\[ \mu_{EU gpm} - \mu_{non-EU gpm} = 0 \]</span></p></li>
-<li><p>Alt hypothesis: The true population mean of goals per minute for European and non-European players are different, on average.</p></li>
+<li><p>Null hypothesis: The true population mean of goals per minute for European and non-European players are not different. <span class="math inline">\(H_0 = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
+<li><p>Alt hypothesis: The true population mean of goals per minute for European and non-European players are different. <span class="math inline">\(H_A = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
 </ul>
-<p><span class="math display">\[ \mu_{EU gpm} - \mu_{non-EU gpm} \not= 0
-\]</span></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
@@ -316,17 +316,81 @@ ul.task-list li input[type="checkbox"] {
     &lt;dbl&gt;
 1   0.196</code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  p_value
-    &lt;dbl&gt;
-1   0.098</code></pre>
 </div>
-</div>
-<p>In running the hypothesis test, we get a p-value of 0.196 which is greater than the significance level of 0.05. Thus, we fail to reject the null hypothesis and conclude that there is not a proven statistically significant difference in the population means of average goals per minute of European vs Non-European leagues.</p>
+<p><em>Conclusion:</em> The p-value (0.196) is greater than alpha i.e.&nbsp;significance level of 0.05, therefore we fail to reject the null hypothesis. The data provides convincing evidence that the the true population mean of average goals per minute for European and non-European leagues are not different.</p>
 </section>
-<section id="interpretation-and-conclusions-henry" class="level1">
-<h1>Interpretation and conclusions [Henry]</h1>
+</section>
+<section id="interpretation-and-conclusions" class="level1">
+<h1>Interpretation and conclusions</h1>
+<p><strong>Analysis #1:</strong></p>
+<p>Based on our multiple linear regression line predicting bookings from player height, weight, age, and rating, only rating was found to be significant, resulting in the following formula:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term         estimate std.error statistic  p.value
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)     12.4      3.62       3.42 0.000693
+2 games_rating    -1.19     0.509     -2.33 0.0203  </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1    0.0123        0.0100  2.87      5.43  0.0203     1 -1082. 2170. 2183.
+# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+</div>
+</div>
+<p><span class="math display">\[
+\widehat{bookings} = 12.372558 - 1.185715 \times player~rating
+\]</span></p>
+<p>Interpretation:</p>
+<ul>
+<li><p>Intercept: For a player with a player rating of 0, we expect their booking frequency to be 12.372558, on average.</p></li>
+<li><p>Slope: For every one-point that the player’s rating is higher, we expect their booking frequency to be 1.185715 lower, on average.</p></li>
+</ul>
+<p>Based on adjusted R-squared value, only 1% of the variability in booking is explained by the model, specifically player rating, which makes this a poor predictor. However, this performs better than the full model, which explains less than 1% of the variability in booking.</p>
+<p>Based on our first hypothesis test, we found that the difference in true population means of highly rated players (players with ratings greater than or equal to the mean player rating) and non-highly rated players (players with ratings less than mean player rating) is statistically significant. Furthermore, using our exploratory data analysis, we can support that this difference is a result of non-highly ranked players being booked more than highly ranked players, on average.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  lower_ci upper_ci
+     &lt;dbl&gt;    &lt;dbl&gt;
+1    0.140     1.24</code></pre>
+</div>
+</div>
+<p>This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e.&nbsp;positive), implying that non-highly ranked players are booked more than highly ranked players, on average.</p>
+<p><strong>Analysis #2:</strong></p>
+<p>Based on our logistic regression line predicting if a league is European from average penalties per game, average goals per minute, average shots per game, and total duels, only average goals per minute and total duels were found to be significant predictors, resulting in the following formula:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term               estimate std.error statistic     p.value
+  &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 (Intercept)        -1.90     0.473        -4.02 0.0000577  
+2 avg_goals_per_min 240.      54.8           4.38 0.0000120  
+3 duels_total         0.00483  0.000922      5.24 0.000000159</code></pre>
+</div>
+</div>
+<p><span class="math display">\[ p = \frac{\exp\{-1.903256924 + 240.017572079 \times average~gpm + 0.004831097 \times duels\}}{1 + \exp\{-1.903256924 + 240.017572079 \times average~gpm + 0.004831097 \times duels\}}\]</span></p>
+<p>Interpretation of Slope Coefficients:</p>
+<ul>
+<li><p><code>average gpm:</code> For every 1 goal that average gpm is higher, we expect the log odds of being a European league to be, on average, 240.017572079 larger, all else held constant.</p></li>
+<li><p><code>total duels:</code> For everyone 1 duel that total duels is higher, we expect the log odds of being a European league to be, on average, 0.004831097 larger, all else held constant.</p></li>
+</ul>
+<p>Based on our second hypothesis test, we found that the true population means of duels for European and non-European leagues are statistically different. Our EDA suggested that European leagues duel more than non-European leagues, on average.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 122 rows containing missing values.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  lower_ci upper_ci
+     &lt;dbl&gt;    &lt;dbl&gt;
+1     30.6     86.5</code></pre>
+</div>
+</div>
+<p>This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e.&nbsp;positive), implying that European leagues duel more than non-European leagues, on average. So, we are 95% confident that European leagues duel more than non-European leagues.</p>
+<p>However, based on our final hypothesis test, we did not find a significant difference in true means for average goals per minute of European and non-European leagues. Therefore, duels was the only “significantly different” proxy for aggressiveness from our multiple linear regression. Since duels were found to be significantly more for European leagues, but there was no difference for average goals per minute, we do not have conclusive evidence that European or non-European leagues are more aggressive than the other.</p>
 </section>
 <section id="limitations-henry" class="level1">
 <h1>Limitations [Henry]</h1>
