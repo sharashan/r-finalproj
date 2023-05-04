@@ -16,28 +16,28 @@
   {
     "objectID": "presentation.html#highlights-from-eda",
     "href": "presentation.html#highlights-from-eda",
-    "title": "Relationship between Soccer players and Leagues",
+    "title": "Soccer Stats Across Leagues",
     "section": "Highlights from EDA",
     "text": "Highlights from EDA\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2"
   },
   {
     "objectID": "presentation.html#inferencemodelingother-analysis",
     "href": "presentation.html#inferencemodelingother-analysis",
-    "title": "Relationship between Soccer players and Leagues",
+    "title": "Soccer Stats Across Leagues",
     "section": "Inference/modeling/other analysis",
     "text": "Inference/modeling/other analysis\nYour results here"
   },
   {
     "objectID": "presentation.html#inferencemodelingother-analysis-1",
     "href": "presentation.html#inferencemodelingother-analysis-1",
-    "title": "Relationship between Soccer players and Leagues",
+    "title": "Soccer Stats Across Leagues",
     "section": "Inference/modeling/other analysis",
     "text": "Inference/modeling/other analysis\nYour results here"
   },
   {
     "objectID": "presentation.html#conclusions-future-work",
     "href": "presentation.html#conclusions-future-work",
-    "title": "Relationship between Soccer players and Leagues",
+    "title": "Soccer Stats Across Leagues",
     "section": "Conclusions + future work",
     "text": "Conclusions + future work"
   },
@@ -198,8 +198,15 @@
   {
     "objectID": "presentation.html#data-introduction",
     "href": "presentation.html#data-introduction",
-    "title": "Relationship between Soccer players and Leagues",
+    "title": "Soccer Stats Across Leagues",
     "section": "Data Introduction",
-    "text": "Data Introduction\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+    "text": "Data Introduction\n\n\n\n\n\n\n \n  \n    Player Name \n    Player Age \n    Goals Scored \n  \n \n\n  \n    Son Heung-Min \n    31 \n    23 \n  \n  \n    Mohamed Salah \n    31 \n    23 \n  \n  \n    Cristiano Ronaldo \n    38 \n    18 \n  \n  \n    H. Kane \n    30 \n    17 \n  \n  \n    S. Mané \n    31 \n    16 \n  \n\n\n\n\n\n\n\nDataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.\n\nRows: Attributes\nColumns: Players\n\nThe data is used by football fans, sports bettors, and researchers."
+  },
+  {
+    "objectID": "presentation.html#topic-and-motivation",
+    "href": "presentation.html#topic-and-motivation",
+    "title": "Soccer Stats Across Leagues",
+    "section": "Topic and Motivation",
+    "text": "Topic and Motivation\n\nTopic: Analyze offensive stats for soccer players in various leagues during 2021 season.\nMotivation: Find relationships between soccer players, leagues, and their stats.\n\nResearch Questions:\n\nWhat factors influence booking frequency of players?\nDoes aggressiveness differ between European and non-European leagues?"
   }
 ]

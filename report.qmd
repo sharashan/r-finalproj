@@ -49,9 +49,9 @@ There are 560 observations and 51 attributes (columns). The dataset contains pla
 
 -   In the dataset of soccer player statistics, some instances may have missing information for certain attributes. However, these occurrences of missing data are infrequent. The reason behind the missing information is that the data is compiled from thousands of games across multiple leagues worldwide. Each league or team may prioritize and record specific statistics that they find important, resulting in variations in the recorded statistics across different leagues.
 
-**Are relationships between individual instances made explicit (e.g., users\' movie ratings, social network links)? If so, please describe how these relationships are made explicit.**
+**Are relationships between individual instances made explicit (e.g., users' movie ratings, social network links)? If so, please describe how these relationships are made explicit.**
 
--   The relationships between the individual instances (players) are made explicit through the tabular structure, where each row corresponds to a specific player and their associated statistics.
+-   The relationships between the individual instances (players) are made explicit through the tabular structure, where each row corresponds to a specific player and each colum represents their associated statistics.
 
 **Are there any errors, sources of noise, or redundancies in the dataset? If so, please provide a description.**
 
@@ -83,8 +83,7 @@ There are 560 observations and 51 attributes (columns). The dataset contains pla
 
 ## **Uses**
 
-**Has the dataset been used for any tasks already? If so, please provide a description.
-Is there a repository that links to any or all papers or systems that use the dataset? If so, please provide a link or other access point.**
+**Has the dataset been used for any tasks already? If so, please provide a description. Is there a repository that links to any or all papers or systems that use the dataset? If so, please provide a link or other access point.**
 
 -   The data is currently being utilized in diverse ways. Football fans can access this data to enhance their knowledge about the players or teams they support. Sports bettors rely on the data to identify historical trends and patterns within the game of football, aiding in making informed betting decisions. Additionally, numerous groups and individuals leverage the data to address research questions, similar to the purpose of our own group's analysis.
 
@@ -584,10 +583,6 @@ However, based on our final hypothesis test, we did not find a significant diffe
 # Limitations \[Henry\]
 
 The primary limitation of our dataset is that it solely uses information from the 2021 season. Consequently, it restricts our ability to analyze and compare trends within groups, such as players, teams, or leagues over an extended period. Additionally, we assume that there are no goalies present as our dataset exclusively focuses on goal scorers. This specific focus prevents us from evaluating a team's defensive capabilities, which can be important when assessing the strength of an overall team.
-
-***Add: is there a bias in our data?***
-
-Due to the nature of our dataset one coverage bias may be present in our analysis. Since the data is primarily focused on scoring and other offensive statistics, using these attributes alone may not completely represent a players performance and overall impact to their team. In addition, various contextual factors might create additional bias within our data and analysis. These factors include strength of opponent, tactics used by teams and players, and the unpredictable gameday conditions which all play a large role in how players perform and the statistcs they produce.
 
 Given the nature of our dataset, it is important to acknowledge that there may be coverage bias in our analysis. The dataset primarily focuses on scoring and offensive statistics, which may not provide a comprehensive representation of a player's overall performance and impact on their team. Furthermore, our analysis is susceptible to various contextual factors that can introduce additional biases. Factors such as the strength of opponents, tactical approaches employed by teams and players, and unpredictable game-day conditions can significantly influence player performance and the statistics they produce.
 

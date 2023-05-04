@@ -1,24 +1,83 @@
 ---
-title: Relationship between Soccer players and Leagues
-subtitle: Based on their respective statistics
-author: Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Shanmugasundaram
+title: Soccer Stats Across Leagues
+author: Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Shanmugasundaram 
+title-slide-attributes:
+  style: |
+    .title {
+      font-size: 50px;
+    }
+    .author {
+      font-size: 40px;
+    }
 date: May 5, 2023
-format: revealjs
+format: 
+  revealjs:
+    theme: "serif"
 editor: visual
 execute:
   echo: false
+  cache: true
 ---
 
 ## Topic and Motivation
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+<br>
 
-## Data Introduction
+**Topic:** Analyze offensive stats for soccer players in various leagues during 2021 season.
 
-When you click the **Render** button a document will be generated that includes:
+**Motivation:** Find relationships between soccer players, leagues, and their stats.
 
--   Content authored with markdown
--   Output from executable code
+<br>
+
+**Research Questions:**
+
+-   What factors influence booking frequency of players?
+-   Does aggressiveness differ between European and non-European leagues?
+
+## Data Introduction {.smaller}
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+#| label: data-introduction
+#| message: false
+#| warning: false
+library(tidyverse)
+library(skimr)
+library(dplyr)
+library(kableExtra)
+
+soccer <- read_csv("data/top_goalscorers.csv")
+
+soccer_display <-soccer |>
+  select("player.name", "player.age", "goals.total") |>
+  slice(1:5) |>
+  rename("Player Name" = player.name, "Player Age" = player.age,
+         "Goals Scored" = goals.total)
+
+
+kable(soccer_display)
+
+  
+```
+
+:::
+
+::: {.column width="40%"}
+- Dataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.
+  - Rows: Attributes
+  - Columns: Players
+- The data is used by football fans, sports bettors, and researchers.
+
+
+
+
+
+:::
+
+::::
+
+
 
 ## Highlights from EDA
 
