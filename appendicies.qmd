@@ -9,4 +9,80 @@ execute:
 
 # Data cleaning
 
+### How we Collected the Data from the API:
+
+The data was first collected by making API calls from https://www.api-football.com/documentation-v3 for various soccer leagues. We did this my making a GET request to their top scorers endpoint, supplying parameters for each of 27 top leagues in 2021. From this we collected 20 goal scorers for each respective league as we specified per the query string parameters. The main challenge faced during this process was being able to take the JSON returned from the HTTP request and actually put it into a data frame. From this point, we used the jsonlite library to flatten the JSON API responses into a tibble and then exported the tibble to a CSV file.
+
+### How we Sanitized the Data:
+
+Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process. The main reason why we stored the data to a CSV rather than dynamically making API calls is due to the rate limits and fees associated with using the API. The API we were using enforces strict rate-limits and beyond the free tier of the service they charge for additional requests.
+
+For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.
+
 # Other appendicies (as necessary)
+
+### Original Code for Communicating w/ API: 
+
+##### (Credits to RapidAPI + Stackoverflow for assistance)
+
+The code below will not be runnable without creating an API key for api-football. The API key I used has been redacted since the service charges for additional requests.
+
+```{r}
+#| label: fetch-and-store-data
+
+library(httr)
+library(jsonlite)
+
+# url <- "https://api-football-v1.p.rapidapi.com/v3/players/topscorers"
+
+#  == LEAGUE IDs BELOW ==
+# England League 39, 40, 41
+# France League 1 61 2, 63
+# Saudi Arabia Pro League 307
+# Brazil Serie A 71, B 72, C 73, D 76
+# Italy Serie A 135, B 136, C 137, D [426,427,428,429]
+# Portugal 1 94, 2 95
+# Argentina A 128, B 131
+# Germany 78, 79, 80
+# Spain 140, 141, 142
+# USA 254
+# Belgium 144, 145
+# Netherlands 88, 89
+
+# == DATA FETCH & SANITIZATION BELOW == 
+# leagues <- c("39", "40", "41", "307", "61", "63", "71", "72", "73", "76", "135", "136", "137", "94", "95", "128", "131", "78", "79", "80", "140", "141", "253", "262", "144", "145", "88", "89")
+# 
+# queryString <- list(
+#   league = "39",
+#   season = "2021"
+# )
+# 
+# all_leagues <- NULL
+# 
+# for (x in leagues) {
+#   queryString <- list(
+#     league = x,
+#     season = "2021"
+#   )
+# 
+#   # Verb snippet below provided by API docs
+#   # NOTE: API key will incur rate-limits, so may not work at the time [FREE Limitations]
+#   response <- VERB("GET", url, add_headers("X-RapidAPI-Key" = "REDACTED", "X-RapidAPI-Host" = "api-football-v1.p.rapidapi.com"), query = queryString, content_type("application/json"))
+# 
+#   text_res <- content(response, "text")
+# 
+#   player_info <- fromJSON(text_res, flatten = TRUE)
+# 
+#   player_tibble <- as_tibble(player_info$response)
+# 
+#   player_tibble <- player_tibble |>
+#     mutate(id = row_number()) |>
+#     unnest(statistics)
+# 
+#   print(x)
+#   all_leagues <- bind_rows(all_leagues, player_tibble)
+# }
+# 
+# write.table(all_leagues, file = "./data/top_goalscorers.csv")
+  
+```
