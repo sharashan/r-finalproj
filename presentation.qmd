@@ -35,9 +35,9 @@ execute:
 -   Does aggressiveness differ between European and non-European leagues?
 
 ## Data Introduction {.smaller}
-:::: {.columns}
 
-::: {.column width="60%"}
+::: columns
+::: {.column width="55%"}
 ```{r}
 #| label: data-introduction
 #| message: false
@@ -60,24 +60,15 @@ kable(soccer_display)
 
   
 ```
-
 :::
 
-::: {.column width="40%"}
-- Dataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.
-  - Rows: Attributes
-  - Columns: Players
-- The data is used by football fans, sports bettors, and researchers.
-
-
-
-
-
+::: {.column width="45%"}
+-   Dataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.
+    -   Rows: Individual Players
+    -   Columns: Attributes
+-   The data is used by football fans, sports bettors, and researchers.
 :::
-
-::::
-
-
+:::
 
 ## Highlights from EDA
 
@@ -95,4 +86,16 @@ Your results here
 
 Your results here
 
-## Conclusions + future work
+## Conclusions
+
+#### RQ1 Conclusion
+
+-   What factors influence booking frequency of players?
+
+    -   **We determined that rating was the only significant predictor of bookings in our analysis**
+
+#### RQ2 Conclusion
+
+-   Does aggressiveness differ between European and non-European leagues?
+
+    -   **We determined that only average goals per minute and total dues are significant predictors when determining the league.**

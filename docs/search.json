@@ -39,7 +39,7 @@
     "href": "presentation.html#conclusions-future-work",
     "title": "Soccer Stats Across Leagues",
     "section": "Conclusions + future work",
-    "text": "Conclusions + future work"
+    "text": "Conclusions + future work\nRQ1 Conclusion\n\nWhat factors influence booking frequency of players?\n\nWe determined that rating was the only significant predictor of bookings in our analysis\n\n\nRQ2 Conclusion\n\nDoes aggressiveness differ between European and non-European leagues?\n\nWe determined that only average goals per minute and total dues are significant predictors when determining the league."
   },
   {
     "objectID": "eda.html",
@@ -156,9 +156,9 @@
   {
     "objectID": "presentation.html",
     "href": "presentation.html",
-    "title": "Relationship between Soccer players and Leagues",
+    "title": "Soccer Stats Across Leagues",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+    "text": "Topic: Analyze offensive stats for soccer players in various leagues during 2021 season.\nMotivation: Find relationships between soccer players, leagues, and their stats.\n\nResearch Questions:\n\nWhat factors influence booking frequency of players?\nDoes aggressiveness differ between European and non-European leagues?"
   },
   {
     "objectID": "report.html#motivation",
@@ -172,7 +172,7 @@
     "href": "report.html#composition",
     "title": "Assessing Top Soccer Player Statistics",
     "section": "Composition",
-    "text": "Composition\nHow many instances are there in total (of each type, if appropriate)?\nThere are 560 observations and 51 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season.\nIs there a label or target associated with each instance? If so, please provide a description.\n\nThe people involved are football players, who are aware of data collection, as this occurs during and after all of their games, because sports data is typically used to make general comparison (past/future versions of themselves, comparing their team to another, or between leagues, sports reporting (to football fans), or MVP decisions.\n\nIs any information missing from individual instances?\n\nIn the dataset of soccer player statistics, some instances may have missing information for certain attributes. However, these occurrences of missing data are infrequent. The reason behind the missing information is that the data is compiled from thousands of games across multiple leagues worldwide. Each league or team may prioritize and record specific statistics that they find important, resulting in variations in the recorded statistics across different leagues.\n\nAre relationships between individual instances made explicit (e.g., users' movie ratings, social network links)? If so, please describe how these relationships are made explicit.\n\nThe relationships between the individual instances (players) are made explicit through the tabular structure, where each row corresponds to a specific player and their associated statistics.\n\nAre there any errors, sources of noise, or redundancies in the dataset? If so, please provide a description.\n\nAs this is game data, it was likely influenced by referee rulings, as some scores may not have counted in the final game statistics."
+    "text": "Composition\nHow many instances are there in total (of each type, if appropriate)?\nThere are 560 observations and 51 attributes (columns). The dataset contains player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season.\nIs there a label or target associated with each instance? If so, please provide a description.\n\nThe people involved are football players, who are aware of data collection, as this occurs during and after all of their games, because sports data is typically used to make general comparison (past/future versions of themselves, comparing their team to another, or between leagues, sports reporting (to football fans), or MVP decisions.\n\nIs any information missing from individual instances?\n\nIn the dataset of soccer player statistics, some instances may have missing information for certain attributes. However, these occurrences of missing data are infrequent. The reason behind the missing information is that the data is compiled from thousands of games across multiple leagues worldwide. Each league or team may prioritize and record specific statistics that they find important, resulting in variations in the recorded statistics across different leagues.\n\nAre relationships between individual instances made explicit (e.g., users’ movie ratings, social network links)? If so, please describe how these relationships are made explicit.\n\nThe relationships between the individual instances (players) are made explicit through the tabular structure, where each row corresponds to a specific player and each colum represents their associated statistics.\n\nAre there any errors, sources of noise, or redundancies in the dataset? If so, please provide a description.\n\nAs this is game data, it was likely influenced by referee rulings, as some scores may not have counted in the final game statistics."
   },
   {
     "objectID": "report.html#collection-process",
@@ -200,7 +200,7 @@
     "href": "presentation.html#data-introduction",
     "title": "Soccer Stats Across Leagues",
     "section": "Data Introduction",
-    "text": "Data Introduction\n\n\n\n\n\n\n \n  \n    Player Name \n    Player Age \n    Goals Scored \n  \n \n\n  \n    Son Heung-Min \n    31 \n    23 \n  \n  \n    Mohamed Salah \n    31 \n    23 \n  \n  \n    Cristiano Ronaldo \n    38 \n    18 \n  \n  \n    H. Kane \n    30 \n    17 \n  \n  \n    S. Mané \n    31 \n    16 \n  \n\n\n\n\n\n\n\nDataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.\n\nRows: Attributes\nColumns: Players\n\nThe data is used by football fans, sports bettors, and researchers."
+    "text": "Data Introduction\n\n\n\n\n\n\n \n  \n    Player Name \n    Player Age \n    Goals Scored \n  \n \n\n  \n    Son Heung-Min \n    31 \n    23 \n  \n  \n    Mohamed Salah \n    31 \n    23 \n  \n  \n    Cristiano Ronaldo \n    38 \n    18 \n  \n  \n    H. Kane \n    30 \n    17 \n  \n  \n    S. Mané \n    31 \n    16 \n  \n\n\n\n\n\n\n\nDataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.\n\nRows: Individual Players\nColumns: Attributes\n\nThe data is used by football fans, sports bettors, and researchers."
   },
   {
     "objectID": "presentation.html#topic-and-motivation",
@@ -208,5 +208,12 @@
     "title": "Soccer Stats Across Leagues",
     "section": "Topic and Motivation",
     "text": "Topic and Motivation\n\nTopic: Analyze offensive stats for soccer players in various leagues during 2021 season.\nMotivation: Find relationships between soccer players, leagues, and their stats.\n\nResearch Questions:\n\nWhat factors influence booking frequency of players?\nDoes aggressiveness differ between European and non-European leagues?"
+  },
+  {
+    "objectID": "presentation.html#conclusions",
+    "href": "presentation.html#conclusions",
+    "title": "Soccer Stats Across Leagues",
+    "section": "Conclusions",
+    "text": "Conclusions\nRQ1 Conclusion\n\nWhat factors influence booking frequency of players?\n\nWe determined that rating was the only significant predictor of bookings in our analysis\n\n\nRQ2 Conclusion\n\nDoes aggressiveness differ between European and non-European leagues?\n\nWe determined that only average goals per minute and total dues are significant predictors when determining the league."
   }
 ]
