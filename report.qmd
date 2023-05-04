@@ -7,7 +7,7 @@ execute:
   echo: false
 ---
 
-# Introduction \[Shara\]
+# Introduction
 
 The motivation behind this project was to determine whether or not there were relationships between soccer players, leagues, and their respective statistics. Each observation represents a player, and columns represent descriptors such as height, weight, nationality, passes, goals scored, assists, penalties, etc. Since soccer is such a popular global sport, we aimed to answer the following research questions in our project:
 
@@ -17,9 +17,7 @@ The motivation behind this project was to determine whether or not there were re
 
 Summary of findings/results: XXXXX (to be filled in after)
 
-# Data description \[Henry\]
-
-### 
+# Data description
 
 ## **Motivation**
 
@@ -580,7 +578,7 @@ This makes sense, as based on our confidence interval, we are 95% confident that
 
 However, based on our final hypothesis test, we did not find a significant difference in true means for average goals per minute of European and non-European leagues. Therefore, duels was the only "significantly different" proxy for aggressiveness from our multiple linear regression. Since duels were found to be significantly more for European leagues, but there was no difference for average goals per minute, we do not have conclusive evidence that European or non-European leagues are more aggressive than the other.
 
-# Limitations \[Henry\]
+# Limitations
 
 The primary limitation of our dataset is that it solely uses information from the 2021 season. Consequently, it restricts our ability to analyze and compare trends within groups, such as players, teams, or leagues over an extended period. Additionally, we assume that there are no goalies present as our dataset exclusively focuses on goal scorers. This specific focus prevents us from evaluating a team's defensive capabilities, which can be important when assessing the strength of an overall team.
 

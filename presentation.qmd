@@ -19,6 +19,17 @@ execute:
   cache: true
 ---
 
+```{r}
+#| label: setup
+#| include: false
+#| cache: false
+library(tidyverse)
+library(rcis)
+library(scales) # formatting numbers
+
+theme_set(theme_minimal(base_size = 16))
+```
+
 ## Topic and Motivation
 
 <br>
@@ -37,7 +48,7 @@ execute:
 ## Data Introduction {.smaller}
 
 ::: columns
-::: {.column width="55%"}
+::: {.column width="50%"}
 ```{r}
 #| label: data-introduction
 #| message: false
@@ -58,15 +69,21 @@ soccer_display <-soccer |>
 
 kable(soccer_display)
 
-  
 ```
 :::
 
-::: {.column width="45%"}
+::: {.column width="50%"}
+<div>
+
 -   Dataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.
+
     -   Rows: Individual Players
+
     -   Columns: Attributes
--   The data is used by football fans, sports bettors, and researchers.
+
+-   The data is used by football fans, sports bettors, and researchers
+
+</div>
 :::
 :::
 
