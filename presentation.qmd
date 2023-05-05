@@ -52,13 +52,9 @@ theme_set(theme_minimal(base_size = 14))
 
 ## Topic and Motivation
 
-<br>
-
 **Topic:** Analyze offensive stats for soccer players in various leagues during 2021 season.
 
 **Motivation:** Find relationships between soccer players, leagues, and their stats.
-
-<br>
 
 **Research Questions:**
 
