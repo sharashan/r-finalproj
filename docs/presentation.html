@@ -423,15 +423,16 @@ Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Sha
 <section id="analysis-pt.-1" class="slide level2">
 <h2>Analysis Pt. 1</h2>
 <ul>
-<li><p>Used one-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant</p></li>
+<li><p>Used two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant</p></li>
 <li><p>Null hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. <span class="math inline">\(H_0 = \mu_{high} - \mu_{non-high} = 0\)</span></p></li>
 <li><p>Alternate hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. <span class="math inline">\(H_A = \mu_{high} - \mu_{non-high} \not= 0\)</span></p></li>
 <li><p>The p-value (0.02) is less than alpha i.e.&nbsp;significance level of 0.05, therefore we reject the null hypothesis</p></li>
-<li><p><span class="math display">\[
-\widehat{bookings} = 12.372558 - 1.185715 \times player~rating
-\]</span></p></li>
-<li></li>
 </ul>
+<p><span class="math display">\[
+\begin{split}
+\widehat{bookings} = 12.372558 - 1.185715 \times \\ player~rating
+\end{split}
+\]</span></p>
 </section>
 <section id="highlights-from-eda-pt.-2" class="slide level2">
 <h2>Highlights from EDA Pt. 2</h2>
@@ -448,8 +449,8 @@ Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Sha
 <h2>Analysis Pt. 2</h2>
 <ul>
 <li><p>Used two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant</p></li>
-<li><p>Null hypothesis: The true population mean of goals per minute for European and non-European players are not different. <span class="math inline">\(H_0 = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
-<li><p>Alternate hypothesis: The true population mean of goals per minute for European and non-European players are different. <span class="math inline">\(H_A = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
+<li><p>Null hypothesis: The true population mean of goals per minute for European and non-European leagues are not different. <span class="math inline">\(H_0 = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
+<li><p>Alternate hypothesis: The true population mean of goals per minute for European and non-European leagues are different. <span class="math inline">\(H_A = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
 <li><p>The p-value (0.196) is greater than alpha i.e.&nbsp;significance level of 0.05, therefore we fail to reject the null hypothesis</p></li>
 <li><p><span class="math display">\[ p = \frac{\exp\{-1.903256924 + 240.017572079 \times average~gpm + 0.004831097 \times duels\}}{1 + \exp\{-1.903256924 + 240.017572079 \times average~gpm + 0.004831097 \times duels\}}\]</span></p></li>
 <li><p>95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e.&nbsp;positive), implying that European leagues duel more than non-European leagues, on average.</p></li>

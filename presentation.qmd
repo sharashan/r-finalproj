@@ -47,7 +47,7 @@ soccer_clean <- soccer |>
     player_id_1, player_id_48, player_firstname, league_season
   ))
 
-theme_set(theme_minimal(base_size = 16))
+theme_set(theme_minimal(base_size = 14))
 ```
 
 ## Topic and Motivation
@@ -155,13 +155,7 @@ soccer_clean |>
 
 -   Alternate hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. $H_A = \mu_{high} - \mu_{non-high} \not= 0$
 
--   The p-value (0.02) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis
-
--   $$
-    \widehat{bookings} = 12.372558 - 1.185715 \times player~rating
-    $$
-
--   
+-   Reject the null hypothesis (p-value = 0.02)
 
 ## Highlights from EDA Pt. 2
 
@@ -215,15 +209,19 @@ than non-European leagues?"
 
 -   Used two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant
 
--   Null hypothesis: The true population mean of goals per minute for European and non-European leagues are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
+-   $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
--   Alternate hypothesis: The true population mean of goals per minute for European and non-European leagues are different. $H_A = \mu_{EU} - \mu_{non-EU} = 0$
+-   $H_A = \mu_{EU} - \mu_{non-EU} = 0$
 
--   The p-value (0.196) is greater than alpha i.e. significance level of 0.05, therefore we fail to reject the null hypothesis
+-   Fail to reject the null hypothesis (p-value = 0.196)
 
--   $$ p = \frac{\exp\{-1.903256924 + 240.017572079 \times average~gpm + 0.004831097 \times duels\}}{1 + \exp\{-1.903256924 + 240.017572079 \times average~gpm + 0.004831097 \times duels\}}$$
+-   Used two-sided hypothesis test to determine whether or not the difference in true population means of duels for European leagues and non-European leagues is significant
 
--   95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average.
+-    $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
+
+-    $H_A = \mu_{EU} - \mu_{non-EU} \not= 0$
+
+-   Reject the null hypothesis (p-value = 0)
 
 ## Conclusions
 
@@ -232,9 +230,11 @@ than non-European leagues?"
 -   What factors influence booking frequency of players?
 
     -   **We determined that rating was the only significant predictor of bookings in our analysis**
+    -   We are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e. positive), implying that non-highly ranked players are booked more than highly ranked players, on average
 
 #### RQ2 Conclusion
 
 -   Does aggressiveness differ between European and non-European leagues?
 
     -   **We determined that only average goals per minute and total dues are significant predictors when determining the league.**
+    -   95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average
