@@ -215,9 +215,9 @@ than non-European leagues?"
 
 -   Used two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant
 
--   Null hypothesis: The true population mean of goals per minute for European and non-European players are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
+-   Null hypothesis: The true population mean of goals per minute for European and non-European leagues are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
--   Alternate hypothesis: The true population mean of goals per minute for European and non-European players are different. $H_A = \mu_{EU} - \mu_{non-EU} = 0$
+-   Alternate hypothesis: The true population mean of goals per minute for European and non-European leagues are different. $H_A = \mu_{EU} - \mu_{non-EU} = 0$
 
 -   The p-value (0.196) is greater than alpha i.e. significance level of 0.05, therefore we fail to reject the null hypothesis
 

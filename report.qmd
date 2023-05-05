@@ -455,9 +455,9 @@ visualize(null_dist) +
 
 **The following hypothesis test is to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues is significant:**
 
--   Null hypothesis: The true population mean of goals per minute for European and non-European players are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
+-   Null hypothesis: The true population mean of goals per minute for European and non-European leagues are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
--   Alt hypothesis: The true population mean of goals per minute for European and non-European players are different. $H_A = \mu_{EU} - \mu_{non-EU} = 0$
+-   Alt hypothesis: The true population mean of goals per minute for European and non-European leagues are different. $H_A = \mu_{EU} - \mu_{non-EU} = 0$
 
 ```{r}
 #| label: hyp-test-goalspermin
