@@ -146,7 +146,8 @@ soccer_clean |>
     x = "Player Height (in cm)",
     y = "Total Bookings",
     title = "Do taller players tend to get booked more frequently?"
-  )
+  ) +
+  theme_minimal()
 
 # Weight vs Bookings
 soccer_clean |>
@@ -216,7 +217,7 @@ soccer_clean |>
 
 Based on our EDA, there appeared as though non-highly ranked players were booked more than highly ranked players, where highly ranked players were rated greater than or equal to the mean player rating, and non-highly ranked players were rated less than the mean player rating.
 
-*Identifying Important Predictors:* Then, we fit a multiple linear regression line that predicted total bookings based on those variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Singificance" section:
+*Identifying Important Predictors:* Then, we fit a multiple linear regression line that predicted total bookings based on those variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Significance" section:
 
 ```{r}
 #| label: bookings-height-weight-age-rating
@@ -305,7 +306,7 @@ soccer_clean |>
   labs(
     x = "European",
     y = "Average Shots Per Game",
-    title = "Do European Leagues tend to  take more shots per game, on average, 
+    title = "Do European Leagues tend to take more shots per game, on average, 
 than non-European leagues?"
   ) +
   theme_minimal()
@@ -452,7 +453,7 @@ visualize(null_dist) +
 
 *Conclusion:* The p-value (0) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the the true population mean of duels for European and non-European leagues are different.
 
-**The following hypothesis test is to determine whether or not the difference in true population means of averge goals per minute for European leagues and non-European leagues is significant:**
+**The following hypothesis test is to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues is significant:**
 
 -   Null hypothesis: The true population mean of goals per minute for European and non-European players are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 

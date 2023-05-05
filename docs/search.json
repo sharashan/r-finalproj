@@ -18,7 +18,7 @@
     "href": "presentation.html#highlights-from-eda",
     "title": "Soccer Stats Across Leagues",
     "section": "Highlights from EDA",
-    "text": "Highlights from EDA\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2"
+    "text": "Highlights from EDA"
   },
   {
     "objectID": "presentation.html#inferencemodelingother-analysis",
@@ -198,22 +198,50 @@
   {
     "objectID": "presentation.html#data-introduction",
     "href": "presentation.html#data-introduction",
-    "title": "Soccer Stats Across Leagues",
+    "title": "Soccer Statistics Across Leagues",
     "section": "Data Introduction",
     "text": "Data Introduction\n\n\n\n\n\n\n \n  \n    Player Name \n    Player Age \n    Goals Scored \n  \n \n\n  \n    Son Heung-Min \n    31 \n    23 \n  \n  \n    Mohamed Salah \n    31 \n    23 \n  \n  \n    Cristiano Ronaldo \n    38 \n    18 \n  \n  \n    H. Kane \n    30 \n    17 \n  \n  \n    S. Mané \n    31 \n    16 \n  \n\n\n\n\n\n\n\n\nDataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.\n\nRows: Individual Players\nColumns: Attributes\n\nThe data is used by football fans, sports bettors, and researchers"
   },
   {
     "objectID": "presentation.html#topic-and-motivation",
     "href": "presentation.html#topic-and-motivation",
-    "title": "Soccer Stats Across Leagues",
+    "title": "Soccer Statistics Across Leagues",
     "section": "Topic and Motivation",
     "text": "Topic and Motivation\n\nTopic: Analyze offensive stats for soccer players in various leagues during 2021 season.\nMotivation: Find relationships between soccer players, leagues, and their stats.\n\nResearch Questions:\n\nWhat factors influence booking frequency of players?\nDoes aggressiveness differ between European and non-European leagues?"
   },
   {
     "objectID": "presentation.html#conclusions",
     "href": "presentation.html#conclusions",
-    "title": "Soccer Stats Across Leagues",
+    "title": "Soccer Statistics Across Leagues",
     "section": "Conclusions",
     "text": "Conclusions\nRQ1 Conclusion\n\nWhat factors influence booking frequency of players?\n\nWe determined that rating was the only significant predictor of bookings in our analysis\n\n\nRQ2 Conclusion\n\nDoes aggressiveness differ between European and non-European leagues?\n\nWe determined that only average goals per minute and total dues are significant predictors when determining the league."
+  },
+  {
+    "objectID": "presentation.html#highlights-from-eda-pt.-1",
+    "href": "presentation.html#highlights-from-eda-pt.-1",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Highlights from EDA Pt. 1",
+    "text": "Highlights from EDA Pt. 1"
+  },
+  {
+    "objectID": "presentation.html#inferencemodelingother-analysis-pt.-1",
+    "href": "presentation.html#inferencemodelingother-analysis-pt.-1",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Inference/modeling/other analysis Pt. 1",
+    "text": "Inference/modeling/other analysis Pt. 1\n\n\n# A tibble: 5 × 5\n  term             estimate std.error statistic p.value\n  <chr>               <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        9.18      5.62       1.63   0.103 \n2 player_height_cm   0.0344    0.0299     1.15   0.251 \n3 player_weight_lb  -0.0168    0.0128    -1.31   0.190 \n4 player_age        -0.0235    0.0336    -0.698  0.485 \n5 games_rating      -1.13      0.524     -2.15   0.0321\n\n\n\nUsed one-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant\nNull hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. \\(H_0 = \\mu_{high} - \\mu_{non-high} = 0\\)\nAlternate hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. \\(H_A = \\mu_{high} - \\mu_{non-high} \\not= 0\\)\nThe p-value (0.02) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis"
+  },
+  {
+    "objectID": "presentation.html#highlights-from-eda-pt.-2",
+    "href": "presentation.html#highlights-from-eda-pt.-2",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Highlights from EDA Pt. 2",
+    "text": "Highlights from EDA Pt. 2"
+  },
+  {
+    "objectID": "presentation.html#inferencemodelingother-analysis-pt.-2",
+    "href": "presentation.html#inferencemodelingother-analysis-pt.-2",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Inference/modeling/other analysis Pt. 2",
+    "text": "Inference/modeling/other analysis Pt. 2\n\nUsed two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant\nNull hypothesis: The true population mean of goals per minute for European and non-European players are not different. \\(H_0 = \\mu_{EU} - \\mu_{non-EU} = 0\\)\nAlternate hypothesis: The true population mean of goals per minute for European and non-European players are different. \\(H_A = \\mu_{EU} - \\mu_{non-EU} = 0\\)\nThe p-value (0.196) is greater than alpha i.e. significance level of 0.05, therefore we fail to reject the null hypothesis"
   }
 ]

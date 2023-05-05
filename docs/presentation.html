@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Skillful Pikachu   Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Shanmugasundaram">
-  <title>Soccer Stats Across Leagues</title>
+  <title>Soccer Statistics Across Leagues</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -242,6 +242,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -324,7 +325,7 @@
     <div class="slides">
 
 <section id="title-slide" style="<p>.title { font-size: 50px; } .author { font-size: 40px; }</p>" class="quarto-title-block center">
-  <h1 class="title">Soccer Stats Across Leagues</h1>
+  <h1 class="title">Soccer Statistics Across Leagues</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -352,7 +353,7 @@ Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Sha
 <h2>Data Introduction</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-hash="presentation_cache/revealjs/data-introduction_bed92a120d093a5cf4829c65e3757b47">
+<div class="cell" data-hash="presentation_cache/revealjs/data-introduction_c8b784aa2a15daf1a7fa5f923f6ad514">
 <div class="cell-output-display">
 
 <table>
@@ -408,22 +409,57 @@ Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Sha
 </div>
 </div>
 </section>
-<section id="highlights-from-eda" class="slide level2">
-<h2>Highlights from EDA</h2>
-<p>When you click the <strong>Render</strong> button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell" data-hash="presentation_cache/revealjs/unnamed-chunk-3_d618286139373912adfc2481d247949b">
+<section id="highlights-from-eda-pt.-1" class="slide level2">
+<h2>Highlights from EDA Pt. 1</h2>
+<div class="cell" data-hash="presentation_cache/revealjs/eda-plots-1_cfc7d1c1907a4cb48e9e62e57db717ea">
+<div class="cell-output-display">
+<p><img data-src="presentation_files/figure-revealjs/eda-plots-1-1.png" width="960"></p>
+</div>
+<div class="cell-output-display">
+<p><img data-src="presentation_files/figure-revealjs/eda-plots-1-2.png" width="960"></p>
+</div>
+</div>
+</section>
+<section id="inferencemodelingother-analysis-pt.-1" class="slide level2">
+<h2>Inference/modeling/other analysis Pt. 1</h2>
+<div class="cell" data-hash="presentation_cache/revealjs/bookings-height-weight-age-rating_677d0a17aebe7511ee5ad8ed5ba7076c">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code># A tibble: 5 × 5
+  term             estimate std.error statistic p.value
+  &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)        9.18      5.62       1.63   0.103 
+2 player_height_cm   0.0344    0.0299     1.15   0.251 
+3 player_weight_lb  -0.0168    0.0128    -1.31   0.190 
+4 player_age        -0.0235    0.0336    -0.698  0.485 
+5 games_rating      -1.13      0.524     -2.15   0.0321</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Used one-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant</p></li>
+<li><p>Null hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. <span class="math inline">\(H_0 = \mu_{high} - \mu_{non-high} = 0\)</span></p></li>
+<li><p>Alternate hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. <span class="math inline">\(H_A = \mu_{high} - \mu_{non-high} \not= 0\)</span></p></li>
+<li><p>The p-value (0.02) is less than alpha i.e.&nbsp;significance level of 0.05, therefore we reject the null hypothesis</p></li>
+</ul>
+</section>
+<section id="highlights-from-eda-pt.-2" class="slide level2">
+<h2>Highlights from EDA Pt. 2</h2>
+<div class="cell" data-hash="presentation_cache/revealjs/analysis-plots-2_5234430e50294d30699f83cf23819957">
+<div class="cell-output-display">
+<p><img data-src="presentation_files/figure-revealjs/analysis-plots-2-1.png" width="960"></p>
+</div>
+<div class="cell-output-display">
+<p><img data-src="presentation_files/figure-revealjs/analysis-plots-2-2.png" width="960"></p>
 </div>
 </div>
 </section>
-<section id="inferencemodelingother-analysis" class="slide level2">
-<h2>Inference/modeling/other analysis</h2>
-<p>Your results here</p>
-</section>
-<section id="inferencemodelingother-analysis-1" class="slide level2">
-<h2>Inference/modeling/other analysis</h2>
-<p>Your results here</p>
+<section id="inferencemodelingother-analysis-pt.-2" class="slide level2">
+<h2>Inference/modeling/other analysis Pt. 2</h2>
+<ul>
+<li><p>Used two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant</p></li>
+<li><p>Null hypothesis: The true population mean of goals per minute for European and non-European players are not different. <span class="math inline">\(H_0 = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
+<li><p>Alternate hypothesis: The true population mean of goals per minute for European and non-European players are different. <span class="math inline">\(H_A = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
+<li><p>The p-value (0.196) is greater than alpha i.e.&nbsp;significance level of 0.05, therefore we fail to reject the null hypothesis</p></li>
+</ul>
 </section>
 <section id="conclusions" class="slide level2">
 <h2>Conclusions</h2>

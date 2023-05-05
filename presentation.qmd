@@ -1,5 +1,5 @@
 ---
-title: Soccer Stats Across Leagues
+title: Soccer Statistics Across Leagues
 author: Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Shanmugasundaram 
 title-slide-attributes:
   style: |
@@ -13,6 +13,7 @@ date: May 5, 2023
 format: 
   revealjs:
     theme: "serif"
+    scrollable: true
 editor: visual
 execute:
   echo: false
@@ -26,6 +27,25 @@ execute:
 library(tidyverse)
 library(rcis)
 library(scales) # formatting numbers
+library(janitor)
+library(skimr)
+library(tidymodels)
+library(openintro)
+library(lubridate)
+
+soccer <- read_csv("data/top_goalscorers.csv")
+soccer <- clean_names(soccer)
+
+soccer_clean <- soccer |>
+  mutate(
+    player_height_cm = as.numeric(gsub(" cm", "", soccer$player_height)),
+    player_weight_kg = as.numeric(gsub(" kg", "", soccer$player_weight))
+  ) |>
+  select(-c(
+    games_number, goals_saves, dribbles_past, penalty_won,
+    penalty_commited, player_height, player_weight, penalty_saved,
+    player_id_1, player_id_48, player_firstname, league_season
+  ))
 
 theme_set(theme_minimal(base_size = 16))
 ```
@@ -60,7 +80,7 @@ library(kableExtra)
 
 soccer <- read_csv("data/top_goalscorers.csv")
 
-soccer_display <-soccer |>
+soccer_display <- soccer |>
   select("player.name", "player.age", "goals.total") |>
   slice(1:5) |>
   rename("Player Name" = player.name, "Player Age" = player.age,
@@ -87,21 +107,134 @@ kable(soccer_display)
 :::
 :::
 
-## Highlights from EDA
-
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Highlights from EDA Pt. 1
 
 ```{r}
-1 + 1
+#| label: eda-plots-1
+#| message: false
+#| warning: false
+# Rating (cont) vs Bookings
+soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred
+  ) |>
+  ggplot(mapping = aes(x = games_rating, y = total_bookings)) +
+  geom_jitter() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Player Rating (Across Season Games)",
+    y = "Total Bookings",
+    title = "Do higher-rated players tend to get booked more frequently?"
+  ) +
+  theme_minimal()
+
+# Rating (cat) vs Bookings
+soccer_clean |>
+  drop_na(games_rating) |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    high_cat = if_else(games_rating >= mean(games_rating), 
+                       "high rank", "non high rank"),
+    high_cat = as.factor(high_cat)
+  ) |>
+  ggplot(mapping = aes(x = high_cat, y = total_bookings)) +
+  geom_boxplot() +
+  labs(
+    x = "Player Rating (Across Season Games)",
+    y = "Total Bookings",
+    title = "Do highly-rated players tend to get booked more frequently than non-highly rated players?"
+  ) +
+  theme_minimal()
 ```
 
-## Inference/modeling/other analysis
+## Inference/modeling/other analysis Pt. 1
 
-Your results here
+```{r}
+#| label: bookings-height-weight-age-rating
 
-## Inference/modeling/other analysis
+bookings_factors_data <- soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    player_weight_lb = (player_weight_kg * 2.2)
+  )
 
-Your results here
+bookings_reg <- linear_reg() |>
+  fit(total_bookings ~ player_height_cm + player_weight_lb + 
+        player_age + games_rating,
+      data = bookings_factors_data)
+
+tidy(bookings_reg)
+```
+
+-   Used one-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant
+
+-   Null hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. $H_0 = \mu_{high} - \mu_{non-high} = 0$
+
+-   Alternate hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. $H_A = \mu_{high} - \mu_{non-high} \not= 0$
+
+-   The p-value (0.02) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis
+
+## Highlights from EDA Pt. 2
+
+```{r}
+#| label: analysis-plots-2
+#| message: false
+#| warning: false
+
+european_countries <- c("Belgium", "England", "France", "Germany", "Italy", 
+                        "Netherlands", "Portugal", "Spain")
+
+soccer_clean <- soccer_clean |>
+  mutate(
+    is_european = ifelse(league_country %in% european_countries, "Yes", "No")
+  )
+
+# How does the frequency of bookings (cards_yellow, cards_red, cards_redyellow) 
+# between different leagues, impact the average goals per match? 
+# Does this differ across European and non European leagues?
+soccer_clean |>
+  mutate(
+    # total_bookings = cards_yellow + cards_red + cards_yellowred,
+    avg_penalty_by_game = (penalty_scored + penalty_missed) / games_appearences
+  ) |>
+  ggplot(mapping = aes(x = is_european, y = avg_penalty_by_game)) +
+  geom_boxplot() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "European",
+    y = "Average Penalty By Game",
+    title = "Do European Leagues tend to have more average penalties per game 
+than non-European leagues?"
+  ) +
+  theme_minimal()
+
+# Do the average amount of shots per game differ across leagues?
+soccer_clean |>
+  mutate(
+    # total_bookings = cards_yellow + cards_red + cards_yellowred,
+    avg_shots_per_game = shots_total / games_appearences
+  ) |>
+  ggplot(mapping = aes(x = is_european, y = avg_shots_per_game)) +
+  geom_boxplot() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "European",
+    y = "Average Shots Per Game",
+    title = "Do European Leagues tend to take more shots per game, on average, 
+than non-European leagues?"
+  ) +
+  theme_minimal()
+```
+
+## Inference/modeling/other analysis Pt. 2
+
+-   Used two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant
+
+-   Null hypothesis: The true population mean of goals per minute for European and non-European players are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
+
+-   Alternate hypothesis: The true population mean of goals per minute for European and non-European players are different. $H_A = \mu_{EU} - \mu_{non-EU} = 0$
+
+-   The p-value (0.196) is greater than alpha i.e. significance level of 0.05, therefore we fail to reject the null hypothesis
 
 ## Conclusions
 
