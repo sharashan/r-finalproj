@@ -147,7 +147,7 @@ soccer_clean |>
   theme_minimal()
 ```
 
-## Inference/modeling/other analysis Pt. 1
+## Analysis Pt. 1
 
 ```{r}
 #| label: bookings-height-weight-age-rating
@@ -226,7 +226,7 @@ than non-European leagues?"
   theme_minimal()
 ```
 
-## Inference/modeling/other analysis Pt. 2
+## Analysis Pt. 2
 
 -   Used two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant
 
