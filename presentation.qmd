@@ -149,7 +149,7 @@ soccer_clean |>
 
 ## Analysis Pt. 1
 
--   Used one-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant
+-   Used two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant
 
 -   Null hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. $H_0 = \mu_{high} - \mu_{non-high} = 0$
 
