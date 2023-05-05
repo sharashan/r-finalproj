@@ -149,23 +149,6 @@ soccer_clean |>
 
 ## Analysis Pt. 1
 
-```{r}
-#| label: bookings-height-weight-age-rating
-
-bookings_factors_data <- soccer_clean |>
-  mutate(
-    total_bookings = cards_yellow + cards_red + cards_yellowred,
-    player_weight_lb = (player_weight_kg * 2.2)
-  )
-
-bookings_reg <- linear_reg() |>
-  fit(total_bookings ~ player_height_cm + player_weight_lb + 
-        player_age + games_rating,
-      data = bookings_factors_data)
-
-tidy(bookings_reg)
-```
-
 -   Used one-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant
 
 -   Null hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. $H_0 = \mu_{high} - \mu_{non-high} = 0$
@@ -173,6 +156,12 @@ tidy(bookings_reg)
 -   Alternate hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. $H_A = \mu_{high} - \mu_{non-high} \not= 0$
 
 -   The p-value (0.02) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis
+
+-   $$
+    \widehat{bookings} = 12.372558 - 1.185715 \times player~rating
+    $$
+
+-   
 
 ## Highlights from EDA Pt. 2
 
@@ -189,38 +178,34 @@ soccer_clean <- soccer_clean |>
     is_european = ifelse(league_country %in% european_countries, "Yes", "No")
   )
 
-# How does the frequency of bookings (cards_yellow, cards_red, cards_redyellow) 
-# between different leagues, impact the average goals per match? 
-# Does this differ across European and non European leagues?
+# How do goals per minutes (on average) (i.e. goals_total / games_minutes and 
+# group_by(league)) differ within leagues?
 soccer_clean |>
   mutate(
     # total_bookings = cards_yellow + cards_red + cards_yellowred,
-    avg_penalty_by_game = (penalty_scored + penalty_missed) / games_appearences
+    avg_goals_per_min = goals_total / games_minutes
   ) |>
-  ggplot(mapping = aes(x = is_european, y = avg_penalty_by_game)) +
+  # filter(avg_goals_per_min <= 0.015) |>
+  ggplot(mapping = aes(x = is_european, y = avg_goals_per_min)) +
   geom_boxplot() +
   geom_smooth(method = "lm", se = FALSE) +
   labs(
     x = "European",
-    y = "Average Penalty By Game",
-    title = "Do European Leagues tend to have more average penalties per game 
+    y = "Average Goals per Minute",
+    title = "Do European Leagues tend to have score more more goals, on average, 
 than non-European leagues?"
   ) +
   theme_minimal()
 
-# Do the average amount of shots per game differ across leagues?
+# Does number of duels (duels_total) differ across leagues?
 soccer_clean |>
-  mutate(
-    # total_bookings = cards_yellow + cards_red + cards_yellowred,
-    avg_shots_per_game = shots_total / games_appearences
-  ) |>
-  ggplot(mapping = aes(x = is_european, y = avg_shots_per_game)) +
+  ggplot(mapping = aes(x = is_european, y = duels_total)) +
   geom_boxplot() +
   geom_smooth(method = "lm", se = FALSE) +
   labs(
     x = "European",
-    y = "Average Shots Per Game",
-    title = "Do European Leagues tend to take more shots per game, on average, 
+    y = "Total Duels",
+    title = "Do European Leagues tend to duel more, on average, 
 than non-European leagues?"
   ) +
   theme_minimal()
@@ -235,6 +220,10 @@ than non-European leagues?"
 -   Alternate hypothesis: The true population mean of goals per minute for European and non-European players are different. $H_A = \mu_{EU} - \mu_{non-EU} = 0$
 
 -   The p-value (0.196) is greater than alpha i.e. significance level of 0.05, therefore we fail to reject the null hypothesis
+
+-   $$ p = \frac{\exp\{-1.903256924 + 240.017572079 \times average~gpm + 0.004831097 \times duels\}}{1 + \exp\{-1.903256924 + 240.017572079 \times average~gpm + 0.004831097 \times duels\}}$$
+
+-   95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average.
 
 ## Conclusions
 
