@@ -149,9 +149,9 @@ tidy(bookings_reg)
 
 Used two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant
 
--    $H_0 = \mu_{high} - \mu_{non-high} = 0$
+-   $H_0 = \mu_{high} - \mu_{non-high} = 0$
 
--    $H_A = \mu_{high} - \mu_{non-high} \not= 0$
+-   $H_A = \mu_{high} - \mu_{non-high} \not= 0$
 
 -   Reject the null hypothesis (p-value = 0.02)
 
@@ -162,6 +162,9 @@ Used two-sided hypothesis test to determine whether or not the difference in tru
     -   We are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e. positive), implying that non-highly ranked players are booked more than highly ranked players, on average
 
 ## Highlights from EDA Pt. 2
+
+::: panel-tabset
+### Part A
 
 ```{r}
 #| label: analysis-plots-2
@@ -175,6 +178,8 @@ soccer_clean <- soccer_clean |>
   mutate(
     is_european = ifelse(league_country %in% european_countries, "Yes", "No")
   )
+
+
 
 # How do goals per minutes (on average) (i.e. goals_total / games_minutes and 
 # group_by(league)) differ within leagues?
@@ -194,7 +199,11 @@ soccer_clean |>
 than non-European leagues?"
   ) +
   theme_minimal()
+```
 
+### Part B
+
+```{r}
 # Does number of duels (duels_total) differ across leagues?
 soccer_clean |>
   ggplot(mapping = aes(x = is_european, y = duels_total)) +
@@ -208,6 +217,7 @@ than non-European leagues?"
   ) +
   theme_minimal()
 ```
+:::
 
 ## Analysis Pt. 2
 
