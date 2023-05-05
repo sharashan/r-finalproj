@@ -95,7 +95,7 @@ kable(soccer_display)
 
     -   Rows: Individual Players
 
-    -   Columns: Attributes
+    -   Columns: Attributes (Ex: Bookings, Height, Rating, League)
 
 -   The data is used by football fans, sports bettors, and researchers
 

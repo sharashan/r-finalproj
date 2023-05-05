@@ -200,7 +200,7 @@
     "href": "presentation.html#data-introduction",
     "title": "Soccer Statistics Across Leagues",
     "section": "Data Introduction",
-    "text": "Data Introduction\n\n\n\n\n\n\n \n  \n    Player Name \n    Player Age \n    Goals Scored \n  \n \n\n  \n    Son Heung-Min \n    31 \n    23 \n  \n  \n    Mohamed Salah \n    31 \n    23 \n  \n  \n    Cristiano Ronaldo \n    38 \n    18 \n  \n  \n    H. Kane \n    30 \n    17 \n  \n  \n    S. Mané \n    31 \n    16 \n  \n\n\n\n\n\n\n\n\nDataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.\n\nRows: Individual Players\nColumns: Attributes\n\nThe data is used by football fans, sports bettors, and researchers"
+    "text": "Data Introduction\n\n\n\n\n\n\n \n  \n    Player Name \n    Player Age \n    Goals Scored \n  \n \n\n  \n    Son Heung-Min \n    31 \n    23 \n  \n  \n    Mohamed Salah \n    31 \n    23 \n  \n  \n    Cristiano Ronaldo \n    38 \n    18 \n  \n  \n    H. Kane \n    30 \n    17 \n  \n  \n    S. Mané \n    31 \n    16 \n  \n\n\n\n\n\n\n\n\nDataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.\n\nRows: Individual Players\nColumns: Attributes (Ex: Bookings, Height, Rating, League)\n\nThe data is used by football fans, sports bettors, and researchers"
   },
   {
     "objectID": "presentation.html#topic-and-motivation",
