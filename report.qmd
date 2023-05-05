@@ -349,7 +349,7 @@ than non-European leagues?"
 
 Based on the EDA, it is difficult to discern whether there which leagues are more than aggressive than others.
 
-*Identifying Important Predictors:* Next, we fit a logistic regression line that predicted whether the league group was European or not, based on above variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Singificance" section:
+*Identifying Important Predictors:* Next, we fit a logistic regression line that predicted whether the league group was European or not, based on above variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Significance" section:
 
 ```{r}
 #| label: aggressiveness-eu

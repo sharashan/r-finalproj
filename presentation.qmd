@@ -113,21 +113,6 @@ kable(soccer_display)
 #| label: eda-plots-1
 #| message: false
 #| warning: false
-# Rating (cont) vs Bookings
-soccer_clean |>
-  mutate(
-    total_bookings = cards_yellow + cards_red + cards_yellowred
-  ) |>
-  ggplot(mapping = aes(x = games_rating, y = total_bookings)) +
-  geom_jitter() +
-  geom_smooth(method = "lm", se = FALSE) +
-  labs(
-    x = "Player Rating (Across Season Games)",
-    y = "Total Bookings",
-    title = "Do higher-rated players tend to get booked more frequently?"
-  ) +
-  theme_minimal()
-
 # Rating (cat) vs Bookings
 soccer_clean |>
   drop_na(games_rating) |>
@@ -149,13 +134,36 @@ soccer_clean |>
 
 ## Analysis Pt. 1
 
--   Used two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant
+```{r}
+#| label: bookings-height-weight-age-rating
 
--   Null hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. $H_0 = \mu_{high} - \mu_{non-high} = 0$
+bookings_factors_data <- soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    player_weight_lb = (player_weight_kg * 2.2)
+  )
 
--   Alternate hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. $H_A = \mu_{high} - \mu_{non-high} \not= 0$
+bookings_reg <- linear_reg() |>
+  fit(total_bookings ~ player_height_cm + player_weight_lb + 
+        player_age + games_rating,
+      data = bookings_factors_data)
+
+tidy(bookings_reg)
+```
+
+Used two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant
+
+-    $H_0 = \mu_{high} - \mu_{non-high} = 0$
+
+-    $H_A = \mu_{high} - \mu_{non-high} \not= 0$
 
 -   Reject the null hypothesis (p-value = 0.02)
+
+## Conclusions Pt.1
+
+-   Found that player rankings influence the bookings of players
+
+    -   We are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e. positive), implying that non-highly ranked players are booked more than highly ranked players, on average
 
 ## Highlights from EDA Pt. 2
 
@@ -207,34 +215,40 @@ than non-European leagues?"
 
 ## Analysis Pt. 2
 
--   Used two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant
+```{r}
+#| label: aggressiveness-eu
+#| message: false
+#| warning: false
+
+agg_data <- soccer_clean |>
+  mutate(
+  avg_penalty_by_game = (penalty_scored + penalty_missed) / games_appearences,
+  avg_goals_per_min = goals_total / games_minutes,
+  avg_shots_per_game = shots_total / games_appearences,
+  is_european = as.factor(is_european)
+  )
+
+agg_reg <- logistic_reg() |>
+  fit(is_european ~ avg_penalty_by_game + avg_goals_per_min + avg_shots_per_game + duels_total,
+      data = agg_data)
+
+tidy(agg_reg)
+```
+
+Used two-sided hypothesis test to determine whether or not the difference in true population means of goals per minute/duels for European leagues and non-European leagues is significant
 
 -   $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
--   $H_A = \mu_{EU} - \mu_{non-EU} = 0$
+-   $H_A = \mu_{EU} - \mu_{non-EU} \not= 0$
 
--   Fail to reject the null hypothesis (p-value = 0.196)
+-   Goals per minute: fail to reject the null hypothesis (p-value = 0.196)
 
--   Used two-sided hypothesis test to determine whether or not the difference in true population means of duels for European leagues and non-European leagues is significant
+-   Duels: reject the null hypothesis (p-value = 0)
 
--    $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
+## Conclusion Pt. 2
 
--    $H_A = \mu_{EU} - \mu_{non-EU} \not= 0$
+-   Average goals per minute (a proxy for aggressiveness) does not differ between European and non-European leagues.
 
--   Reject the null hypothesis (p-value = 0)
+-   Total number of duels (a proxy for aggressiveness) differs between European and non-European leagues.
 
-## Conclusions
-
-#### RQ1 Conclusion
-
--   What factors influence booking frequency of players?
-
-    -   **We determined that rating was the only significant predictor of bookings in our analysis**
-    -   We are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e. positive), implying that non-highly ranked players are booked more than highly ranked players, on average
-
-#### RQ2 Conclusion
-
--   Does aggressiveness differ between European and non-European leagues?
-
-    -   **We determined that only average goals per minute and total dues are significant predictors when determining the league.**
-    -   95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average
+    -   We are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average

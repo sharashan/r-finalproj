@@ -411,22 +411,36 @@ Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Sha
 </section>
 <section id="highlights-from-eda-pt.-1" class="slide level2">
 <h2>Highlights from EDA Pt. 1</h2>
-<div class="cell" data-hash="presentation_cache/revealjs/eda-plots-1_cfc7d1c1907a4cb48e9e62e57db717ea">
-<div class="cell-output-display">
-<p><img data-src="presentation_files/figure-revealjs/eda-plots-1-1.png" width="960"></p>
-</div>
-<div class="cell-output-display">
-<p><img data-src="presentation_files/figure-revealjs/eda-plots-1-2.png" width="960"></p>
-</div>
-</div>
-</section>
+
+<img data-src="presentation_files/figure-revealjs/eda-plots-1-1.png" width="960" class="r-stretch"></section>
 <section id="analysis-pt.-1" class="slide level2">
 <h2>Analysis Pt. 1</h2>
+<div class="cell" data-hash="presentation_cache/revealjs/bookings-height-weight-age-rating_677d0a17aebe7511ee5ad8ed5ba7076c">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  term             estimate std.error statistic p.value
+  &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)        9.18      5.62       1.63   0.103 
+2 player_height_cm   0.0344    0.0299     1.15   0.251 
+3 player_weight_lb  -0.0168    0.0128    -1.31   0.190 
+4 player_age        -0.0235    0.0336    -0.698  0.485 
+5 games_rating      -1.13      0.524     -2.15   0.0321</code></pre>
+</div>
+</div>
+<p>Used two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant</p>
 <ul>
-<li><p>Used two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant</p></li>
-<li><p>Null hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. <span class="math inline">\(H_0 = \mu_{high} - \mu_{non-high} = 0\)</span></p></li>
-<li><p>Alternate hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. <span class="math inline">\(H_A = \mu_{high} - \mu_{non-high} \not= 0\)</span></p></li>
+<li><p><span class="math inline">\(H_0 = \mu_{high} - \mu_{non-high} = 0\)</span></p></li>
+<li><p><span class="math inline">\(H_A = \mu_{high} - \mu_{non-high} \not= 0\)</span></p></li>
 <li><p>Reject the null hypothesis (p-value = 0.02)</p></li>
+</ul>
+</section>
+<section id="conclusions-pt.1" class="slide level2">
+<h2>Conclusions Pt.1</h2>
+<ul>
+<li><p>Found that player rankings influence the bookings of players</p>
+<ul>
+<li>We are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e.&nbsp;positive), implying that non-highly ranked players are booked more than highly ranked players, on average</li>
+</ul></li>
 </ul>
 </section>
 <section id="highlights-from-eda-pt.-2" class="slide level2">
@@ -442,33 +456,33 @@ Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Sha
 </section>
 <section id="analysis-pt.-2" class="slide level2">
 <h2>Analysis Pt. 2</h2>
+<div class="cell" data-hash="presentation_cache/revealjs/aggressiveness-eu_71f271f0c675210aa867515ab8834afa">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  term                 estimate std.error statistic     p.value
+  &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 (Intercept)          -1.98      0.489      -4.04  0.0000528  
+2 avg_penalty_by_game  -2.76      1.51       -1.82  0.0686     
+3 avg_goals_per_min   305.       65.9         4.62  0.00000387 
+4 avg_shots_per_game   -0.196     0.210      -0.932 0.351      
+5 duels_total           0.00564   0.00106     5.29  0.000000120</code></pre>
+</div>
+</div>
+<p>Used two-sided hypothesis test to determine whether or not the difference in true population means of goals per minute/duels for European leagues and non-European leagues is significant</p>
 <ul>
-<li><p>Used two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant</p></li>
-<li><p><span class="math inline">\(H_0 = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
-<li><p><span class="math inline">\(H_A = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
-<li><p>Fail to reject the null hypothesis (p-value = 0.196)</p></li>
-<li><p>Used two-sided hypothesis test to determine whether or not the difference in true population means of duels for European leagues and non-European leagues is significant</p></li>
 <li><p><span class="math inline">\(H_0 = \mu_{EU} - \mu_{non-EU} = 0\)</span></p></li>
 <li><p><span class="math inline">\(H_A = \mu_{EU} - \mu_{non-EU} \not= 0\)</span></p></li>
-<li><p>Reject the null hypothesis (p-value = 0)</p></li>
+<li><p>Goals per minute: fail to reject the null hypothesis (p-value = 0.196)</p></li>
+<li><p>Duels: reject the null hypothesis (p-value = 0)</p></li>
 </ul>
 </section>
-<section id="conclusions" class="slide level2">
-<h2>Conclusions</h2>
-<h4 id="rq1-conclusion">RQ1 Conclusion</h4>
+<section id="conclusion-pt.-2" class="slide level2">
+<h2>Conclusion Pt. 2</h2>
 <ul>
-<li><p>What factors influence booking frequency of players?</p>
+<li><p>Average goals per minute (a proxy for aggressiveness) does not differ between European and non-European leagues.</p></li>
+<li><p>Total number of duels (a proxy for aggressiveness) differs between European and non-European leagues.</p>
 <ul>
-<li><strong>We determined that rating was the only significant predictor of bookings in our analysis</strong></li>
-<li>We are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e.&nbsp;positive), implying that non-highly ranked players are booked more than highly ranked players, on average</li>
-</ul></li>
-</ul>
-<h4 id="rq2-conclusion">RQ2 Conclusion</h4>
-<ul>
-<li><p>Does aggressiveness differ between European and non-European leagues?</p>
-<ul>
-<li><strong>We determined that only average goals per minute and total dues are significant predictors when determining the league.</strong></li>
-<li>95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e.&nbsp;positive), implying that European leagues duel more than non-European leagues, on average</li>
+<li>We are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e.&nbsp;positive), implying that European leagues duel more than non-European leagues, on average</li>
 </ul></li>
 </ul>
 

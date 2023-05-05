@@ -249,13 +249,27 @@
     "href": "presentation.html#analysis-pt.-1",
     "title": "Soccer Statistics Across Leagues",
     "section": "Analysis Pt. 1",
-    "text": "Analysis Pt. 1\n\nUsed two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant\nNull hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. \\(H_0 = \\mu_{high} - \\mu_{non-high} = 0\\)\nAlternate hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. \\(H_A = \\mu_{high} - \\mu_{non-high} \\not= 0\\)\nReject the null hypothesis (p-value = 0.02)"
+    "text": "Analysis Pt. 1\n\n\n# A tibble: 5 × 5\n  term             estimate std.error statistic p.value\n  <chr>               <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        9.18      5.62       1.63   0.103 \n2 player_height_cm   0.0344    0.0299     1.15   0.251 \n3 player_weight_lb  -0.0168    0.0128    -1.31   0.190 \n4 player_age        -0.0235    0.0336    -0.698  0.485 \n5 games_rating      -1.13      0.524     -2.15   0.0321\n\n\nUsed two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant\n\n\\(H_0 = \\mu_{high} - \\mu_{non-high} = 0\\)\n\\(H_A = \\mu_{high} - \\mu_{non-high} \\not= 0\\)\nReject the null hypothesis (p-value = 0.02)"
   },
   {
     "objectID": "presentation.html#analysis-pt.-2",
     "href": "presentation.html#analysis-pt.-2",
     "title": "Soccer Statistics Across Leagues",
     "section": "Analysis Pt. 2",
-    "text": "Analysis Pt. 2\n\nUsed two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant\n\\(H_0 = \\mu_{EU} - \\mu_{non-EU} = 0\\)\n\\(H_A = \\mu_{EU} - \\mu_{non-EU} = 0\\)\nFail to reject the null hypothesis (p-value = 0.196)\nUsed two-sided hypothesis test to determine whether or not the difference in true population means of duels for European leagues and non-European leagues is significant\n\\(H_0 = \\mu_{EU} - \\mu_{non-EU} = 0\\)\n\\(H_A = \\mu_{EU} - \\mu_{non-EU} \\not= 0\\)\nReject the null hypothesis (p-value = 0)"
+    "text": "Analysis Pt. 2\n\n\n# A tibble: 5 × 5\n  term                 estimate std.error statistic     p.value\n  <chr>                   <dbl>     <dbl>     <dbl>       <dbl>\n1 (Intercept)          -1.98      0.489      -4.04  0.0000528  \n2 avg_penalty_by_game  -2.76      1.51       -1.82  0.0686     \n3 avg_goals_per_min   305.       65.9         4.62  0.00000387 \n4 avg_shots_per_game   -0.196     0.210      -0.932 0.351      \n5 duels_total           0.00564   0.00106     5.29  0.000000120\n\n\nUsed two-sided hypothesis test to determine whether or not the difference in true population means of goals per minute/duels for European leagues and non-European leagues is significant\n\n\\(H_0 = \\mu_{EU} - \\mu_{non-EU} = 0\\)\n\\(H_A = \\mu_{EU} - \\mu_{non-EU} \\not= 0\\)\nGoals per minute: fail to reject the null hypothesis (p-value = 0.196)\nDuels: reject the null hypothesis (p-value = 0)"
+  },
+  {
+    "objectID": "presentation.html#conclusions-pt.1",
+    "href": "presentation.html#conclusions-pt.1",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Conclusions Pt.1",
+    "text": "Conclusions Pt.1\n\nFound that player rankings influence the bookings of players\n\nWe are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e. positive), implying that non-highly ranked players are booked more than highly ranked players, on average"
+  },
+  {
+    "objectID": "presentation.html#conclusion-pt.-2",
+    "href": "presentation.html#conclusion-pt.-2",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Conclusion Pt. 2",
+    "text": "Conclusion Pt. 2\n\nAverage goals per minute (a proxy for aggressiveness) does not differ between European and non-European leagues.\nTotal number of duels (a proxy for aggressiveness) differs between European and non-European leagues.\n\nWe are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average"
   }
 ]
