@@ -18,7 +18,7 @@
     "href": "presentation.html#highlights-from-eda",
     "title": "Soccer Stats Across Leagues",
     "section": "Highlights from EDA",
-    "text": "Highlights from EDA\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2"
+    "text": "Highlights from EDA"
   },
   {
     "objectID": "presentation.html#inferencemodelingother-analysis",
@@ -51,7 +51,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "TEAM NAME",
+    "title": "Skillful Pikachu",
     "section": "",
     "text": "Add project abstract here."
   },
@@ -86,79 +86,79 @@
   {
     "objectID": "proposal.html",
     "href": "proposal.html",
-    "title": "Project title",
+    "title": "Assessing Top Soccer Player Statistics",
     "section": "",
     "text": "library(tidyverse)\nlibrary(skimr)"
   },
   {
     "objectID": "proposal.html#introduction-and-data",
     "href": "proposal.html#introduction-and-data",
-    "title": "Project title",
+    "title": "Assessing Top Soccer Player Statistics",
     "section": "Introduction and data",
     "text": "Introduction and data\n\nIdentify the source of the data.\n\nThe World Bank\n\nState when and how it was originally collected (by the original data curator, not necessarily how you found the data).\n\nVarious sources from various years especially from DHS (demographics and health surveys), i2d2, MICS (Unicef), or IHSDHS (World Bank). The data in the .xlsx file comes from a culmination of all of the sources.\n\nWrite a brief description of the observations.\n\nCountries split by different years of data obtained so there can be different trends of the countries seen by different statistics based on the years the data is gathered."
   },
   {
     "objectID": "proposal.html#research-question",
     "href": "proposal.html#research-question",
-    "title": "Project title",
+    "title": "Assessing Top Soccer Player Statistics",
     "section": "Research question",
     "text": "Research question\n\nA well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)\n\nWhat are the countries that experienced the most drastic shift in educational attainability among the females and the lower classes. What countries did not experience that much of a shift?\nWhat are current countries that have the greatest educational disparity among either gender, place of living, or monetary status?\n\nA description of the research topic along with a concise statement of your hypotheses on this topic.\n\nResearch statement: Understanding differences in education levels among different socioeconomic sectors and years in countries.\nHypothesis: Countries that are considered “first world” such as the US, Canada, and the UK will have the highest education levels across all socioeconomic statuses and have not drastically changed that much throughout the years while countries such as India and other countries considered “third world” might have had an increase in education levels throughout the years but not to the level of the first world countries.\n\nIdentify the types of variables in your research question. Categorical? Quantitative?\n\nThese are quantitative variables."
   },
   {
     "objectID": "proposal.html#glimpse-of-data",
     "href": "proposal.html#glimpse-of-data",
-    "title": "Project title",
+    "title": "Assessing Top Soccer Player Statistics",
     "section": "Glimpse of data",
     "text": "Glimpse of data\nNOTE: THERE ARE TOO MANY COLUMNS (4816) FOR SKIM TO WORK QUICKLY AND EFFICIENTLY SO THREE COLUMNS ARE USED TO SHOW THAT WE USED THE SKIM FUNCTION\n\neducation <- read_csv(\"data/edu.csv\")\n\nRows: 626 Columns: 4816\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr   (19): country, stype, ccode, datasrc, cname, ccode3, countryname, coun...\ndbl (4797): year, aAll_1, aUrban_1, aRural_1, aMale_1, aFemale_1, aMalUrb_1,...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nskim(education, \"aAll_1\", \"aUrban_1\", \"aRural_1\")\n\n\nData summary\n\n\nName\neducation\n\n\nNumber of rows\n626\n\n\nNumber of columns\n4816\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nnumeric\n3\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\naAll_1\n0\n1.00\n0.87\n0.16\n0.25\n0.83\n0.95\n0.98\n1\n▁▁▁▂▇\n\n\naUrban_1\n10\n0.98\n0.93\n0.09\n0.54\n0.92\n0.97\n0.99\n1\n▁▁▁▂▇\n\n\naRural_1\n10\n0.98\n0.84\n0.20\n0.08\n0.78\n0.93\n0.98\n1\n▁▁▁▂▇"
   },
   {
     "objectID": "proposal.html#introduction-and-data-1",
     "href": "proposal.html#introduction-and-data-1",
-    "title": "Project title",
+    "title": "Assessing Top Soccer Player Statistics",
     "section": "Introduction and data",
     "text": "Introduction and data\n\nIdentify the source of the data.\n\nThe World Health Organization Global Health Expenditure Database\n\nState when and how it was originally collected (by the original data curator, not necessarily how you found the data).\n\nMember states who report the data to WHO. WHO can make estimations to fill any gaps. Data is updated yearly with a two-year lag.\n\nWrite a brief description of the observations.\n\nEvery observation is a country/year combination and corresponding variables pertaining to expenditures on disease categories such as infectious/parasitic diseases, NCDs, reproductive health, nutritional deficiencies, or reproductive health."
   },
   {
     "objectID": "proposal.html#research-question-1",
     "href": "proposal.html#research-question-1",
-    "title": "Project title",
+    "title": "Assessing Top Soccer Player Statistics",
     "section": "Research question",
     "text": "Research question\n\nA well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)\n\nWhat are the priorities of different countries/different regions of countries, based on their percentage of health expenditures of various categories of disease?\nDo high and low income countries have the same health priorities or different ones?\nHow do health priorities compare by region?\nBy joining with another dataset, we may be able to answer whether increased spending has a relationship with less disease.\n\nA description of the research topic along with a concise statement of your hypotheses on this topic.\n\nThe research topic is based on various expenditures by country and year, and how they relate to a variety of diseases. Our hypothesis is, How does the distribution of a countries health expenditures and the resulting out of pocket expenses correlate with various diseases and conditions?\n\nIdentify the types of variables in your research question. Categorical? Quantitative?\n\nCountry, region, income, and disease category are categorical. Year can be either, depending on how it is used. All other variables are quantitative.\nSome other quantitative variables we could use are listed below, and they represent various expenditures per capita in USD.\n\nche (current health expenditure in millions)\nche_gdp (current health expenditure as a percent of nation’s gdp)\nche_pc_usd (current health expenditure per capita )\ngghed_pc_usd (domestic general government health expenditure per capita)\npvtd_pc_usd (domestic private health expenditure per capita)\noop_pc_usd (out of pocket expenditure per capita)"
   },
   {
     "objectID": "proposal.html#glimpse-of-data-1",
     "href": "proposal.html#glimpse-of-data-1",
-    "title": "Project title",
+    "title": "Assessing Top Soccer Player Statistics",
     "section": "Glimpse of data",
     "text": "Glimpse of data\n\nlibrary(\"readxl\")\nhealth <- read_excel(\"data/GHED_data.XLSX\", sheet = \"Data\")\n\nskim(health, \"country\", \"region\", \"income\", \"che\", \"che_gdp\", \"che_pc_usd\", \"gghed_pc_usd\", \"pvtd_pc_usd\", \"oop_pc_usd\")\n\n\nData summary\n\n\nName\nhealth\n\n\nNumber of rows\n4224\n\n\nNumber of columns\n3220\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n3\n\n\nnumeric\n6\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\ncountry\n0\n1\n4\n34\n0\n192\n0\n\n\nregion\n0\n1\n3\n4\n0\n6\n0\n\n\nincome\n0\n1\n3\n12\n0\n4\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nche\n243\n0.94\n6597770.22\n66623331.23\n0.06\n1656.00\n26441.40\n236615.31\n2.102209e+09\n▇▁▁▁▁\n\n\nche_gdp\n244\n0.94\n6.24\n2.98\n1.26\n4.15\n5.67\n7.93\n5.018000e+01\n▇▁▁▁▁\n\n\nche_pc_usd\n243\n0.94\n917.10\n1593.17\n4.45\n63.14\n259.03\n867.06\n1.170241e+04\n▇▁▁▁▁\n\n\ngghed_pc_usd\n252\n0.94\n615.95\n1152.05\n0.15\n21.97\n130.38\n545.15\n7.857190e+03\n▇▁▁▁▁\n\n\npvtd_pc_usd\n254\n0.94\n278.20\n564.90\n0.91\n23.95\n87.47\n294.01\n6.788900e+03\n▇▁▁▁▁\n\n\noop_pc_usd\n254\n0.94\n182.30\n271.12\n0.09\n19.56\n69.39\n225.47\n2.761980e+03\n▇▁▁▁▁"
   },
   {
     "objectID": "proposal.html#introduction-and-data-2",
     "href": "proposal.html#introduction-and-data-2",
-    "title": "Project title",
+    "title": "Assessing Top Soccer Player Statistics",
     "section": "Introduction and data",
     "text": "Introduction and data\n\nIdentify the source of the data.\n\nSource: https://www.api-football.com/documentation-v3\n\nState when and how it was originally collected (by the original data curator, not necessarily how you found the data).\n\nThe data was created by using the API collected from https://www.api-football.com/documentation-v3. We collected the data by making a GET request to their top scorers endpoint, focusing on 27 of the top leagues in 2021. Thus, as you can see in the code snippet below for each of the leagues we make an API call to fetch the top scorers in the league. The API returns the top 20 goal scorers for the respective league as specified per the query string parameters.\n\nWrite a brief description of the observations.\n\nEach observation represents a top 20 football scorer (with regards to their league) for the 2021 season. From this we can have see a lot of interesting background information of the player like their height, weight, nationality, etc. In addition to the background information, we also have a lot of statistics for the player in the given season (like passes, goals scored, assists, penalties, etc)."
   },
   {
     "objectID": "proposal.html#research-question-2",
     "href": "proposal.html#research-question-2",
-    "title": "Project title",
+    "title": "Assessing Top Soccer Player Statistics",
     "section": "Research question",
     "text": "Research question\n\nA well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)\n\nIs their a correlation between height and/or weight and specific game statistics (Including: goals scored, assists, penalties, passes, etc)\n\nAs a sub question: Do taller players complete a larger percentage of passes?\nA description of the research topic along with a concise statement of your hypotheses on this topic.\nIdentify the types of variables in your research question. Categorical? Quantitative?"
   },
   {
     "objectID": "proposal.html#glimpse-of-data-2",
     "href": "proposal.html#glimpse-of-data-2",
-    "title": "Project title",
+    "title": "Assessing Top Soccer Player Statistics",
     "section": "Glimpse of data",
     "text": "Glimpse of data\n\nlibrary(httr)\nlibrary(jsonlite)\n\n\nAttaching package: 'jsonlite'\n\n\nThe following object is masked from 'package:purrr':\n\n    flatten\n\ntop_scorers <- read_csv(\"./data/top_goalscorers.csv\")\n\nNew names:\n• `player.id` -> `player.id...1`\n• `player.id` -> `player.id...48`\n\n\nRows: 560 Columns: 61\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (16): team.name, team.logo, league.name, league.country, league.logo, l...\ndbl  (36): player.id...1, team.id, league.id, league.season, games.appearenc...\nlgl   (8): games.number, games.captain, goals.saves, dribbles.past, penalty....\ndate  (1): player.birth.date\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nskim(top_scorers)\n\n\nData summary\n\n\nName\ntop_scorers\n\n\nNumber of rows\n560\n\n\nNumber of columns\n61\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n16\n\n\nDate\n1\n\n\nlogical\n8\n\n\nnumeric\n36\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nteam.name\n0\n1.00\n3\n27\n0\n355\n0\n\n\nteam.logo\n0\n1.00\n51\n54\n0\n455\n0\n\n\nleague.name\n0\n1.00\n7\n26\n0\n26\n0\n\n\nleague.country\n0\n1.00\n3\n12\n0\n13\n0\n\n\nleague.logo\n0\n1.00\n53\n54\n0\n71\n0\n\n\nleague.flag\n0\n1.00\n42\n42\n0\n36\n0\n\n\ngames.position\n0\n1.00\n8\n10\n0\n3\n0\n\n\nplayer.name\n0\n1.00\n3\n32\n0\n544\n0\n\n\nplayer.firstname\n0\n1.00\n3\n30\n0\n504\n0\n\n\nplayer.lastname\n0\n1.00\n2\n27\n0\n535\n0\n\n\nplayer.nationality\n0\n1.00\n3\n22\n0\n68\n0\n\n\nplayer.height\n34\n0.94\n6\n6\n0\n35\n0\n\n\nplayer.weight\n57\n0.90\n5\n5\n0\n40\n0\n\n\nplayer.photo\n0\n1.00\n53\n57\n0\n555\n0\n\n\nplayer.birth.place\n42\n0.92\n1\n26\n0\n405\n1\n\n\nplayer.birth.country\n0\n1.00\n3\n22\n0\n63\n0\n\n\n\nVariable type: Date\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nmedian\nn_unique\n\n\n\n\nplayer.birth.date\n0\n1\n1981-04-06\n2003-06-13\n1994-07-26\n522\n\n\n\nVariable type: logical\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\ncount\n\n\n\n\ngames.number\n560\n0\nNaN\n:\n\n\ngames.captain\n0\n1\n0\nFAL: 560\n\n\ngoals.saves\n560\n0\nNaN\n:\n\n\ndribbles.past\n560\n0\nNaN\n:\n\n\npenalty.won\n560\n0\nNaN\n:\n\n\npenalty.commited\n560\n0\nNaN\n:\n\n\npenalty.saved\n560\n0\nNaN\n:\n\n\nplayer.injured\n0\n1\n0\nFAL: 560\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nplayer.id…1\n0\n1.00\n280.50\n161.80\n1.0\n140.75\n280.50\n420.25\n560.0\n▇▇▇▇▇\n\n\nteam.id\n0\n1.00\n1377.56\n2288.07\n33.0\n178.75\n504.00\n1361.75\n15130.0\n▇▁▁▁▁\n\n\nleague.id\n0\n1.00\n114.21\n64.97\n39.0\n72.75\n91.50\n137.75\n307.0\n▇▆▁▁▁\n\n\nleague.season\n0\n1.00\n2021.00\n0.00\n2021.0\n2021.00\n2021.00\n2021.00\n2021.0\n▁▁▇▁▁\n\n\ngames.appearences\n0\n1.00\n29.53\n9.60\n1.0\n27.00\n32.00\n36.00\n49.0\n▁▁▃▇▁\n\n\ngames.lineups\n0\n1.00\n25.28\n9.75\n1.0\n19.00\n27.00\n32.00\n49.0\n▂▅▇▇▁\n\n\ngames.minutes\n0\n1.00\n2205.56\n834.30\n59.0\n1732.75\n2339.50\n2783.00\n4335.0\n▂▃▇▆▁\n\n\ngames.rating\n122\n0.78\n7.11\n0.27\n6.2\n6.93\n7.07\n7.26\n8.3\n▁▇▇▂▁\n\n\nsubstitutes.in\n0\n1.00\n4.24\n4.40\n0.0\n1.00\n3.00\n6.00\n26.0\n▇▂▁▁▁\n\n\nsubstitutes.out\n0\n1.00\n11.59\n6.69\n0.0\n6.00\n12.00\n16.00\n32.0\n▆▆▇▂▁\n\n\nsubstitutes.bench\n0\n1.00\n4.69\n5.25\n0.0\n1.00\n3.00\n7.00\n31.0\n▇▂▁▁▁\n\n\nshots.total\n124\n0.78\n52.82\n25.61\n1.0\n38.00\n52.00\n67.00\n162.0\n▂▇▃▁▁\n\n\nshots.on\n126\n0.78\n28.92\n14.17\n1.0\n21.00\n28.00\n36.00\n92.0\n▃▇▃▁▁\n\n\ngoals.total\n0\n1.00\n11.65\n5.57\n2.0\n8.00\n11.00\n14.00\n43.0\n▇▇▂▁▁\n\n\ngoals.conceded\n122\n0.78\n0.00\n0.00\n0.0\n0.00\n0.00\n0.00\n0.0\n▁▁▇▁▁\n\n\ngoals.assists\n177\n0.68\n4.64\n3.20\n1.0\n2.00\n4.00\n6.00\n19.0\n▇▅▁▁▁\n\n\npasses.total\n122\n0.78\n639.12\n356.61\n3.0\n409.75\n624.50\n856.75\n2301.0\n▅▇▃▁▁\n\n\npasses.key\n130\n0.77\n34.81\n21.90\n1.0\n19.00\n31.00\n46.00\n142.0\n▇▆▂▁▁\n\n\npasses.accuracy\n122\n0.78\n16.07\n8.51\n2.0\n10.00\n14.00\n20.00\n68.0\n▇▅▁▁▁\n\n\ntackles.total\n131\n0.77\n20.79\n15.47\n1.0\n10.00\n17.00\n29.00\n101.0\n▇▃▁▁▁\n\n\ntackles.blocks\n219\n0.61\n2.87\n1.97\n1.0\n1.00\n2.00\n4.00\n10.0\n▇▃▂▁▁\n\n\ntackles.interceptions\n147\n0.74\n9.30\n7.41\n1.0\n4.00\n7.00\n13.00\n50.0\n▇▃▁▁▁\n\n\nduels.total\n122\n0.78\n280.39\n148.71\n1.0\n191.00\n275.50\n364.00\n897.0\n▃▇▃▁▁\n\n\nduels.won\n123\n0.78\n124.60\n69.39\n1.0\n81.00\n121.00\n163.00\n467.0\n▅▇▂▁▁\n\n\ndribbles.attempts\n127\n0.77\n51.97\n37.55\n1.0\n24.00\n43.00\n72.00\n209.0\n▇▆▂▁▁\n\n\ndribbles.success\n137\n0.76\n26.70\n19.84\n1.0\n12.00\n22.00\n37.00\n111.0\n▇▅▂▁▁\n\n\nfouls.drawn\n129\n0.77\n35.47\n21.17\n1.0\n21.00\n34.00\n47.00\n119.0\n▆▇▃▁▁\n\n\nfouls.committed\n127\n0.77\n30.28\n18.00\n1.0\n17.00\n29.00\n41.00\n104.0\n▇▇▃▁▁\n\n\ncards.yellow\n0\n1.00\n3.78\n2.71\n0.0\n2.00\n3.00\n5.00\n14.0\n▇▇▃▁▁\n\n\ncards.yellowred\n0\n1.00\n0.06\n0.23\n0.0\n0.00\n0.00\n0.00\n1.0\n▇▁▁▁▁\n\n\ncards.red\n0\n1.00\n0.09\n0.31\n0.0\n0.00\n0.00\n0.00\n3.0\n▇▁▁▁▁\n\n\npenalty.scored\n122\n0.78\n1.58\n1.88\n0.0\n0.00\n1.00\n3.00\n9.0\n▇▃▂▁▁\n\n\npenalty.missed\n122\n0.78\n0.37\n0.67\n0.0\n0.00\n0.00\n1.00\n4.0\n▇▂▁▁▁\n\n\nplayer.id…48\n0\n1.00\n39532.19\n52257.87\n25.0\n8892.50\n25118.50\n45493.50\n323800.0\n▇▁▁▁▁\n\n\nplayer.age\n0\n1.00\n29.26\n4.32\n20.0\n26.00\n29.00\n33.00\n42.0\n▃▇▇▃▁\n\n\nid\n0\n1.00\n10.48\n5.76\n1.0\n5.75\n10.00\n15.00\n20.0\n▇▇▇▇▇\n\n\n\n\ntop_scorers\n\n# A tibble: 560 × 61\n   player.id...1 team.id team.name         team.logo       league.id league.name\n           <dbl>   <dbl> <chr>             <chr>               <dbl> <chr>      \n 1             1      47 Tottenham         https://media-…        39 Premier Le…\n 2             2      40 Liverpool         https://media-…        39 Premier Le…\n 3             3      33 Manchester United https://media-…        39 Premier Le…\n 4             4      47 Tottenham         https://media-…        39 Premier Le…\n 5             5      40 Liverpool         https://media-…        39 Premier Le…\n 6             6      50 Manchester City   https://media-…        39 Premier Le…\n 7             7      40 Liverpool         https://media-…        39 Premier Le…\n 8             8      46 Leicester         https://media-…        39 Premier Le…\n 9             9      52 Crystal Palace    https://media-…        39 Premier Le…\n10            10      50 Manchester City   https://media-…        39 Premier Le…\n# ℹ 550 more rows\n# ℹ 55 more variables: league.country <chr>, league.logo <chr>,\n#   league.flag <chr>, league.season <dbl>, games.appearences <dbl>,\n#   games.lineups <dbl>, games.minutes <dbl>, games.number <lgl>,\n#   games.position <chr>, games.rating <dbl>, games.captain <lgl>,\n#   substitutes.in <dbl>, substitutes.out <dbl>, substitutes.bench <dbl>,\n#   shots.total <dbl>, shots.on <dbl>, goals.total <dbl>, …\n\n# url <- \"https://api-football-v1.p.rapidapi.com/v3/players/topscorers\"\n\n#  == LEAGUE IDs BELOW ==\n# England League 39, 40, 41\n# France League 1 61 2, 63\n# Saudi Arabia Pro League 307\n# Brazil Serie A 71, B 72, C 73, D 76\n# Italy Serie A 135, B 136, C 137, D [426,427,428,429]\n# Portugal 1 94, 2 95\n# Argentina A 128, B 131\n# Germany 78, 79, 80\n# Spain 140, 141, 142\n# USA 254\n# Belgium 144, 145\n# Netherlands 88, 89\n\n# == DATA FETCH & SANITIZATION BELOW == \n# leagues <- c(\"39\", \"40\", \"41\", \"307\", \"61\", \"63\", \"71\", \"72\", \"73\", \"76\", \"135\", \"136\", \"137\", \"94\", \"95\", \"128\", \"131\", \"78\", \"79\", \"80\", \"140\", \"141\", \"253\", \"262\", \"144\", \"145\", \"88\", \"89\")\n# \n# queryString <- list(\n#   league = \"39\",\n#   season = \"2021\"\n# )\n# \n# all_leagues <- NULL\n# \n# for (x in leagues) {\n#   queryString <- list(\n#     league = x,\n#     season = \"2021\"\n#   )\n# \n#   # Verb snippet below provided by API docs\n#   # NOTE: API key will incur rate-limits, so may not work at the time [FREE Limitations]\n#   response <- VERB(\"GET\", url, add_headers(\"X-RapidAPI-Key\" = \"dfd9043453mshb6c979e3b50cc80p1efc9bjsn4805f4646934\", \"X-RapidAPI-Host\" = \"api-football-v1.p.rapidapi.com\"), query = queryString, content_type(\"application/json\"))\n# \n#   text_res <- content(response, \"text\")\n# \n#   player_info <- fromJSON(text_res, flatten = TRUE)\n# \n#   player_tibble <- as_tibble(player_info$response)\n# \n#   player_tibble <- player_tibble |>\n#     mutate(id = row_number()) |>\n#     unnest(statistics)\n# \n#   print(x)\n#   all_leagues <- bind_rows(all_leagues, player_tibble)\n# }\n# \n# write.table(all_leagues, file = \"./data/top_goalscorers.csv\")"
   },
   {
     "objectID": "presentation.html",
     "href": "presentation.html",
-    "title": "Soccer Stats Across Leagues",
+    "title": "Soccer Statistics Across Leagues",
     "section": "",
-    "text": "Topic: Analyze offensive stats for soccer players in various leagues during 2021 season.\nMotivation: Find relationships between soccer players, leagues, and their stats.\n\nResearch Questions:\n\nWhat factors influence booking frequency of players?\nDoes aggressiveness differ between European and non-European leagues?"
+    "text": "Topic: Analyze offensive stats for soccer players in various leagues during 2021 season.\nMotivation: Find relationships between soccer players, leagues, and their stats.\nResearch Questions:\n\nWhat factors influence booking frequency of players?\nDoes aggressiveness differ between European and non-European leagues?"
   },
   {
     "objectID": "report.html#motivation",
@@ -172,7 +172,7 @@
     "href": "report.html#composition",
     "title": "Assessing Top Soccer Player Statistics",
     "section": "Composition",
-    "text": "Composition\nIn our data set, there are 560 observations and 51 attributes (columns). Of these columns, we have information on player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season. The people involved are football players, who are aware of data collection, as this occurs during and after all of their games because sports data is typically used to make general comparisons (past/future versions of themselves, comparing their team to another, or between leagues, sports reporting (to football fans), or MVP decisions. In the dataset of soccer player statistics, some instances may have missing information for certain attributes. However, these occurrences of missing data should be more frequent. The information needs to be included because the data is compiled from thousands of games across multiple leagues worldwide. Each league or team may prioritize and record specific statistics that they find important, resulting in variations in the recorded statistics across different leagues.\nThe relationships between the individual instances (players) are made explicit through the tabular structure, where each row corresponds to a specific player, and each column represents their associated statistics. As this is game data, it was likely influenced by referee rulings, as some scores may not have counted in the final game statistics."
+    "text": "Composition\nIn our data set, there are 560 observations and 51 attributes (columns). Of these columns, we have information on player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season. The people involved are football players, who are aware of data collection, as this occurs during and after all of their games because sports data is typically used to make general comparisons (past/future versions of themselves, comparing their team to another, or between leagues, sports reporting (to football fans), or MVP decisions. In the dataset of soccer player statistics, some instances may have missing information for certain attributes. This is due to the fact that each league may prioritize and record specific statistics that they find important, resulting in variations in the recorded statistics across different leagues. Additionally, some leagues are smaller than others and may not have the same telemetry.\nThe relationships between the individual instances (players) are made explicit through the tabular structure, where each row corresponds to a specific player, and each column represents their associated statistics. As this is game data, it was likely influenced by referee rulings, as some scores may not have counted in the final game statistics."
   },
   {
     "objectID": "report.html#collection-process",
@@ -198,22 +198,85 @@
   {
     "objectID": "presentation.html#data-introduction",
     "href": "presentation.html#data-introduction",
-    "title": "Soccer Stats Across Leagues",
+    "title": "Soccer Statistics Across Leagues",
     "section": "Data Introduction",
-    "text": "Data Introduction\n\n\n\n\n\n\n \n  \n    Player Name \n    Player Age \n    Goals Scored \n  \n \n\n  \n    Son Heung-Min \n    31 \n    23 \n  \n  \n    Mohamed Salah \n    31 \n    23 \n  \n  \n    Cristiano Ronaldo \n    38 \n    18 \n  \n  \n    H. Kane \n    30 \n    17 \n  \n  \n    S. Mané \n    31 \n    16 \n  \n\n\n\n\n\n\n\nDataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.\n\nRows: Individual Players\nColumns: Attributes\n\nThe data is used by football fans, sports bettors, and researchers."
+    "text": "Data Introduction\n\n\n\n\n\n\n \n  \n    Player Name \n    Player Age \n    Goals Scored \n  \n \n\n  \n    Son Heung-Min \n    31 \n    23 \n  \n  \n    Mohamed Salah \n    31 \n    23 \n  \n  \n    Cristiano Ronaldo \n    38 \n    18 \n  \n  \n    H. Kane \n    30 \n    17 \n  \n  \n    S. Mané \n    31 \n    16 \n  \n\n\n\n\n\n\n\n\nDataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.\n\nRows: Individual Players\nColumns: Attributes (Ex: Bookings, Height, Rating, League)\n\nThe data is used by football fans, sports bettors, and researchers"
   },
   {
     "objectID": "presentation.html#topic-and-motivation",
     "href": "presentation.html#topic-and-motivation",
-    "title": "Soccer Stats Across Leagues",
+    "title": "Soccer Statistics Across Leagues",
     "section": "Topic and Motivation",
-    "text": "Topic and Motivation\n\nTopic: Analyze offensive stats for soccer players in various leagues during 2021 season.\nMotivation: Find relationships between soccer players, leagues, and their stats.\n\nResearch Questions:\n\nWhat factors influence booking frequency of players?\nDoes aggressiveness differ between European and non-European leagues?"
+    "text": "Topic and Motivation\nTopic: Analyze offensive stats for soccer players in various leagues during 2021 season.\nMotivation: Find relationships between soccer players, leagues, and their stats.\nResearch Questions:\n\nWhat factors influence booking frequency of players?\nDoes aggressiveness differ between European and non-European leagues?"
   },
   {
     "objectID": "presentation.html#conclusions",
     "href": "presentation.html#conclusions",
-    "title": "Soccer Stats Across Leagues",
+    "title": "Soccer Statistics Across Leagues",
     "section": "Conclusions",
-    "text": "Conclusions\nRQ1 Conclusion\n\nWhat factors influence booking frequency of players?\n\nWe determined that rating was the only significant predictor of bookings in our analysis\n\n\nRQ2 Conclusion\n\nDoes aggressiveness differ between European and non-European leagues?\n\nWe determined that only average goals per minute and total dues are significant predictors when determining the league."
+    "text": "Conclusions\nRQ1 Conclusion\n\nWhat factors influence booking frequency of players?\n\nWe determined that rating was the only significant predictor of bookings in our analysis\nWe are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e. positive), implying that non-highly ranked players are booked more than highly ranked players, on average\n\n\nRQ2 Conclusion\n\nDoes aggressiveness differ between European and non-European leagues?\n\nWe determined that only average goals per minute and total dues are significant predictors when determining the league.\n95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average"
+  },
+  {
+    "objectID": "presentation.html#highlights-from-eda-pt.-1",
+    "href": "presentation.html#highlights-from-eda-pt.-1",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Highlights from EDA Pt. 1",
+    "text": "Highlights from EDA Pt. 1"
+  },
+  {
+    "objectID": "presentation.html#inferencemodelingother-analysis-pt.-1",
+    "href": "presentation.html#inferencemodelingother-analysis-pt.-1",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Inference/modeling/other analysis Pt. 1",
+    "text": "Inference/modeling/other analysis Pt. 1\n\n\n# A tibble: 5 × 5\n  term             estimate std.error statistic p.value\n  <chr>               <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        9.18      5.62       1.63   0.103 \n2 player_height_cm   0.0344    0.0299     1.15   0.251 \n3 player_weight_lb  -0.0168    0.0128    -1.31   0.190 \n4 player_age        -0.0235    0.0336    -0.698  0.485 \n5 games_rating      -1.13      0.524     -2.15   0.0321\n\n\n\nUsed one-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant\nNull hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. \\(H_0 = \\mu_{high} - \\mu_{non-high} = 0\\)\nAlternate hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are different. \\(H_A = \\mu_{high} - \\mu_{non-high} \\not= 0\\)\nThe p-value (0.02) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis"
+  },
+  {
+    "objectID": "presentation.html#highlights-from-eda-pt.-2",
+    "href": "presentation.html#highlights-from-eda-pt.-2",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Highlights from EDA Pt. 2",
+    "text": "Highlights from EDA Pt. 2\n\nPart APart B\n\n\n\n\n\n\n\n\n\n\n\nWarning: Removed 122 rows containing non-finite values (`stat_boxplot()`).\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 122 rows containing non-finite values (`stat_smooth()`)."
+  },
+  {
+    "objectID": "presentation.html#inferencemodelingother-analysis-pt.-2",
+    "href": "presentation.html#inferencemodelingother-analysis-pt.-2",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Inference/modeling/other analysis Pt. 2",
+    "text": "Inference/modeling/other analysis Pt. 2\n\nUsed two-sided hypothesis test to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues are significant\nNull hypothesis: The true population mean of goals per minute for European and non-European players are not different. \\(H_0 = \\mu_{EU} - \\mu_{non-EU} = 0\\)\nAlternate hypothesis: The true population mean of goals per minute for European and non-European players are different. \\(H_A = \\mu_{EU} - \\mu_{non-EU} = 0\\)\nThe p-value (0.196) is greater than alpha i.e. significance level of 0.05, therefore we fail to reject the null hypothesis"
+  },
+  {
+    "objectID": "presentation.html#analysis-pt.-1",
+    "href": "presentation.html#analysis-pt.-1",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Analysis Pt. 1",
+    "text": "Analysis Pt. 1\n\n\n# A tibble: 5 × 5\n  term             estimate std.error statistic p.value\n  <chr>               <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        9.18      5.62       1.63   0.103 \n2 player_height_cm   0.0344    0.0299     1.15   0.251 \n3 player_weight_lb  -0.0168    0.0128    -1.31   0.190 \n4 player_age        -0.0235    0.0336    -0.698  0.485 \n5 games_rating      -1.13      0.524     -2.15   0.0321\n\n\nUsed two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant\n\n\\(H_0 = \\mu_{high} - \\mu_{non-high} = 0\\)\n\\(H_A = \\mu_{high} - \\mu_{non-high} \\not= 0\\)\nReject the null hypothesis (p-value = 0.02)"
+  },
+  {
+    "objectID": "presentation.html#analysis-pt.-2",
+    "href": "presentation.html#analysis-pt.-2",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Analysis Pt. 2",
+    "text": "Analysis Pt. 2\n\n\n# A tibble: 5 × 5\n  term                 estimate std.error statistic     p.value\n  <chr>                   <dbl>     <dbl>     <dbl>       <dbl>\n1 (Intercept)          -1.98      0.489      -4.04  0.0000528  \n2 avg_penalty_by_game  -2.76      1.51       -1.82  0.0686     \n3 avg_goals_per_min   305.       65.9         4.62  0.00000387 \n4 avg_shots_per_game   -0.196     0.210      -0.932 0.351      \n5 duels_total           0.00564   0.00106     5.29  0.000000120\n\n\nUsed two-sided hypothesis test to determine whether or not the difference in true population means of goals per minute/duels for European leagues and non-European leagues is significant\n\n\\(H_0 = \\mu_{EU} - \\mu_{non-EU} = 0\\)\n\\(H_A = \\mu_{EU} - \\mu_{non-EU} \\not= 0\\)\nGoals per minute: fail to reject the null hypothesis (p-value = 0.196)\nDuels: reject the null hypothesis (p-value = 0)"
+  },
+  {
+    "objectID": "presentation.html#conclusions-pt.1",
+    "href": "presentation.html#conclusions-pt.1",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Conclusions Pt.1",
+    "text": "Conclusions Pt.1\n\nFound that player rankings influence the bookings of players\n\nWe are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e. positive), implying that non-highly ranked players are booked more than highly ranked players, on average"
+  },
+  {
+    "objectID": "presentation.html#conclusion-pt.-2",
+    "href": "presentation.html#conclusion-pt.-2",
+    "title": "Soccer Statistics Across Leagues",
+    "section": "Conclusion Pt. 2",
+    "text": "Conclusion Pt. 2\n\nAverage goals per minute (a proxy for aggressiveness) does not differ between European and non-European leagues.\nTotal number of duels (a proxy for aggressiveness) differs between European and non-European leagues.\n\nWe are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average"
+  },
+  {
+    "objectID": "report.html#analysis-1-what-factors-influence-booking-frequency-of-players-specifically-do-player-height-weight-age-or-games-rating-have-a-statistically-significant-influence",
+    "href": "report.html#analysis-1-what-factors-influence-booking-frequency-of-players-specifically-do-player-height-weight-age-or-games-rating-have-a-statistically-significant-influence",
+    "title": "Assessing Top Soccer Player Statistics",
+    "section": "Analysis #1: What factors influence booking frequency of players? Specifically, do player height, weight, age, or games rating have a statistically significant influence?",
+    "text": "Analysis #1: What factors influence booking frequency of players? Specifically, do player height, weight, age, or games rating have a statistically significant influence?\nExplanatory Data Analysis: In order to investigate this question, we conducted a preliminary exploratory data analysis to visualize the relationships between those variables are total booking:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBased on our EDA, there appeared as though non-highly ranked players were booked more than highly ranked players, where highly ranked players were rated greater than or equal to the mean player rating, and non-highly ranked players were rated less than the mean player rating.\nIdentifying Important Predictors: Then, we fit a multiple linear regression line that predicted total bookings based on those variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our “Evaluation of Significance” section:\n\n\n# A tibble: 5 × 5\n  term             estimate std.error statistic p.value\n  <chr>               <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        9.18      5.62       1.63   0.103 \n2 player_height_cm   0.0344    0.0299     1.15   0.251 \n3 player_weight_lb  -0.0168    0.0128    -1.31   0.190 \n4 player_age        -0.0235    0.0336    -0.698  0.485 \n5 games_rating      -1.13      0.524     -2.15   0.0321\n\n\nBased on the above results, player rating (represented by games_rating) was the only predictor with a p-value < the significance level, 0.05. Furthermore, based on our side-by-side box plot representing the distribution of total bookings for highly rated players vs non-highly rated players in our explanatory data analysis, it appeared as though non-highly ranked players get booked more frequently. However, the visualization itself did not tell us if that difference was significant. In the following section, we will conduct a hypothesis test to evaluate this.\n\nAnalysis #2: Are some leagues more aggressive, on average, than others?\nExplanatory Data Analysis: Aggressiveness is not a variable in our data set, therefore we indirectly measured this through booking frequency, average penalties per game, average goals per minute, average shots per game, and total duels. We also compared European leagues against non-European leagues.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBased on the EDA, it is difficult to discern whether there which leagues are more than aggressive than others.\nIdentifying Important Predictors: Next, we fit a logistic regression line that predicted whether the league group was European or not, based on above variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our “Evaluation of Significance” section:\n\n\n# A tibble: 5 × 5\n  term                 estimate std.error statistic     p.value\n  <chr>                   <dbl>     <dbl>     <dbl>       <dbl>\n1 (Intercept)          -1.98      0.489      -4.04  0.0000528  \n2 avg_penalty_by_game  -2.76      1.51       -1.82  0.0686     \n3 avg_goals_per_min   305.       65.9         4.62  0.00000387 \n4 avg_shots_per_game   -0.196     0.210      -0.932 0.351      \n5 duels_total           0.00564   0.00106     5.29  0.000000120\n\n\nBased on our results, average goals per minute and total duels were the only predictors with p-values < the significance level, 0.05 (at 3.869903e-06 and 1.195738e-07, respectively). In the following section, we will conduct a hypothesis test to evaluate the difference in “aggressiveness” of European and non-European leagues."
   }
 ]

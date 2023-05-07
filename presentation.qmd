@@ -1,5 +1,5 @@
 ---
-title: Soccer Stats Across Leagues
+title: Soccer Statistics Across Leagues
 author: Skillful Pikachu <br> Henry Friedberg, Pranathi Adhikari, John Aclufi, Shara Shanmugasundaram 
 title-slide-attributes:
   style: |
@@ -13,21 +13,48 @@ date: May 5, 2023
 format: 
   revealjs:
     theme: "serif"
+    scrollable: true
 editor: visual
 execute:
   echo: false
   cache: true
 ---
 
-## Topic and Motivation
+```{r}
+#| label: setup
+#| include: false
+#| cache: false
+library(tidyverse)
+library(rcis)
+library(scales) # formatting numbers
+library(janitor)
+library(skimr)
+library(tidymodels)
+library(openintro)
+library(lubridate)
 
-<br>
+soccer <- read_csv("data/top_goalscorers.csv")
+soccer <- clean_names(soccer)
+
+soccer_clean <- soccer |>
+  mutate(
+    player_height_cm = as.numeric(gsub(" cm", "", soccer$player_height)),
+    player_weight_kg = as.numeric(gsub(" kg", "", soccer$player_weight))
+  ) |>
+  select(-c(
+    games_number, goals_saves, dribbles_past, penalty_won,
+    penalty_commited, player_height, player_weight, penalty_saved,
+    player_id_1, player_id_48, player_firstname, league_season
+  ))
+
+theme_set(theme_minimal(base_size = 14))
+```
+
+## Topic and Motivation
 
 **Topic:** Analyze offensive stats for soccer players in various leagues during 2021 season.
 
 **Motivation:** Find relationships between soccer players, leagues, and their stats.
-
-<br>
 
 **Research Questions:**
 
@@ -37,7 +64,7 @@ execute:
 ## Data Introduction {.smaller}
 
 ::: columns
-::: {.column width="55%"}
+::: {.column width="50%"}
 ```{r}
 #| label: data-introduction
 #| message: false
@@ -49,7 +76,7 @@ library(kableExtra)
 
 soccer <- read_csv("data/top_goalscorers.csv")
 
-soccer_display <-soccer |>
+soccer_display <- soccer |>
   select("player.name", "player.age", "goals.total") |>
   slice(1:5) |>
   rename("Player Name" = player.name, "Player Age" = player.age,
@@ -58,44 +85,176 @@ soccer_display <-soccer |>
 
 kable(soccer_display)
 
-  
 ```
 :::
 
-::: {.column width="45%"}
+::: {.column width="50%"}
+<div>
+
 -   Dataset contains the top 20 scorers from the top 27 football leagues for the 2021 league season.
+
     -   Rows: Individual Players
-    -   Columns: Attributes
--   The data is used by football fans, sports bettors, and researchers.
+
+    -   Columns: Attributes (Ex: Bookings, Height, Rating, League)
+
+-   The data is used by football fans, sports bettors, and researchers
+
+</div>
 :::
 :::
 
-## Highlights from EDA
-
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Highlights from EDA Pt. 1
 
 ```{r}
-1 + 1
+#| label: eda-plots-1
+#| message: false
+#| warning: false
+# Rating (cat) vs Bookings
+soccer_clean |>
+  drop_na(games_rating) |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    high_cat = if_else(games_rating >= mean(games_rating), 
+                       "high rank", "non high rank"),
+    high_cat = as.factor(high_cat)
+  ) |>
+  ggplot(mapping = aes(x = high_cat, y = total_bookings)) +
+  geom_boxplot() +
+  labs(
+    x = "Player Rating (Across Season Games)",
+    y = "Total Bookings",
+    title = "Do highly-rated players tend to get booked more frequently than non-highly rated players?"
+  ) +
+  theme_minimal()
 ```
 
-## Inference/modeling/other analysis
+## Analysis Pt. 1
 
-Your results here
+```{r}
+#| label: bookings-height-weight-age-rating
 
-## Inference/modeling/other analysis
+bookings_factors_data <- soccer_clean |>
+  mutate(
+    total_bookings = cards_yellow + cards_red + cards_yellowred,
+    player_weight_lb = (player_weight_kg * 2.2)
+  )
 
-Your results here
+bookings_reg <- linear_reg() |>
+  fit(total_bookings ~ player_height_cm + player_weight_lb + 
+        player_age + games_rating,
+      data = bookings_factors_data)
 
-## Conclusions
+tidy(bookings_reg)
+```
 
-#### RQ1 Conclusion
+Used two-sided hypothesis test to determine whether or not the difference in true population means of highly rated players and non-highly rated players is significant
 
--   What factors influence booking frequency of players?
+-   $H_0 = \mu_{high} - \mu_{non-high} = 0$
 
-    -   **We determined that rating was the only significant predictor of bookings in our analysis**
+-   $H_A = \mu_{high} - \mu_{non-high} \not= 0$
 
-#### RQ2 Conclusion
+-   Reject the null hypothesis (p-value = 0.02)
 
--   Does aggressiveness differ between European and non-European leagues?
+## Conclusions Pt.1
 
-    -   **We determined that only average goals per minute and total dues are significant predictors when determining the league.**
+-   Found that player rankings influence the bookings of players
+
+    -   We are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e. positive), implying that non-highly ranked players are booked more than highly ranked players, on average
+
+## Highlights from EDA Pt. 2
+
+::: panel-tabset
+### Part A
+
+```{r}
+#| label: analysis-plots-2
+#| message: false
+#| warning: false
+
+european_countries <- c("Belgium", "England", "France", "Germany", "Italy", 
+                        "Netherlands", "Portugal", "Spain")
+
+soccer_clean <- soccer_clean |>
+  mutate(
+    is_european = ifelse(league_country %in% european_countries, "Yes", "No")
+  )
+
+
+
+# How do goals per minutes (on average) (i.e. goals_total / games_minutes and 
+# group_by(league)) differ within leagues?
+soccer_clean |>
+  mutate(
+    # total_bookings = cards_yellow + cards_red + cards_yellowred,
+    avg_goals_per_min = goals_total / games_minutes
+  ) |>
+  # filter(avg_goals_per_min <= 0.015) |>
+  ggplot(mapping = aes(x = is_european, y = avg_goals_per_min)) +
+  geom_boxplot() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "European",
+    y = "Average Goals per Minute",
+    title = "Do European Leagues tend to have score more more goals, on average, 
+than non-European leagues?"
+  ) +
+  theme_minimal()
+```
+
+### Part B
+
+```{r}
+# Does number of duels (duels_total) differ across leagues?
+soccer_clean |>
+  ggplot(mapping = aes(x = is_european, y = duels_total)) +
+  geom_boxplot() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "European",
+    y = "Total Duels",
+    title = "Do European Leagues tend to duel more, on average, 
+than non-European leagues?"
+  ) +
+  theme_minimal()
+```
+:::
+
+## Analysis Pt. 2
+
+```{r}
+#| label: aggressiveness-eu
+#| message: false
+#| warning: false
+
+agg_data <- soccer_clean |>
+  mutate(
+  avg_penalty_by_game = (penalty_scored + penalty_missed) / games_appearences,
+  avg_goals_per_min = goals_total / games_minutes,
+  avg_shots_per_game = shots_total / games_appearences,
+  is_european = as.factor(is_european)
+  )
+
+agg_reg <- logistic_reg() |>
+  fit(is_european ~ avg_penalty_by_game + avg_goals_per_min + avg_shots_per_game + duels_total,
+      data = agg_data)
+
+tidy(agg_reg)
+```
+
+Used two-sided hypothesis test to determine whether or not the difference in true population means of goals per minute/duels for European leagues and non-European leagues is significant
+
+-   $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
+
+-   $H_A = \mu_{EU} - \mu_{non-EU} \not= 0$
+
+-   Goals per minute: fail to reject the null hypothesis (p-value = 0.196)
+
+-   Duels: reject the null hypothesis (p-value = 0)
+
+## Conclusion Pt. 2
+
+-   Average goals per minute (a proxy for aggressiveness) does not differ between European and non-European leagues.
+
+-   Total number of duels (a proxy for aggressiveness) differs between European and non-European leagues.
+
+    -   We are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average

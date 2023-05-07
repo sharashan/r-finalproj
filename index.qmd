@@ -1,5 +1,5 @@
 ---
-title: "TEAM NAME"
+title: "Skillful Pikachu"
 subtitle: "INFO 2950 Project"
 format: html
 editor: visual

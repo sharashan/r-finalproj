@@ -7,7 +7,7 @@ execute:
   echo: false
 ---
 
-# Introduction \[Shara\]
+# Introduction
 
 The motivation behind this project was to determine whether or not there were relationships between soccer players, leagues, and their respective statistics. Each observation represents a player, and columns represent descriptors such as height, weight, nationality, passes, goals scored, assists, penalties, etc. Since soccer is such a popular global sport, we aimed to answer the following research questions in our project:
 
@@ -68,6 +68,7 @@ library(scales)
 
 ```{r}
 #| label: collection-cleaning
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -89,12 +90,13 @@ soccer_clean <- soccer |>
 # glimpse(soccer_clean)
 ```
 
-#### Analysis #1: What factors influence booking frequency of players? Specifically, do player height, weight, age, or games rating have a statistically significant influence?
+## Analysis #1: What factors influence booking frequency of players? Specifically, do player height, weight, age, or games rating have a statistically significant influence?
 
 *Explanatory Data Analysis:* In order to investigate this question, we conducted a preliminary exploratory data analysis to visualize the relationships between those variables are total booking:
 
 ```{r}
 #| label: eda-plots-1
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -110,7 +112,8 @@ soccer_clean |>
     x = "Player Height (in cm)",
     y = "Total Bookings",
     title = "Do taller players tend to get booked more frequently?"
-  )
+  ) +
+  theme_minimal()
 
 # Weight vs Bookings
 soccer_clean |>
@@ -180,10 +183,11 @@ soccer_clean |>
 
 Based on our EDA, there appeared as though non-highly ranked players were booked more than highly ranked players, where highly ranked players were rated greater than or equal to the mean player rating, and non-highly ranked players were rated less than the mean player rating.
 
-*Identifying Important Predictors:* Then, we fit a multiple linear regression line that predicted total bookings based on those variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Singificance" section:
+*Identifying Important Predictors:* Then, we fit a multiple linear regression line that predicted total bookings based on those variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Significance" section:
 
 ```{r}
 #| label: bookings-height-weight-age-rating
+#| echo: false
 
 bookings_factors_data <- soccer_clean |>
   mutate(
@@ -197,7 +201,7 @@ bookings_reg <- linear_reg() |>
       data = bookings_factors_data)
 
 tidy(bookings_reg)
-glance(bookings_reg)
+# glance(bookings_reg)
 ```
 
 Based on the above results, player rating (represented by games_rating) was the only predictor with a p-value \< the significance level, 0.05. Furthermore, based on our side-by-side box plot representing the distribution of total bookings for highly rated players vs non-highly rated players in our explanatory data analysis, it appeared as though non-highly ranked players get booked more frequently. However, the visualization itself did not tell us if that difference was significant. In the following section, we will conduct a hypothesis test to evaluate this.
@@ -269,7 +273,7 @@ soccer_clean |>
   labs(
     x = "European",
     y = "Average Shots Per Game",
-    title = "Do European Leagues tend to  take more shots per game, on average, 
+    title = "Do European Leagues tend to take more shots per game, on average, 
 than non-European leagues?"
   ) +
   theme_minimal()
@@ -286,33 +290,11 @@ soccer_clean |>
 than non-European leagues?"
   ) +
   theme_minimal()
-
-# Stacked Bar Chart: 
-# soccer_clean |>
-#   mutate(
-#     is_european = if_else(is_european == "Yes", TRUE, FALSE),
-#     red = sum(cards_red + cards_yellowred),
-#     s_red = sum(cards_red),
-#     yr = sum(cards_yellowred)
-#   ) |>
-#   mutate(
-#     pct_straightred = s_red / (red + yr)
-#   ) |>
-#   ggplot(aes(x = pct_straightred, fill = is_european)) +
-#   geom_bar(position = "fill") +
-#   labs(
-#     x = "European",
-#     y = "Percent of Red Cards that are Straight Red",
-#     title = "Do European Leagues tend to have higher percentages of red cards 
-# that are straight red (on average) than non-European leagues?"
-#   ) +
-#   scale_y_continuous(labels = label_percent()) +
-#   theme_minimal()
 ```
 
 Based on the EDA, it is difficult to discern whether there which leagues are more than aggressive than others.
 
-*Identifying Important Predictors:* Next, we fit a logistic regression line that predicted whether the league group was European or not, based on above variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Singificance" section:
+*Identifying Important Predictors:* Next, we fit a logistic regression line that predicted whether the league group was European or not, based on above variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Significance" section:
 
 ```{r}
 #| label: aggressiveness-eu
@@ -338,9 +320,7 @@ Based on our results, average goals per minute and total duels were the only pre
 
 # Evaluation of significance
 
-#### Analysis #1:
-
-**The following hypothesis test is to determine whether or not the difference in true population means of highly rated players (players with ratings greater than or equal to the mean player rating) and non-highly rated players (players with ratings less than mean player rating) is significant:**
+#### Analysis #1: **The following hypothesis test is to determine whether or not the difference in true population means of highly rated players (players with ratings greater than or equal to the mean player rating) and non-highly rated players (players with ratings less than mean player rating) is significant:**
 
 -   Null Hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. $H_0 = \mu_{high} - \mu_{non-high} = 0$
 
@@ -381,9 +361,7 @@ visualize(null_dist) +
 
 *Conclusion:* The p-value (0.02) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean for bookings of highly rated players and non-highly rated players are different.
 
-#### **Analysis #2:**
-
-**The following hypothesis test is to determine whether or not the difference in true population means of duels for European leagues and non-European leagues is significant:**
+#### **Analysis #2: The following hypothesis test is to determine whether or not the difference in true population means of duels for European leagues and non-European leagues is significant:**
 
 -   Null hypothesis: The true population mean of duels for European and non-European leagues are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
@@ -416,11 +394,11 @@ visualize(null_dist) +
 
 *Conclusion:* The p-value (0) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the the true population mean of duels for European and non-European leagues are different.
 
-**The following hypothesis test is to determine whether or not the difference in true population means of averge goals per minute for European leagues and non-European leagues is significant:**
+**The following hypothesis test is to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues is significant:**
 
--   Null hypothesis: The true population mean of goals per minute for European and non-European players are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
+-   Null hypothesis: The true population mean of goals per minute for European and non-European leagues are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
--   Alt hypothesis: The true population mean of goals per minute for European and non-European players are different. $H_A = \mu_{EU} - \mu_{non-EU} = 0$
+-   Alt hypothesis: The true population mean of goals per minute for European and non-European leagues are different. $H_A = \mu_{EU} - \mu_{non-EU} = 0$
 
 ```{r}
 #| label: hyp-test-goalspermin
@@ -451,7 +429,7 @@ null_dist |>
 
 # Interpretation and conclusions
 
-**Analysis #1:**
+#### **Analysis #1:**
 
 Based on our multiple linear regression line predicting bookings from player height, weight, age, and rating, only rating was found to be significant, resulting in the following formula:
 
@@ -485,6 +463,7 @@ Based on our first hypothesis test, we found that the difference in true populat
 
 ```{r}
 #| label: booking-rating-ci
+#| echo: false
 set.seed(123)
 
 b_r_ci <- book_rank |>
@@ -497,7 +476,7 @@ get_ci(x = b_r_ci, level = 0.95)
 
 This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e. positive), implying that non-highly ranked players are booked more than highly ranked players, on average.
 
-**Analysis #2:**
+#### **Analysis #2:**
 
 Based on our logistic regression line predicting if a league is European from average penalties per game, average goals per minute, average shots per game, and total duels, only average goals per minute and total duels were found to be significant predictors, resulting in the following formula:
 
@@ -526,6 +505,7 @@ Based on our second hypothesis test, we found that the true population means of 
 
 ```{r}
 #| label: euro-duels-ci
+#| echo: false
 
 set.seed(234)
 
@@ -535,14 +515,15 @@ eu_duels_ci <- soccer_clean |>
   calculate(stat = "diff in means", order = c("Yes", "No"))
 
 get_ci(x = eu_duels_ci, level = 0.95)
-
 ```
 
 This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average. So, we are 95% confident that European leagues duel more than non-European leagues.
 
 However, based on our final hypothesis test, we did not find a significant difference in true means for average goals per minute of European and non-European leagues. Therefore, duels was the only "significantly different" proxy for aggressiveness from our multiple linear regression. Since duels were found to be significantly more for European leagues, but there was no difference for average goals per minute, we do not have conclusive evidence that European or non-European leagues are more aggressive than the other.
 
-# Limitations \[Henry\]
+In summary, upon investigation of our first research question, we found that player rating is a significant predictor of total bookings and are 95% confident that non-highly rated players are booked more than highly rated players. Upon investigation of our second research question, we found that total duels and games per minute, both proxies for aggressiveness, were significant predictors of whether a league was European or not. While we are 95% confident that European leagues duel more than non-European leagues, based on our dataset, since this was the only significantly different proxy, it is difficult to draw conclusions about the aggressiveness of European vs. non-European leagues.
+
+# Limitations
 
 The primary limitation of our dataset is that it solely uses information from the 2021 season. Consequently, it restricts our ability to analyze and compare trends within groups, such as players, teams, or leagues over an extended period. Additionally, we assume that there are no goalies present as our dataset exclusively focuses on goal scorers. This specific focus prevents us from evaluating a team's defensive capabilities, which can be important when assessing the strength of an overall team.
 
