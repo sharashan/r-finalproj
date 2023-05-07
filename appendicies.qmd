@@ -21,7 +21,7 @@ For the main cleaning process, we utilized the clean_names function from the jan
 
 # Other appendicies (as necessary)
 
-### Original Code for Communicating w/ API: 
+### Original Code for Communicating w/ API:
 
 ##### (Credits to RapidAPI + Stackoverflow for assistance)
 

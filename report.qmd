@@ -104,6 +104,7 @@ library(scales)
 
 ```{r}
 #| label: collection-cleaning
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -131,6 +132,7 @@ soccer_clean <- soccer |>
 
 ```{r}
 #| label: eda-plots-1
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -221,6 +223,7 @@ Based on our EDA, there appeared as though non-highly ranked players were booked
 
 ```{r}
 #| label: bookings-height-weight-age-rating
+#| echo: false
 
 bookings_factors_data <- soccer_clean |>
   mutate(
@@ -522,6 +525,7 @@ Based on our first hypothesis test, we found that the difference in true populat
 
 ```{r}
 #| label: booking-rating-ci
+#| echo: false
 set.seed(123)
 
 b_r_ci <- book_rank |>
@@ -563,6 +567,7 @@ Based on our second hypothesis test, we found that the true population means of 
 
 ```{r}
 #| label: euro-duels-ci
+#| echo: false
 
 set.seed(234)
 
@@ -592,3 +597,4 @@ In working on our project, we found several resources to be useful. For one, we 
 Apart from this, we took inspiration from some of the organization we saw during our peer review section. Specifically, after looking at the Skillful Charmander group, we decided to re-organize our analysis sections.
 
 Beyond our specific technical and organizational acknowledgements, we would like to acknowledge our appreciation for the course staff and teaching assistants who helped us in answering any questions we have had along the way.
+
