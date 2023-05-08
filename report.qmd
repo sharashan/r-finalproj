@@ -206,7 +206,7 @@ tidy(bookings_reg)
 
 Based on the above results, player rating (represented by games_rating) was the only predictor with a p-value \< the significance level, 0.05. Furthermore, based on our side-by-side box plot representing the distribution of total bookings for highly rated players vs non-highly rated players in our explanatory data analysis, it appeared as though non-highly ranked players get booked more frequently. However, the visualization itself did not tell us if that difference was significant. In the following section, we will conduct a hypothesis test to evaluate this.
 
-#### Analysis #2: Are some leagues more aggressive, on average, than others?
+## Analysis #2: Are some leagues more aggressive, on average, than others?
 
 *Explanatory Data Analysis:* Aggressiveness is not a variable in our data set, therefore we indirectly measured this through booking frequency, average penalties per game, average goals per minute, average shots per game, and total duels. We also compared European leagues against non-European leagues.
 
@@ -356,7 +356,7 @@ null_dist |>
   get_p_value(obs_stat = bookings_diff, direction = "two sided")
 
 visualize(null_dist) +
-  shade_p_value(obs_stat = bookings_diff, direction = "two sided")
+  shade_p_value(obs_stat = bookings_diff, direction = "two sided") + theme_minimal()
 ```
 
 *Conclusion:* The p-value (0.02) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean for bookings of highly rated players and non-highly rated players are different.
@@ -389,7 +389,7 @@ null_dist |>
   get_p_value(obs_stat = duels_diff, direction = "two sided")
 
 visualize(null_dist) +
-  shade_p_value(obs_stat = duels_diff, direction = "two sided")
+  shade_p_value(obs_stat = duels_diff, direction = "two sided") + theme_minimal()
 ```
 
 *Conclusion:* The p-value (0) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the the true population mean of duels for European and non-European leagues are different.
