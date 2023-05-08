@@ -1,5 +1,5 @@
 ---
-title: "Assessing top soccer player statistics"
+title: "Assessing Top Soccer Player Statistics"
 subtitle: "Exploratory data analysis"
 format: html
 editor: visual
