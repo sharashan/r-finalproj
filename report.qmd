@@ -64,6 +64,7 @@ library(tidymodels)
 library(openintro)
 library(lubridate)
 library(scales)
+library(gridExtra)
 ```
 
 ```{r}
@@ -103,7 +104,7 @@ In order to investigate this question, we conducted a preliminary exploratory da
 #| warning: false
 
 # Height vs Bookings
-soccer_clean |>
+g1 <- soccer_clean |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred
   ) |>
@@ -113,12 +114,12 @@ soccer_clean |>
   labs(
     x = "Player Height (in cm)",
     y = "Total Bookings",
-    title = "Do taller players tend to get booked more frequently?"
+    title = "Do taller players tend \nto get booked more frequently?"
   ) +
   theme_minimal()
 
 # Weight vs Bookings
-soccer_clean |>
+g2 <- soccer_clean |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred,
     player_weight_lb = (player_weight_kg * 2.2)
@@ -129,12 +130,12 @@ soccer_clean |>
   labs(
     x = "Player Weight (in lb)",
     y = "Total Bookings",
-    title = "Do heavier players tend to get booked more frequently?"
+    title = "Do heavier players tend \nto get booked more frequently?"
   ) + 
   theme_minimal()
 
 # Age vs Bookings
-soccer_clean |>
+g3 <- soccer_clean |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred,
     player_age_yrs = (2021 - year((date(player_birth_date))))
@@ -145,12 +146,12 @@ soccer_clean |>
   labs(
     x = "Player Age (in years)",
     y = "Total Bookings",
-    title = "Do older players tend to get booked more frequently?"
+    title = "Do older players tend \nto get booked more frequently?"
   ) +
   theme_minimal()
 
 # Rating (cont) vs Bookings
-soccer_clean |>
+g4 <- soccer_clean |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred
   ) |>
@@ -160,27 +161,31 @@ soccer_clean |>
   labs(
     x = "Player Rating (Across Season Games)",
     y = "Total Bookings",
-    title = "Do higher-rated players tend to get booked more frequently?"
+    title = "Do higher-rated players tend \nto get booked more frequently?"
   ) +
   theme_minimal()
 
 # Rating (cat) vs Bookings
-soccer_clean |>
+g5 <- soccer_clean |>
   drop_na(games_rating) |>
   mutate(
     total_bookings = cards_yellow + cards_red + cards_yellowred,
     high_cat = if_else(games_rating >= mean(games_rating), 
-                       "high rank", "non high rank"),
-    high_cat = as.factor(high_cat)
+                       "Highly Rated", "Non-Highly Rated"),
+    high_cat = as.factor(high_cat),
+    high_cat = fct_relevel(.f = high_cat, "Non-Highly Rated", "Highly Rated"),
   ) |>
   ggplot(mapping = aes(x = high_cat, y = total_bookings)) +
   geom_boxplot() +
   labs(
     x = "Player Rating (Across Season Games)",
     y = "Total Bookings",
-    title = "Do highly-rated players tend to get booked more frequently than non-highly rated players?"
+    title = "Do highly-rated players tend \nto get booked more frequently \nthan non-highly rated players?"
   ) +
   theme_minimal()
+
+grid.arrange(g1, g2, g3, nrow = 2)
+grid.arrange(g4, g5, nrow = 1)
 ```
 
 Based on our EDA, there appeared as though non-highly ranked players were booked more than highly ranked players, where highly ranked players were rated greater than or equal to the mean player rating, and non-highly ranked players were rated less than the mean player rating.
@@ -226,13 +231,13 @@ european_countries <- c("Belgium", "England", "France", "Germany", "Italy",
 
 soccer_clean <- soccer_clean |>
   mutate(
-    is_european = ifelse(league_country %in% european_countries, "Yes", "No")
+    is_european = ifelse(league_country %in% european_countries, "European", "Non-European")
   )
 
 # How does the frequency of bookings (cards_yellow, cards_red, cards_redyellow) 
 # between different leagues, impact the average goals per match? 
 # Does this differ across European and non European leagues?
-soccer_clean |>
+g6 <- soccer_clean |>
   mutate(
     # total_bookings = cards_yellow + cards_red + cards_yellowred,
     avg_penalty_by_game = (penalty_scored + penalty_missed) / games_appearences
@@ -241,16 +246,15 @@ soccer_clean |>
   geom_boxplot() +
   geom_smooth(method = "lm", se = FALSE) +
   labs(
-    x = "European",
+    x = "League Group",
     y = "Average Penalty By Game",
-    title = "Do European Leagues tend to have more average penalties per game 
-than non-European leagues?"
+    title = "Do European leagues tend to have \nmore average penalties per game \nthan non-European leagues?"
   ) +
   theme_minimal()
 
 # How do goals per minutes (on average) (i.e. goals_total / games_minutes and 
 # group_by(league)) differ within leagues?
-soccer_clean |>
+g7 <- soccer_clean |>
   mutate(
     # total_bookings = cards_yellow + cards_red + cards_yellowred,
     avg_goals_per_min = goals_total / games_minutes
@@ -260,15 +264,14 @@ soccer_clean |>
   geom_boxplot() +
   geom_smooth(method = "lm", se = FALSE) +
   labs(
-    x = "European",
+    x = "League Group",
     y = "Average Goals per Minute",
-    title = "Do European Leagues tend to have score more more goals, on average, 
-than non-European leagues?"
+    title = "Do European leagues tend to \nscore more goals than \nnon-European leagues?"
   ) +
   theme_minimal()
 
 # Do the average amount of shots per game differ across leagues?
-soccer_clean |>
+g8 <- soccer_clean |>
   mutate(
     # total_bookings = cards_yellow + cards_red + cards_yellowred,
     avg_shots_per_game = shots_total / games_appearences
@@ -277,25 +280,25 @@ soccer_clean |>
   geom_boxplot() +
   geom_smooth(method = "lm", se = FALSE) +
   labs(
-    x = "European",
+    x = "League Group",
     y = "Average Shots Per Game",
-    title = "Do European Leagues tend to take more shots per game, on average, 
-than non-European leagues?"
+    title = "Do European leagues tend to take more \naverage shots per game than \nnon-European leagues?"
   ) +
   theme_minimal()
 
 # Does number of duels (duels_total) differ across leagues?
-soccer_clean |>
+g9 <- soccer_clean |>
   ggplot(mapping = aes(x = is_european, y = duels_total)) +
   geom_boxplot() +
   geom_smooth(method = "lm", se = FALSE) +
   labs(
-    x = "European",
+    x = "League Group",
     y = "Total Duels",
-    title = "Do European Leagues tend to duel more, on average, 
-than non-European leagues?"
+    title = "Do European leagues tend to duel \nmore than non-European leagues?"
   ) +
   theme_minimal()
+
+grid.arrange(g6, g7, g8, g9, nrow = 2)
 ```
 
 Based on the EDA, it is difficult to discern whether there which leagues are more than aggressive than others.
@@ -328,7 +331,7 @@ Based on our results, average goals per minute and total duels were the only pre
 
 # Evaluation of significance
 
-## Analysis #1: Two-sided hypothesis test for difference in means of bookings for highly rated players **(players with ratings greater than or equal to the mean player rating)** and non-highly rated players **(players with ratings less than mean player rating)**
+## Analysis #1: Two-sided hypothesis test for difference in means of bookings for highly rated players (players with ratings greater than or equal to the mean player rating) and non-highly rated players (players with ratings less than mean player rating)
 
 -   Null Hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. $H_0 = \mu_{high} - \mu_{non-high} = 0$
 
@@ -346,19 +349,19 @@ book_rank <- soccer_clean |>
     total_bookings = cards_yellow + cards_red + cards_yellowred,
     high_cat = if_else(
       games_rating >= mean(games_rating), 
-      "high rank", "non high rank"),
+      "Highly Ranked", "Non-Highly Ranked"),
     high_cat = as.factor(high_cat)
   )
 
 bookings_diff <- book_rank |>
   specify(total_bookings ~ high_cat) |>
-  calculate(stat = "diff in means", order = c("non high rank", "high rank"))
+  calculate(stat = "diff in means", order = c("Highly Ranked", "Non-Highly Ranked"))
 
 null_dist <- book_rank |>
   specify(total_bookings ~ high_cat) |>
   hypothesize(null = "independence") |>
   generate(1000, type = "permute") |>
-  calculate(stat = "diff in means", order = c("non high rank", "high rank"))
+  calculate(stat = "diff in means", order = c("Highly Ranked", "Non-Highly Ranked"))
 
 null_dist |>
   get_p_value(obs_stat = bookings_diff, direction = "two sided")
@@ -369,7 +372,7 @@ visualize(null_dist) +
 
 *Conclusion:* The p-value (0.02) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean for bookings of highly rated players and non-highly rated players are different.
 
-## **Analysis #2a:** Two-sided hypothesis test for difference in means of duels for European leagues and non-European leagues
+## Analysis #2a: Two-sided hypothesis test for difference in means of duels for European leagues and non-European leagues
 
 -   Null hypothesis: The true population mean of duels for European and non-European leagues are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
@@ -385,13 +388,13 @@ set.seed(234)
 
 duels_diff <- soccer_clean |>
   specify(duels_total ~ is_european) |>
-  calculate(stat = "diff in means", order = c("Yes", "No"))
+  calculate(stat = "diff in means", order = c("European", "Non-European"))
 
 null_dist <- soccer_clean |>
   specify(duels_total ~ is_european) |>
   hypothesize(null = "independence") |>
   generate(1000, type = "permute") |>
-  calculate(stat = "diff in means", order = c("Yes", "No"))
+  calculate(stat = "diff in means", order = c("European", "Non-European"))
 
 null_dist |>
   get_p_value(obs_stat = duels_diff, direction = "two sided")
@@ -421,13 +424,13 @@ soccer_clean <- soccer_clean |>
 
 gpm_diff <- soccer_clean |>
   specify(avg_goals_per_min ~ is_european) |>
-  calculate(stat = "diff in means", order = c("Yes", "No"))
+  calculate(stat = "diff in means", order = c("European", "Non-European"))
 
 null_dist <- soccer_clean |>
   specify(avg_goals_per_min ~ is_european) |>
   hypothesize(null = "independence") |>
   generate(1000, type = "permute") |>
-  calculate(stat = "diff in means", order = c("Yes", "No"))
+  calculate(stat = "diff in means", order = c("European", "Non-European"))
 
 null_dist |>
   get_p_value(obs_stat = gpm_diff, direction = "two sided")
@@ -477,7 +480,7 @@ set.seed(123)
 b_r_ci <- book_rank |>
   specify(total_bookings ~ high_cat) |>
   generate(reps = 1000, type = "bootstrap") |>
-  calculate(stat = "diff in means", order = c("non high rank", "high rank"))
+  calculate(stat = "diff in means", order = c("Non-Highly Ranked", "Highly Ranked"))
 
 get_ci(x = b_r_ci, level = 0.95)
 ```
@@ -520,7 +523,7 @@ set.seed(234)
 eu_duels_ci <- soccer_clean |>
   specify(duels_total ~ is_european) |>
   generate(reps = 1000, type = "bootstrap") |>
-  calculate(stat = "diff in means", order = c("Yes", "No"))
+  calculate(stat = "diff in means", order = c("European", "Non-European"))
 
 get_ci(x = eu_duels_ci, level = 0.95)
 ```
