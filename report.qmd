@@ -15,7 +15,7 @@ The motivation behind this project was to determine whether or not there were re
 
 -   RQ 2 (Leagues): Does aggressiveness differ between European and non-European leagues? Aggressiveness was indirectly measured through average penalties per game, average goals per minute, average shots per game, and average number of duels per game.
 
-Summary of findings/results: XXXXX (to be filled in after)
+After conducting data analysis, it was discovered that the data does provide convincing evidence that the ratings of players influence the booking frequency, while other variables such as height and age were not statistically significant. In addition, there was convincing evidence that the average number of duels per game differ between European and non-European leagues. However, the data does not provide convincing evidence that the average goals per minute differ between European and non-European leagues, when measuring aggressiveness, and the variable of average shots per game was found to be not statistically significant.
 
 # Data description
 
