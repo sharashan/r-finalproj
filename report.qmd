@@ -92,7 +92,9 @@ soccer_clean <- soccer |>
 
 ## Analysis #1: What factors influence booking frequency of players? Specifically, do player height, weight, age, or games rating have a statistically significant influence?
 
-*Explanatory Data Analysis:* In order to investigate this question, we conducted a preliminary exploratory data analysis to visualize the relationships between those variables are total booking:
+### Explanatory Data Analysis #1
+
+In order to investigate this question, we conducted a preliminary exploratory data analysis to visualize the relationships between those variables are total booking:
 
 ```{r}
 #| label: eda-plots-1
@@ -183,7 +185,9 @@ soccer_clean |>
 
 Based on our EDA, there appeared as though non-highly ranked players were booked more than highly ranked players, where highly ranked players were rated greater than or equal to the mean player rating, and non-highly ranked players were rated less than the mean player rating.
 
-*Identifying Important Predictors:* Then, we fit a multiple linear regression line that predicted total bookings based on those variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Significance" section:
+### Identifying Important Predictors #1
+
+Then, we fit a multiple linear regression line that predicted total bookings based on those variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Significance" section:
 
 ```{r}
 #| label: bookings-height-weight-age-rating
@@ -208,7 +212,9 @@ Based on the above results, player rating (represented by games_rating) was the 
 
 ## Analysis #2: Are some leagues more aggressive, on average, than others?
 
-*Explanatory Data Analysis:* Aggressiveness is not a variable in our data set, therefore we indirectly measured this through booking frequency, average penalties per game, average goals per minute, average shots per game, and total duels. We also compared European leagues against non-European leagues.
+### Explanatory Data Analysis #2
+
+Aggressiveness is not a variable in our data set, therefore we indirectly measured this through booking frequency, average penalties per game, average goals per minute, average shots per game, and total duels. We also compared European leagues against non-European leagues.
 
 ```{r}
 #| label: analysis-plots-2
@@ -294,7 +300,9 @@ than non-European leagues?"
 
 Based on the EDA, it is difficult to discern whether there which leagues are more than aggressive than others.
 
-*Identifying Important Predictors:* Next, we fit a logistic regression line that predicted whether the league group was European or not, based on above variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Significance" section:
+### Identifying Important Predictors #2
+
+Next, we fit a logistic regression line that predicted whether the league group was European or not, based on above variables to determine if any were actually statistically significant, and worth investigating through a hypothesis test in our "Evaluation of Significance" section:
 
 ```{r}
 #| label: aggressiveness-eu
@@ -320,7 +328,7 @@ Based on our results, average goals per minute and total duels were the only pre
 
 # Evaluation of significance
 
-#### Analysis #1: **The following hypothesis test is to determine whether or not the difference in true population means of highly rated players (players with ratings greater than or equal to the mean player rating) and non-highly rated players (players with ratings less than mean player rating) is significant:**
+## Analysis #1: Two-sided hypothesis test for difference in means of bookings for highly rated players **(players with ratings greater than or equal to the mean player rating)** and non-highly rated players **(players with ratings less than mean player rating)**
 
 -   Null Hypothesis: The true population mean for bookings of highly rated players and non-highly rated players are not different. $H_0 = \mu_{high} - \mu_{non-high} = 0$
 
@@ -361,7 +369,7 @@ visualize(null_dist) +
 
 *Conclusion:* The p-value (0.02) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean for bookings of highly rated players and non-highly rated players are different.
 
-#### **Analysis #2: The following hypothesis test is to determine whether or not the difference in true population means of duels for European leagues and non-European leagues is significant:**
+## **Analysis #2a:** Two-sided hypothesis test for difference in means of duels for European leagues and non-European leagues
 
 -   Null hypothesis: The true population mean of duels for European and non-European leagues are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
@@ -394,7 +402,7 @@ visualize(null_dist) +
 
 *Conclusion:* The p-value (0) is less than alpha i.e. significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the the true population mean of duels for European and non-European leagues are different.
 
-**The following hypothesis test is to determine whether or not the difference in true population means of average goals per minute for European leagues and non-European leagues is significant:**
+## Analysis #2b: Two-sided hypothesis test for difference in means of average goals per minute for European leagues and non-European leagues
 
 -   Null hypothesis: The true population mean of goals per minute for European and non-European leagues are not different. $H_0 = \mu_{EU} - \mu_{non-EU} = 0$
 
@@ -429,7 +437,7 @@ null_dist |>
 
 # Interpretation and conclusions
 
-#### **Analysis #1:**
+## **Analysis #1**
 
 Based on our multiple linear regression line predicting bookings from player height, weight, age, and rating, only rating was found to be significant, resulting in the following formula:
 
@@ -476,7 +484,7 @@ get_ci(x = b_r_ci, level = 0.95)
 
 This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e. positive), implying that non-highly ranked players are booked more than highly ranked players, on average.
 
-#### **Analysis #2:**
+## **Analysis #2**
 
 Based on our logistic regression line predicting if a league is European from average penalties per game, average goals per minute, average shots per game, and total duels, only average goals per minute and total duels were found to be significant predictors, resulting in the following formula:
 
@@ -520,6 +528,8 @@ get_ci(x = eu_duels_ci, level = 0.95)
 This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e. positive), implying that European leagues duel more than non-European leagues, on average. So, we are 95% confident that European leagues duel more than non-European leagues.
 
 However, based on our final hypothesis test, we did not find a significant difference in true means for average goals per minute of European and non-European leagues. Therefore, duels was the only "significantly different" proxy for aggressiveness from our multiple linear regression. Since duels were found to be significantly more for European leagues, but there was no difference for average goals per minute, we do not have conclusive evidence that European or non-European leagues are more aggressive than the other.
+
+## Summary
 
 In summary, upon investigation of our first research question, we found that player rating is a significant predictor of total bookings and are 95% confident that non-highly rated players are booked more than highly rated players. Upon investigation of our second research question, we found that total duels and games per minute, both proxies for aggressiveness, were significant predictors of whether a league was European or not. While we are 95% confident that European leagues duel more than non-European leagues, based on our dataset, since this was the only significantly different proxy, it is difficult to draw conclusions about the aggressiveness of European vs. non-European leagues.
 
