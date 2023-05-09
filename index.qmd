@@ -5,4 +5,8 @@ format: html
 editor: visual
 ---
 
-Add project abstract here.
+This report researches the relationships in statistics with top scoring soccer players across various leagues from the 2021 season. The dataset used to form our analysis is from api-football.com. which contains information on the top 20 scorers of the top 27 teams. The dataset contains general player information such as height, weight, age and statistics related to their gameplay such as total goals made and number of minutes played.
+
+This report looks to delve deeper and two specific questions that were formed while looking through the data. The first question is what factors influence booking frequency of players. The second question is if aggressiveness differ between European and non-European leagues.
+
+For the first research question, it was found that player rating is a significant predictor of total bookings and are 95% confident that non-highly rated players are booked more than highly rated players. For the second research question, it was found that total duels and games per minute (proxies for aggressiveness) were significant predictors of whether a league was European or not and are 95% confident that European leagues duel more than non-European leagues. However, it is still difficult to extrapolate and draw conclusions for aggressiveness between the leagues.
