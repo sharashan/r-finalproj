@@ -9,7 +9,7 @@ execute:
 
 # Introduction
 
-The motivation behind this project was to determine whether or not there were relationships between soccer players, leagues, and their respective statistics. Each observation represents a player, and columns represent descriptors such as height, weight, nationality, passes, goals scored, assists, penalties, etc. Since soccer is such a popular global sport, we aimed to answer the following research questions in our project: 1) RQ 1 (Players)- What factors influence booking frequency of players? Some factors we considered were player height, weight, age, and player rating 2) RQ 2 (Leagues)- Does aggressiveness differ between European and non-European leagues? Aggressiveness was indirectly measured through average penalties per game, average goals per minute, average shots per game, and total duels.
+The motivation behind this project was to determine whether or not there were relationships between soccer players, leagues, and their respective statistics. Each observation represents a player, and columns represent descriptors such as height, weight, nationality, passes, goals scored, assists, penalties, etc. Since soccer is such a popular global sport, we aimed to answer the following research questions in our project: 1) What factors influence booking frequency of players? and 2) Does aggressiveness differ between European and non-European leagues? For question 1, some factors that were considered were player height, weight, age, and player rating. For question 2, aggressiveness was indirectly measured through average penalties per game, average goals per minute, average shots per game, and total duels.
 
 After conducting our data analysis, we found that the player ratings was the only significant predictor of booking frequency and that non-highly rated players are booked more than highly rated players. Of our four proxies for aggressiveness, only total duels and goals per game were significant predictors of league. Of those, we found that total duels differed between European and non-European leagues, but not goals per minute. Thus, we were not able to make conclusive claims on aggressiveness.
 
@@ -613,8 +613,8 @@ Given the nature of our dataset, it is important to acknowledge that there may b
 
 # Acknowledgments
 
-In working on our project, we found several resources to be useful. For one, we would like to give credit to the API that we used to collect the data as well as to Stack Overflow for assisting with the API interaction as well as JSON handling in R. More specifically, the API was provided by https://www.api-football.com and specific documentation on how to interact with the endpoints in different languages was given by RapidAPI.
+In working on our project, we found several resources to be useful. We would like to give credit to the API that we used to collect the data as well as to Stack Overflow for assisting with the API interaction as well as JSON handling in R. More specifically, the API was provided by https://www.api-football.com and specific documentation on how to interact with the endpoints in different languages was given by RapidAPI.
 
 Apart from this, we took inspiration from some of the organization we saw during our peer review section. Specifically, after looking at the Skillful Charmander group, we decided to re-organize our analysis sections.
 
-Beyond our specific technical and organizational acknowledgements, we would like to acknowledge our appreciation for the course staff and teaching assistants who helped us in answering any questions we have had along the way.
+We also would like to acknowledge our appreciation for the course staff and teaching assistants who helped us in answering any questions we have had along the way.
