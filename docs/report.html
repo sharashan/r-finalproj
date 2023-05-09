@@ -126,8 +126,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation"><strong>Motivation</strong></a></li>
   <li><a href="#composition" id="toc-composition" class="nav-link" data-scroll-target="#composition"><strong>Composition</strong></a></li>
-  <li><a href="#collection-process" id="toc-collection-process" class="nav-link" data-scroll-target="#collection-process"><strong>Collection Process</strong></a></li>
-  <li><a href="#preprocessingcleaninglabeling" id="toc-preprocessingcleaninglabeling" class="nav-link" data-scroll-target="#preprocessingcleaninglabeling"><strong>Preprocessing/cleaning/labeling</strong></a></li>
+  <li><a href="#pre-processingcleaninglabeling" id="toc-pre-processingcleaninglabeling" class="nav-link" data-scroll-target="#pre-processingcleaninglabeling"><strong>Pre-processing/cleaning/labeling</strong></a></li>
   <li><a href="#uses" id="toc-uses" class="nav-link" data-scroll-target="#uses"><strong>Uses</strong></a></li>
   </ul></li>
   <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data analysis</a>
@@ -200,16 +199,13 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="composition"><strong>Composition</strong></h2>
 <p>In our data set, there are 560 observations (rows) and 51 attributes (columns). Each of the rows represents a football player that is a top 20 scorer of their respective league. Of these columns, we have information on player statistics (ex/ number of appearances, number of minutes played, number of yellow or red cards attained) for the top 20 scorers from the top 27 football leagues for the 2021 league season. In the dataset of soccer player statistics, some instances may have missing information for certain attributes. This is due to the fact that each league may prioritize and record specific statistics that they find important, resulting in variations in the recorded statistics across different leagues. Additionally, some leagues are smaller than others and may not have the same telemetry.</p>
 <p>The relationships between the individual instances (players) are made explicit through the tabular structure, where each row corresponds to a specific player, and each column represents their associated statistics. As this is game data, it was likely influenced by referee rulings, as some scores may not have counted in the final game statistics.</p>
-</section>
-<section id="collection-process" class="level2">
-<h2 class="anchored" data-anchor-id="collection-process"><strong>Collection Process</strong></h2>
-<p>The data was first collected by making API calls from https://www.api-football.com/ for various soccer leagues. We made a GET request to their top scorers’ endpoint, supplying parameters for each of the 27 top leagues in 2021. From this, we collected 20 goal scorers for each league as we specified per the query string parameters. From this point, we used the jsonlite library to flatten the JSON API responses into a tibble and then exported the table to a CSV file.</p>
 <p>The data used in our analysis were collected throughout the respective football seasons of each league in the year 2021. Although the start date and duration of each league’s season may have varied slightly, all instances were associated with data from their respective leagues’ defined 2021 football season.</p>
 <p>The data we utilized was not directly collected from individual soccer players. Instead, scorekeepers initially recorded it during each game and subsequently compiled it into a comprehensive dataset by the API Football team. The people involved are football players, who are aware of data collection, as this occurs during and after all of their games because sports data is typically used to make general comparisons (past/future versions of themselves, comparing their team to another, or between leagues, sports reporting (to football fans), or MVP decisions.</p>
 </section>
-<section id="preprocessingcleaninglabeling" class="level2">
-<h2 class="anchored" data-anchor-id="preprocessingcleaninglabeling"><strong>Preprocessing/cleaning/labeling</strong></h2>
-<p>Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process.For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.</p>
+<section id="pre-processingcleaninglabeling" class="level2">
+<h2 class="anchored" data-anchor-id="pre-processingcleaninglabeling"><strong>Pre-processing/cleaning/labeling</strong></h2>
+<p><em>For more information on these processes check out our appendices.</em></p>
+<p>Once we had our data stored in a CSV file, we wrote code to load it in R and then began the cleaning process. For the main cleaning process, we utilized the clean_names function from the janitor library to make sure our variable names conform to R naming conventions. After this, we dropped the columns we would not be using by employing a select statement on our data frame. Originally, our data set had columns that were relevant to goalkeepers, defenders, and other players that are not primarily goalscorers. We also noticed that our height and weight columns were not sanitized and in character form versus numeric, thus we sanitized these columns added the units to the variable name and dropped the old columns. Lastly, we made sure to remove any columns that appeared to be duplicates like player_id_48, player_id_1, and player_firstname.</p>
 </section>
 <section id="uses" class="level2">
 <h2 class="anchored" data-anchor-id="uses"><strong>Uses</strong></h2>
@@ -304,7 +300,7 @@ ul.task-list li input[type="checkbox"] {
 1    0.02</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/hyp-test-rank-book-1.png" class="img-fluid" width="672"></p>
+<p><img src="report_files/figure-html/hyp-test-rank-book-1.png" class="img-fluid" width="384"></p>
 </div>
 </div>
 <p><em>Conclusion:</em> The p-value (0.02) is less than alpha i.e.&nbsp;significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the true population mean for bookings of highly rated players and non-highly rated players are different.</p>
@@ -323,7 +319,7 @@ ul.task-list li input[type="checkbox"] {
 1       0</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/hyp-test-euro-duels-1.png" class="img-fluid" width="672"></p>
+<p><img src="report_files/figure-html/hyp-test-euro-duels-1.png" class="img-fluid" width="384"></p>
 </div>
 </div>
 <p><em>Conclusion:</em> The p-value (0) is less than alpha i.e.&nbsp;significance level of 0.05, therefore we reject the null hypothesis. The data provides convincing evidence that the the true population mean of duels for European and non-European leagues are different.</p>

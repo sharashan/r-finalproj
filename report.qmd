@@ -334,6 +334,8 @@ Based on our results, average goals per minute and total duels were the only pre
 ```{r}
 #| label: hyp-test-rank-book
 #| echo: false
+#| fig-height: 3
+#| fig-width: 4
 
 set.seed(234)
 
@@ -377,6 +379,8 @@ visualize(null_dist) +
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-height: 3
+#| fig-width: 4
 
 set.seed(234)
 
