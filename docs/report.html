@@ -183,8 +183,8 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>The motivation behind this project was to determine whether or not there were relationships between soccer players, leagues, and their respective statistics. Each observation represents a player, and columns represent descriptors such as height, weight, nationality, passes, goals scored, assists, penalties, etc. Since soccer is such a popular global sport, we aimed to answer the following research questions in our project: 1) RQ 1 (Players): What factors influence booking frequency of players? Some factors we considered were player height, weight, age, and player rating 2) RQ 2 (Leagues): Does aggressiveness differ between European and non-European leagues? Aggressiveness was indirectly measured through average penalties per game, average goals per minute, average shots per game, and total duels.</p>
-<p>After conducting our data analysis, we discovered convincing evidence that the ratings of players are a significant predictor of booking frequency, while other variables such as height and age were not statistically significant. The findings provided evidence that non-highly rated players are booked more than highly rated players. Of our four proxies for aggressiveness, only total duels and goals per game were significant predictors of league. Of those, there was convincing evidence that the number of total duels differed between European and non-European leagues, but not goals per minute. Thus, we were not able to make conclusive claims on aggressiveness.</p>
+<p>The motivation behind this project was to determine whether or not there were relationships between soccer players, leagues, and their respective statistics. Each observation represents a player, and columns represent descriptors such as height, weight, nationality, passes, goals scored, assists, penalties, etc. Since soccer is such a popular global sport, we aimed to answer the following research questions in our project: 1) RQ 1 (Players)- What factors influence booking frequency of players? Some factors we considered were player height, weight, age, and player rating 2) RQ 2 (Leagues)- Does aggressiveness differ between European and non-European leagues? Aggressiveness was indirectly measured through average penalties per game, average goals per minute, average shots per game, and total duels.</p>
+<p>After conducting our data analysis, we found that the player ratings was the only significant predictor of booking frequency and that non-highly rated players are booked more than highly rated players. Of our four proxies for aggressiveness, only total duels and goals per game were significant predictors of league. Of those, we found that total duels differed between European and non-European leagues, but not goals per minute. Thus, we were not able to make conclusive claims on aggressiveness.</p>
 </section>
 <section id="data-description" class="level1">
 <h1>Data description</h1>
@@ -380,7 +380,6 @@ ul.task-list li input[type="checkbox"] {
 <h1>Interpretation and conclusions</h1>
 <section id="analysis-1" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-1"><strong>Analysis #1</strong></h2>
-<p>Based on our multiple linear regression line predicting bookings from player height, weight, age, and rating, <strong>only rating was found to be a significant predictor of bookings</strong>, resulting in the following formula:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
@@ -390,6 +389,7 @@ ul.task-list li input[type="checkbox"] {
 2 games_rating    -1.19     0.509     -2.33 0.0203  </code></pre>
 </div>
 </div>
+<p>Based on our multiple linear regression line predicting bookings from player height, weight, age, and rating, <strong>only rating was found to be a significant predictor of bookings</strong>, resulting in the following formula:</p>
 <p><span class="math display">\[
 \widehat{bookings} = 12.372558 - 1.185715 \times player~rating
 \]</span></p>
@@ -408,11 +408,10 @@ ul.task-list li input[type="checkbox"] {
 1    0.140     1.24</code></pre>
 </div>
 </div>
-<p>This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e.&nbsp;positive). <strong>So, we are 95% confident that that non-highly ranked players are booked more than highly ranked players.</strong></p>
+<p>This makes sense, as based on our confidence interval (from bootstrapping), we are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e.&nbsp;positive). <strong>So, we are 95% confident that that non-highly ranked players are booked more than highly ranked players.</strong></p>
 </section>
 <section id="analysis-2" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-2"><strong>Analysis #2</strong></h2>
-<p>Based on our logistic regression line predicting if a league is European from average penalties per game, average goals per minute, average shots per game, and total duels, <strong>only average goals per minute and total duels were found to be significant predictors of leage</strong>, resulting in the following formula:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
@@ -423,6 +422,7 @@ ul.task-list li input[type="checkbox"] {
 3 duels_total         -0.00483  0.000922     -5.24 0.000000159</code></pre>
 </div>
 </div>
+<p>Based on our logistic regression line predicting if a league is European from average penalties per game, average goals per minute, average shots per game, and total duels, <strong>only average goals per minute and total duels were found to be significant predictors of league</strong>, resulting in the following formula:</p>
 <p><span class="math display">\[ p = \frac{\exp\{-1.903256924 + 240.017572079 \times average~gpm + 0.004831097 \times duels\}}{1 + \exp\{-1.903256924 + 240.017572079 \times average~gpm + 0.004831097 \times duels\}}\]</span></p>
 <p>Interpretation of Slope Coefficients:</p>
 <ul>
@@ -441,7 +441,7 @@ ul.task-list li input[type="checkbox"] {
 1     30.6     86.5</code></pre>
 </div>
 </div>
-<p>This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e.&nbsp;positive), implying that European leagues duel more than non-European leagues, on average. <strong>So, we are 95% confident that European leagues duel more than non-European leagues.</strong></p>
+<p>This makes sense, as based on our confidence interval (from bootstrapping), we are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e.&nbsp;positive), implying that European leagues duel more than non-European leagues, on average. <strong>So, we are 95% confident that European leagues duel more than non-European leagues.</strong></p>
 <p>However, based on our final hypothesis test, <strong>we did not find a significant difference in true means for average goals per minute of European and non-European leagues.</strong> Therefore, duels was the only “significantly different” proxy for aggressiveness from our multiple linear regression. Since duels were found to be significantly more for European leagues, but there was no difference for average goals per minute, <strong>we do not have conclusive evidence that European or non-European leagues are more aggressive than the other.</strong></p>
 </section>
 </section>
