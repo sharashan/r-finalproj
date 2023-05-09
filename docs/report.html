@@ -133,11 +133,13 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#analysis-1-what-factors-influence-booking-frequency-of-players-specifically-do-player-height-weight-age-or-games-rating-have-a-statistically-significant-influence" id="toc-analysis-1-what-factors-influence-booking-frequency-of-players-specifically-do-player-height-weight-age-or-games-rating-have-a-statistically-significant-influence" class="nav-link" data-scroll-target="#analysis-1-what-factors-influence-booking-frequency-of-players-specifically-do-player-height-weight-age-or-games-rating-have-a-statistically-significant-influence">Analysis #1: What factors influence booking frequency of players? Specifically, do player height, weight, age, or games rating have a statistically significant influence?</a>
   <ul class="collapse">
+  <li><a href="#summary-statistics-1" id="toc-summary-statistics-1" class="nav-link" data-scroll-target="#summary-statistics-1">Summary Statistics #1:</a></li>
   <li><a href="#explanatory-data-analysis-1" id="toc-explanatory-data-analysis-1" class="nav-link" data-scroll-target="#explanatory-data-analysis-1">Explanatory Data Analysis #1</a></li>
   <li><a href="#identifying-important-predictors-1" id="toc-identifying-important-predictors-1" class="nav-link" data-scroll-target="#identifying-important-predictors-1">Identifying Important Predictors #1</a></li>
   </ul></li>
   <li><a href="#analysis-2-are-some-leagues-more-aggressive-on-average-than-others" id="toc-analysis-2-are-some-leagues-more-aggressive-on-average-than-others" class="nav-link" data-scroll-target="#analysis-2-are-some-leagues-more-aggressive-on-average-than-others">Analysis #2: Are some leagues more aggressive, on average, than others?</a>
   <ul class="collapse">
+  <li><a href="#summary-statistics-2" id="toc-summary-statistics-2" class="nav-link" data-scroll-target="#summary-statistics-2">Summary Statistics #2:</a></li>
   <li><a href="#explanatory-data-analysis-2" id="toc-explanatory-data-analysis-2" class="nav-link" data-scroll-target="#explanatory-data-analysis-2">Explanatory Data Analysis #2</a></li>
   <li><a href="#identifying-important-predictors-2" id="toc-identifying-important-predictors-2" class="nav-link" data-scroll-target="#identifying-important-predictors-2">Identifying Important Predictors #2</a></li>
   </ul></li>
@@ -152,7 +154,6 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#analysis-1" id="toc-analysis-1" class="nav-link" data-scroll-target="#analysis-1"><strong>Analysis #1</strong></a></li>
   <li><a href="#analysis-2" id="toc-analysis-2" class="nav-link" data-scroll-target="#analysis-2"><strong>Analysis #2</strong></a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul></li>
   <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
   <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
@@ -218,6 +219,25 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="analysis-1-what-factors-influence-booking-frequency-of-players-specifically-do-player-height-weight-age-or-games-rating-have-a-statistically-significant-influence" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-1-what-factors-influence-booking-frequency-of-players-specifically-do-player-height-weight-age-or-games-rating-have-a-statistically-significant-influence">Analysis #1: What factors influence booking frequency of players? Specifically, do player height, weight, age, or games rating have a statistically significant influence?</h2>
+<section id="summary-statistics-1" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics-1">Summary Statistics #1:</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  high_cat         med_height_cm med_bookings med_weight_lb med_age
+  &lt;fct&gt;                    &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 Non-Highly Rated           181            4          165       29
+2 Highly Rated               181            3          167.      30</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  high_cat         avg_height_cm avg_bookings avg_weight_lb avg_age
+  &lt;fct&gt;                    &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 Non-Highly Rated          181.         4.24          166.    29.0
+2 Highly Rated              182.         3.56          168.    29.7</code></pre>
+</div>
+</div>
+</section>
 <section id="explanatory-data-analysis-1" class="level3">
 <h3 class="anchored" data-anchor-id="explanatory-data-analysis-1">Explanatory Data Analysis #1</h3>
 <p>In order to investigate this question, we conducted a preliminary exploratory data analysis to visualize the relationships between those variables are total booking:</p>
@@ -251,6 +271,25 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="analysis-2-are-some-leagues-more-aggressive-on-average-than-others" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-2-are-some-leagues-more-aggressive-on-average-than-others">Analysis #2: Are some leagues more aggressive, on average, than others?</h2>
+<section id="summary-statistics-2" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics-2">Summary Statistics #2:</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  is_european  med_penalty med_gpm med_shots med_duels
+  &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 European          0.0370 0.00518      1.7        290
+2 Non-European      0.0417 0.00497      1.62       242</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  is_european  avg_penalty avg_gpm avg_shots avg_duels
+  &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 European          0.0644 0.00588      1.76      299.
+2 Non-European      0.0679 0.00554      1.61      240.</code></pre>
+</div>
+</div>
+</section>
 <section id="explanatory-data-analysis-2" class="level3">
 <h3 class="anchored" data-anchor-id="explanatory-data-analysis-2">Explanatory Data Analysis #2</h3>
 <p>Aggressiveness is not a variable in our data set, therefore we indirectly measured this through booking frequency, average penalties per game, average goals per minute, average shots per game, and total duels. We also compared European leagues against non-European leagues.</p>
@@ -259,7 +298,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="report_files/figure-html/analysis-plots-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Based on the EDA, it is difficult to discern whether there which leagues are more than aggressive than others.</p>
+<p>Based on the EDA, it is difficult to discern which league is more than aggressive than the other.</p>
 </section>
 <section id="identifying-important-predictors-2" class="level3">
 <h3 class="anchored" data-anchor-id="identifying-important-predictors-2">Identifying Important Predictors #2</h3>
@@ -341,7 +380,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>Interpretation and conclusions</h1>
 <section id="analysis-1" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-1"><strong>Analysis #1</strong></h2>
-<p>Based on our multiple linear regression line predicting bookings from player height, weight, age, and rating, only rating was found to be significant, resulting in the following formula:</p>
+<p>Based on our multiple linear regression line predicting bookings from player height, weight, age, and rating, <strong>only rating was found to be a significant predictor of bookings</strong>, resulting in the following formula:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
@@ -349,13 +388,6 @@ ul.task-list li input[type="checkbox"] {
   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 1 (Intercept)     12.4      3.62       3.42 0.000693
 2 games_rating    -1.19     0.509     -2.33 0.0203  </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 12
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1    0.0123        0.0100  2.87      5.43  0.0203     1 -1082. 2170. 2183.
-# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
 </div>
 <p><span class="math display">\[
@@ -367,7 +399,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Slope: For every one-point that the player’s rating is higher, we expect their booking frequency to be 1.185715 lower, on average.</p></li>
 </ul>
 <p>Based on adjusted R-squared value, only 1% of the variability in booking is explained by the model, specifically player rating, which makes this a poor predictor. However, this performs better than the full model, which explains less than 1% of the variability in booking.</p>
-<p>Based on our first hypothesis test, we found that the difference in true population means of highly rated players (players with ratings greater than or equal to the mean player rating) and non-highly rated players (players with ratings less than mean player rating) is statistically significant. Furthermore, using our exploratory data analysis, we can support that this difference is a result of non-highly ranked players being booked more than highly ranked players, on average.</p>
+<p>Based on our first hypothesis test, <strong>we found that the difference in true population means of highly rated players (players with ratings greater than or equal to the mean player rating) and non-highly rated players (players with ratings less than mean player rating) is statistically significant.</strong> Furthermore, using our exploratory data analysis, we can support that this difference is a result of non-highly ranked players being booked more than highly ranked players, on average.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
@@ -376,11 +408,11 @@ ul.task-list li input[type="checkbox"] {
 1    0.140     1.24</code></pre>
 </div>
 </div>
-<p>This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e.&nbsp;positive), implying that non-highly ranked players are booked more than highly ranked players, on average.</p>
+<p>This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of bookings for non-highly ranked and highly ranked players is between 0.14 and 1.2 (i.e.&nbsp;positive). <strong>So, we are 95% confident that that non-highly ranked players are booked more than highly ranked players.</strong></p>
 </section>
 <section id="analysis-2" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-2"><strong>Analysis #2</strong></h2>
-<p>Based on our logistic regression line predicting if a league is European from average penalties per game, average goals per minute, average shots per game, and total duels, only average goals per minute and total duels were found to be significant predictors, resulting in the following formula:</p>
+<p>Based on our logistic regression line predicting if a league is European from average penalties per game, average goals per minute, average shots per game, and total duels, <strong>only average goals per minute and total duels were found to be significant predictors of leage</strong>, resulting in the following formula:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
@@ -397,7 +429,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p><code>average gpm:</code> For every 1 goal that average gpm is higher, we expect the log odds of being a European league to be, on average, 240.017572079 larger, all else held constant.</p></li>
 <li><p><code>total duels:</code> For everyone 1 duel that total duels is higher, we expect the log odds of being a European league to be, on average, 0.004831097 larger, all else held constant.</p></li>
 </ul>
-<p>Based on our second hypothesis test, we found that the true population means of duels for European and non-European leagues are statistically different. Our EDA suggested that European leagues duel more than non-European leagues, on average.</p>
+<p>Based on our second hypothesis test, we found that <strong>the true population means of duels for European and non-European leagues are statistically different.</strong> Our EDA suggested that European leagues duel more than non-European leagues, on average.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 122 rows containing missing values.</code></pre>
@@ -409,12 +441,8 @@ ul.task-list li input[type="checkbox"] {
 1     30.6     86.5</code></pre>
 </div>
 </div>
-<p>This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e.&nbsp;positive), implying that European leagues duel more than non-European leagues, on average. So, we are 95% confident that European leagues duel more than non-European leagues.</p>
-<p>However, based on our final hypothesis test, we did not find a significant difference in true means for average goals per minute of European and non-European leagues. Therefore, duels was the only “significantly different” proxy for aggressiveness from our multiple linear regression. Since duels were found to be significantly more for European leagues, but there was no difference for average goals per minute, we do not have conclusive evidence that European or non-European leagues are more aggressive than the other.</p>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>In summary, upon investigation of our first research question, we found that player rating is a significant predictor of total bookings and are 95% confident that non-highly rated players are booked more than highly rated players. Upon investigation of our second research question, we found that total duels and games per minute, both proxies for aggressiveness, were significant predictors of whether a league was European or not. While we are 95% confident that European leagues duel more than non-European leagues, based on our dataset, since this was the only significantly different proxy, it is difficult to draw conclusions about the aggressiveness of European vs.&nbsp;non-European leagues.</p>
+<p>This makes sense, as based on our confidence interval, we are 95% confident that the difference between the true population means of duels for European and non-European leagues is between 30.63766 and 86.54825 (i.e.&nbsp;positive), implying that European leagues duel more than non-European leagues, on average. <strong>So, we are 95% confident that European leagues duel more than non-European leagues.</strong></p>
+<p>However, based on our final hypothesis test, <strong>we did not find a significant difference in true means for average goals per minute of European and non-European leagues.</strong> Therefore, duels was the only “significantly different” proxy for aggressiveness from our multiple linear regression. Since duels were found to be significantly more for European leagues, but there was no difference for average goals per minute, <strong>we do not have conclusive evidence that European or non-European leagues are more aggressive than the other.</strong></p>
 </section>
 </section>
 <section id="limitations" class="level1">
